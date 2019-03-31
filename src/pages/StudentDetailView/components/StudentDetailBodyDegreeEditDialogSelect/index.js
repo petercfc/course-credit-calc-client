@@ -1,5 +1,5 @@
 //other
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 
 // apollo
 import { Query } from "react-apollo";
@@ -45,14 +45,10 @@ function StudentDetailBodyDegreeEdit(props) {
   //input ref hook
   const selectRef = useRef();
 
-  //on mount set input width
-  useEffect(() => {
-    setLabelWidth(selectRef.current.offsetWidth);
-  }, []);
-
   //handle input change
   const handleChange = event => {
     let degree = event.target.value;
+    setLabelWidth(selectRef.current.offsetWidth);
     setDegreeId(degree);
     handleChangeDegree(degree);
   };

@@ -9,16 +9,12 @@ import HeaderMenuEditDialog from "../HeaderMenuEditDialog";
 function HeaderMenuEdit(props) {
   //modal id
   const id = "editStudent";
-  const { student, handleCloseMenu } = props;
+  const { student } = props;
   //main return
   return (
     <React.Fragment>
       <HeaderMenuEditItem student={student} id={id} />
-      <HeaderMenuEditDialog
-        student={student}
-        handleCloseMenu={handleCloseMenu}
-        id={id}
-      />
+      <HeaderMenuEditDialog student={student} id={id} />
     </React.Fragment>
   );
 }

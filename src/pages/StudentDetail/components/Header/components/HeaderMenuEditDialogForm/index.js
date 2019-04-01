@@ -23,7 +23,7 @@ import Error from "../../../../../../components/Error";
 //main function
 function HeaderMenuEditDialogForm(props) {
   //use material-ui styles custom hook
-  const { student, handleCloseMenu, history, open, toggleModal } = props;
+  const { student, history, open, toggleModal } = props;
   const [name, setName] = useState(student.name);
   const focusRef = useRef();
   const studentId = student.id;
@@ -31,6 +31,8 @@ function HeaderMenuEditDialogForm(props) {
     let value = event.target.value;
     setName(value);
   };
+
+  const handleCloseMenu = () => {};
 
   const navToNewStudent = id => {
     history.push(`/students/:${id}`);

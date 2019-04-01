@@ -11,7 +11,7 @@ import HeaderMenuEditDialogForm from "../HeaderMenuEditDialogForm";
 
 //main function
 function HeaderMenuEditDialog(props) {
-  const { student, id, handleCloseMenu } = props;
+  const { student, id } = props;
   //main return
   return (
     <Mutation mutation={TOGGLE_MODAL} variables={{ id }}>
@@ -21,7 +21,6 @@ function HeaderMenuEditDialog(props) {
             <React.Fragment>
               {getModal && (
                 <HeaderMenuEditDialogForm
-                  handleCloseMenu={handleCloseMenu}
                   open={getModal.isOpen}
                   toggleModal={toggleModal}
                   id={id}

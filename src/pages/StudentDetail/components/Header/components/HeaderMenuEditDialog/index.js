@@ -3,14 +3,14 @@ import React from "react";
 
 // apollo
 import { Query, Mutation } from "react-apollo";
-import { GET_MODAL } from "../../../../apollo/queries";
-import { TOGGLE_MODAL } from "../../../../apollo/mutations";
+import { GET_MODAL } from "../../../../../../apollo/queries";
+import { TOGGLE_MODAL } from "../../../../../../apollo/mutations";
 
 //components
-import StudentDetailHeaderMenuEditDialogForm from "../StudentDetailHeaderMenuEditDialogForm";
+import HeaderMenuEditDialogForm from "../HeaderMenuEditDialogForm";
 
 //main function
-function EditStudentDialog(props) {
+function HeaderMenuEditDialog(props) {
   const { student, id, handleCloseMenu } = props;
   //main return
   return (
@@ -20,7 +20,7 @@ function EditStudentDialog(props) {
           {({ data: { getModal } }) => (
             <React.Fragment>
               {getModal && (
-                <StudentDetailHeaderMenuEditDialogForm
+                <HeaderMenuEditDialogForm
                   handleCloseMenu={handleCloseMenu}
                   open={getModal.isOpen}
                   toggleModal={toggleModal}
@@ -37,4 +37,4 @@ function EditStudentDialog(props) {
 }
 
 //main export
-export default EditStudentDialog;
+export default HeaderMenuEditDialog;

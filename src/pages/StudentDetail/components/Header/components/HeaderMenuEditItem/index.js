@@ -3,13 +3,13 @@ import React from "react";
 
 // apollo
 import { Mutation } from "react-apollo";
-import { TOGGLE_MODAL } from "../../../../apollo/mutations";
+import { TOGGLE_MODAL } from "../../../../../../apollo/mutations";
 
 //material-ui
 import MenuItem from "@material-ui/core/MenuItem";
 
 //main function
-function EditStudentMenuItem(props) {
+function HeaderMenuEditItem(props) {
   //modal id
   const { id } = props;
   //main return
@@ -29,4 +29,4 @@ function EditStudentMenuItem(props) {
 }
 
 //main export
-export default EditStudentMenuItem;
+export default HeaderMenuEditItem;

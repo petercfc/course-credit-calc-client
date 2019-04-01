@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 
 //components
 import Header from "../../../../components/Header";
-import StudentDetailHeaderMenu from "../StudentDetailHeaderMenu";
+import HeaderMenu from "./components/HeaderMenu";
 import BackButton from "../../../../components/BackButton";
 
 //material-ui styles - custom hook
@@ -38,7 +38,7 @@ function StudentDetailHeader(props) {
       >
         {student.name}
       </Typography>
-      <StudentDetailHeaderMenu student={student} />
+      <HeaderMenu student={student} />
     </Header>
   );
 }

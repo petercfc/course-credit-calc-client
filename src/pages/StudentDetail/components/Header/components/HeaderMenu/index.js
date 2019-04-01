@@ -8,8 +8,8 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 
 //components
-import StudentDetailHeaderMenuEdit from "../StudentDetailHeaderMenuEdit";
-import StudentDetailHeaderMenuDelete from "../StudentDetailHeaderMenuDelete";
+import HeaderMenuEdit from "../HeaderMenuEdit";
+import HeaderMenuDelete from "../HeaderMenuDelete";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -23,7 +23,7 @@ const useStyles = makeStyles(
 );
 
 //main function
-function studentDetailHeaderMenu(props) {
+function HeaderMenu(props) {
   //use material-ui styles custom hook
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -60,15 +60,12 @@ function studentDetailHeaderMenu(props) {
         open={open}
         onClose={handleCloseMenu}
       >
-        <StudentDetailHeaderMenuEdit
-          handleCloseMenu={handleCloseMenu}
-          student={student}
-        />
-        <StudentDetailHeaderMenuDelete student={student} />
+        <HeaderMenuEdit handleCloseMenu={handleCloseMenu} student={student} />
+        <HeaderMenuDelete student={student} />
       </Menu>
     </React.Fragment>
   );
 }
 
 //main export
-export default studentDetailHeaderMenu;
+export default HeaderMenu;

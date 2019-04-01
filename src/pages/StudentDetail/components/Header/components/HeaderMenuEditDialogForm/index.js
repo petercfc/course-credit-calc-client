@@ -5,8 +5,8 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 // apollo
 import { Mutation, Query } from "react-apollo";
-import { GET_STUDENT } from "../../../../apollo/queries";
-import { UPDATE_STUDENT } from "../../../../apollo/mutations";
+import { GET_STUDENT } from "../../../../../../apollo/queries";
+import { UPDATE_STUDENT } from "../../../../../../apollo/mutations";
 
 //material-ui
 import Button from "@material-ui/core/Button";
@@ -17,11 +17,11 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
 //components
-import Loading from "../../../../components/Loading";
-import Error from "../../../../components/Error";
+import Loading from "../../../../../../components/Loading";
+import Error from "../../../../../../components/Error";
 
 //main function
-function DialogForm(props) {
+function HeaderMenuEditDialogForm(props) {
   //use material-ui styles custom hook
   const { student, handleCloseMenu, history, open, toggleModal } = props;
   const [name, setName] = useState(student.name);
@@ -115,4 +115,4 @@ function DialogForm(props) {
 }
 
 //main export - with router HOC
-export default withRouter(DialogForm);
+export default withRouter(HeaderMenuEditDialogForm);

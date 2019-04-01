@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 
 // apollo
 import { Mutation } from "react-apollo";
-import { DELETE_STUDENT } from "../../../../apollo/mutations";
-import { GET_ALL_STUDENTS } from "../../../../apollo/queries";
+import { DELETE_STUDENT } from "../../../../../../apollo/mutations";
+import { GET_ALL_STUDENTS } from "../../../../../../apollo/queries";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -47,7 +47,7 @@ const update = (cache, { data: { deleteStudent } }) => {
 };
 
 //main function
-function StudentDetailHeaderMenuDelete(props) {
+function HeaderMenuDelete(props) {
   //use material-ui styles custom hook
   const classes = useStyles();
   const { student, history } = props;
@@ -73,4 +73,4 @@ function StudentDetailHeaderMenuDelete(props) {
 }
 
 //main export - with router HOC
-export default withRouter(StudentDetailHeaderMenuDelete);
+export default withRouter(HeaderMenuDelete);

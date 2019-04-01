@@ -72,6 +72,11 @@ const cacheInitData = {
         id: "editStudentDegree",
         isOpen: false,
         __typename: "Modal"
+      },
+      {
+        id: "editStudentCourses",
+        isOpen: false,
+        __typename: "Modal"
       }
     ]
   }

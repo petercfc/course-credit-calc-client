@@ -5,7 +5,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 import PersonIcon from "@material-ui/icons/Person";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -16,6 +15,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 
 //components
 import EmptyState from "../../../../components/EmptyState";
+import StudentDetailBodyCoursesEdit from "../StudentDetailBodyCoursesEdit";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -81,9 +81,7 @@ function StudentDetailContentCourses(props) {
           )}
         </CardContent>
         <CardActions className={classes.actions}>
-          <Button color="primary" size="small">
-            Edit Courses
-          </Button>
+          <StudentDetailBodyCoursesEdit student={student} />
         </CardActions>
       </Card>
     </div>

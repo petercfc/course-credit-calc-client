@@ -10,7 +10,7 @@ import { GET_STUDENT } from "../../apollo/queries";
 import PersonIcon from "@material-ui/icons/Person";
 
 //components
-import Header from "./components/Header";
+import StudentDetailHeader from "./components/StudentDetailHeader";
 import StudentDetailBody from "./components/StudentDetailBody";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
@@ -39,7 +39,7 @@ function StudentDetailsView(props) {
               {loading && <Loading />}
               {student ? (
                 <React.Fragment>
-                  <Header student={student} />
+                  <StudentDetailHeader student={student} />
                   <StudentDetailBody student={student} />
                 </React.Fragment>
               ) : (

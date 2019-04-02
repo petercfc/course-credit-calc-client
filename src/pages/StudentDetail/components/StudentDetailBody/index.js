@@ -5,8 +5,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 //components
-import StudentDetailBodyDegree from "../StudentDetailBodyDegree";
-import StudentDetailBodyCourses from "../StudentDetailBodyCourses";
+import StudentDetailBodyDegree from "./components/StudentDetailBodyDegree";
+import StudentDetailBodyCourses from "./components/StudentDetailBodyCourses";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(

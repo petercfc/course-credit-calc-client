@@ -3,8 +3,8 @@ import React from "react";
 
 // apollo
 import { Query, Mutation } from "react-apollo";
-import { GET_MODAL } from "../../../../apollo/queries";
-import { TOGGLE_MODAL } from "../../../../apollo/mutations";
+import { GET_MODAL } from "../../../../../../apollo/queries";
+import { TOGGLE_MODAL } from "../../../../../../apollo/mutations";
 
 //components
 import StudentDetailBodyDegreeEditDialogForm from "../StudentDetailBodyDegreeEditDialogForm";

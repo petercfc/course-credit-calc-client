@@ -3,7 +3,10 @@ import React, { useState, useRef } from "react";
 
 // apollo
 import { Query } from "react-apollo";
-import { GET_ALL_DEGREES, GET_ALL_COURSES } from "../../../../apollo/queries";
+import {
+  GET_ALL_DEGREES,
+  GET_ALL_COURSES
+} from "../../../../../../apollo/queries";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";

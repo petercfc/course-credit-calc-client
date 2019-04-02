@@ -14,7 +14,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItemText from "@material-ui/core/ListItemText";
 
 //components
-import EmptyState from "../../../../components/EmptyState";
+import EmptyState from "../../../../../../components/EmptyState";
 import StudentDetailBodyCoursesEdit from "../StudentDetailBodyCoursesEdit";
 
 //material-ui styles - custom hook

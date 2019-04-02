@@ -10,7 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
 //components
-import EmptyState from "../../../../components/EmptyState";
+import EmptyState from "../../../../../../components/EmptyState";
 import StudentDetailBodyDegreeEdit from "../StudentDetailBodyDegreeEdit";
 
 //material-ui styles - custom hook

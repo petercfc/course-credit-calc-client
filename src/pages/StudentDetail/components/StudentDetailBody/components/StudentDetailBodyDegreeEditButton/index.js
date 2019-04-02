@@ -3,7 +3,7 @@ import React from "react";
 
 // apollo
 import { Mutation } from "react-apollo";
-import { TOGGLE_MODAL } from "../../../../apollo/mutations";
+import { TOGGLE_MODAL } from "../../../../../../apollo/mutations";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";

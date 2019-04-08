@@ -1,17 +1,16 @@
 //other
-import React, { useContext } from "react";
-import { StudentDetailProvider } from "./context";
+import React from "react";
+import { StudentDetailProvider } from "./StudentDetailContext";
 
 // apollo
-import { Query } from "react-apollo";
 import { GET_STUDENT } from "../../apollo/queries";
+import { useQuery } from "react-apollo-hooks";
 
 //material-ui
 import PersonIcon from "@material-ui/icons/Person";
 
 //components
-import StudentDetailHeader from "./components/StudentDetailHeader";
-import StudentDetailBody from "./components/StudentDetailBody";
+import StudentDetailPage from "./components/StudentDetailPage";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 import EmptyState from "../../components/EmptyState";
@@ -27,33 +26,32 @@ const getCurrentStudentId = props => {
 function StudentDetailsView(props) {
   //get the student id from the url pathname
   const studentId = getCurrentStudentId(props);
-  //main return
-  return (
-    <StudentDetailProvider>
-      <Query query={GET_STUDENT} variables={{ id: studentId }}>
-        {({ loading, error, data: { student } }) => {
-          if (loading) return <Loading isCircular />;
-          if (error) return <Error message={error} />;
-          return (
-            <React.Fragment>
-              {loading && <Loading />}
-              {student ? (
-                <React.Fragment>
-                  <StudentDetailHeader student={student} />
-                  <StudentDetailBody student={student} />
-                </React.Fragment>
-              ) : (
-                <EmptyState
-                  message="This student does not exist."
-                  icon={<PersonIcon />}
-                />
-              )}
-            </React.Fragment>
-          );
-        }}
-      </Query>
-    </StudentDetailProvider>
-  );
+
+  //apollo query return student
+  const {
+    data: { student },
+    loading,
+    error
+  } = useQuery(GET_STUDENT, {
+    variables: { id: studentId },
+    suspend: false
+  });
+
+  if (loading) return <Loading isCircular />;
+  if (error) return <Error message={error} />;
+  if (student)
+    return (
+      <StudentDetailProvider>
+        <StudentDetailPage student={student} />
+      </StudentDetailProvider>
+    );
+  else
+    return (
+      <EmptyState
+        message="This student does not exist."
+        icon={<PersonIcon />}
+      />
+    );
 }
 
 //main export

@@ -17,6 +17,7 @@
     "jss": "next",
     "react": "latest",
     "react-apollo": "^2.5.2",
+    "react-apollo-hooks": "^0.4.4",
     "react-beautiful-dnd": "^10.1.0",
     "react-dom": "latest",
     "react-material-ui-form-validator": "^2.0.7",

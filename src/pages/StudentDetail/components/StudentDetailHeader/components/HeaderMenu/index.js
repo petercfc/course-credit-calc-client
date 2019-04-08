@@ -1,6 +1,6 @@
 //other
-import React, { useState, useContext } from "react";
-import { StudentDetailContext } from "../../../../context";
+import React from "react";
+import useStudentDetail from "../../../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -29,23 +29,24 @@ function HeaderMenu(props) {
   const classes = useStyles();
 
   //use context state hook
-  const [state, setState] = useContext(StudentDetailContext);
+  const { anchorEl, openMenu, closeMenu } = useStudentDetail();
 
   //destructure props
   const { student } = props;
 
   //menu open
   const handleOpenMenu = event => {
-    setState(state => ({ ...state, anchorEl: event.currentTarget }));
+    console.log(event);
+    openMenu(event);
   };
 
   //menu close
   const handleCloseMenu = () => {
-    setState(state => ({ ...state, anchorEl: null }));
+    closeMenu();
   };
 
   //menu open as bool
-  const open = Boolean(state.anchorEl);
+  const open = Boolean(anchorEl);
 
   //main return
   return (
@@ -56,7 +57,7 @@ function HeaderMenu(props) {
       <Menu
         className={classes.menuButton}
         id="menu-appbar"
-        anchorEl={state.anchorEl}
+        anchorEl={anchorEl}
         anchorOrigin={{
           vertical: "top",
           horizontal: "right"

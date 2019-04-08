@@ -22,8 +22,6 @@ function StudentDetailBodyDegreeEditDialogSelect(props) {
                 <StudentDetailBodyDegreeEditDialogForm
                   open={getModal.isOpen}
                   toggleModal={toggleModal}
-                  id={id}
-                  student={student}
                 />
               )}
             </React.Fragment>

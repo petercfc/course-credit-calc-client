@@ -1,5 +1,6 @@
 //other
 import React from "react";
+import useStudentDetail from "../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -22,11 +23,11 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailHeader(props) {
+function StudentDetailHeader() {
   //use material-ui styles - custom hook
   const classes = useStyles();
-  const { student } = props;
-
+  //student detail state hook
+  const { student } = useStudentDetail();
   return (
     <Header>
       <BackButton />
@@ -35,10 +36,9 @@ function StudentDetailHeader(props) {
         color="textSecondary"
         variant="h6"
         noWrap
-      >
-        {student.name}
-      </Typography>
-      <HeaderMenu student={student} />
+      />
+      {student && student.name}
+      {student && <HeaderMenu student={student} />}
     </Header>
   );
 }

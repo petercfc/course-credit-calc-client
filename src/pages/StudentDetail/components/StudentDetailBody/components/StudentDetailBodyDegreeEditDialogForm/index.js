@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { ValidatorForm } from "react-material-ui-form-validator";
+import useStudentDetail from "../../../../hooks/useStudentDetail";
 
 // apollo
 import { Mutation, Query } from "react-apollo";
@@ -24,12 +25,14 @@ import StudentDetailBodyDegreeEditDialogSelect from "../StudentDetailBodyDegreeE
 //main function
 function DialogForm(props) {
   //use material-ui styles custom hook
-  const { student, open, toggleModal } = props;
-  const [degreeId, setDegreeId] = useState(student.degree);
-  const studentId = student.id;
+  const { open, toggleModal } = props;
+  const { student } = useStudentDetail();
+  console.log("what is student");
+  console.log(student);
 
   const handleChangeDegree = degree => {
-    setDegreeId(degree);
+    // setDegreeId(degree);
+    console.log("set degree");
   };
 
   //main return
@@ -37,7 +40,7 @@ function DialogForm(props) {
     <Mutation
       mutation={UPDATE_STUDENT}
       variables={{
-        data: { enrolledDegree: { connect: { id: degreeId } } },
+        data: { enrolledDegree: { connect: { id: student.degree.id } } },
         where: { id: student.id }
       }}
       update={() => {
@@ -47,7 +50,7 @@ function DialogForm(props) {
       {(updateStudent, { loading, error }) => (
         <Query
           query={GET_STUDENT}
-          variables={{ id: studentId }}
+          variables={{ id: student.id }}
           onCompleted={data => {}}
         >
           {({ data: { student } }) => (
@@ -61,7 +64,7 @@ function DialogForm(props) {
               <ValidatorForm
                 ref="form"
                 onSubmit={() => {
-                  if (degreeId) {
+                  if (student.degree.id) {
                     updateStudent();
                   } else {
                     toggleModal();

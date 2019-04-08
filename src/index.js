@@ -4,13 +4,15 @@ import { render } from "react-dom";
 import * as serviceWorker from "./configs/serviceWorker";
 
 //apollo
+import { ApolloClient } from "apollo-client";
+import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloProviderHooks } from "react-apollo-hooks";
 import { concat } from "apollo-link";
 import { RetryLink } from "apollo-link-retry";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
-import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
-import { ApolloProvider } from "react-apollo";
+
 import { typeDefs } from "./apollo/typeDefs";
 import { resolvers } from "./apollo/resolvers";
 
@@ -93,7 +95,9 @@ waitOnCache.then(() => {
   const rootElement = document.querySelector("#root");
   const AppBundle = (
     <ApolloProvider client={client}>
-      <Index />
+      <ApolloProviderHooks client={client}>
+        <Index />
+      </ApolloProviderHooks>
     </ApolloProvider>
   );
   render(AppBundle, rootElement);

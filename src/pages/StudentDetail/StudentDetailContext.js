@@ -4,9 +4,12 @@ import React, { useState } from "react";
 //create context
 const StudentDetailContext = React.createContext([{}, () => {}]);
 
-//create provider
+//create provider and init state
 const StudentDetailProvider = props => {
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    student: null,
+    anchorEl: null
+  });
   return (
     <StudentDetailContext.Provider value={[state, setState]}>
       {props.children}

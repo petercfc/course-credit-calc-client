@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StudentDetailContext } from "../StudentDetailContext";
+import { StudentDetailContext } from "../components/StudentDetailContext";
 
 //main hook
 const useStudentDetail = () => {

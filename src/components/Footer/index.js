@@ -19,7 +19,9 @@ const useStyles = makeStyles(
       position: "fixed",
       bottom: 0,
       borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2)
+      borderTopRightRadius: theme.spacing(2),
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0
     }
   }),
   { withTheme: true }

@@ -15,29 +15,27 @@ import BackButton from "../../../../components/BackButton";
 const useStyles = makeStyles(
   theme => ({
     title: {
-      flexGrow: 1
-      // fontWeight: 400
+      flexGrow: 1,
+      fontWeight: 400
     }
   }),
   { withTheme: true }
 );
 
 //main function
-function StudentDetailHeader() {
+function StudentDetailHeader(props) {
   //use material-ui styles - custom hook
   const classes = useStyles();
+
   //student detail state hook
   const { student } = useStudentDetail();
   return (
     <Header>
       <BackButton />
-      <Typography
-        className={classes.title}
-        color="textSecondary"
-        variant="h6"
-        noWrap
-      />
-      {student && student.name}
+      <Typography className={classes.title} variant="h6" noWrap>
+        {student && student.name}
+      </Typography>
+
       {student && <HeaderMenu student={student} />}
     </Header>
   );

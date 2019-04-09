@@ -17,15 +17,13 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailBody(props) {
+function StudentDetailBody() {
   //use material-ui styles - custom hook
   const classes = useStyles();
-  const { student } = props;
-
   return (
     <div className={classes.root}>
-      <StudentDetailBodyDegree student={student} />
-      <StudentDetailBodyCourses student={student} />
+      <StudentDetailBodyDegree />
+      <StudentDetailBodyCourses />
     </div>
   );
 }

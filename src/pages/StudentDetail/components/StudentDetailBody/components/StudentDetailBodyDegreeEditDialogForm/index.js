@@ -37,71 +37,76 @@ function DialogForm(props) {
 
   //main return
   return (
-    <Mutation
-      mutation={UPDATE_STUDENT}
-      variables={{
-        data: { enrolledDegree: { connect: { id: student.degree.id } } },
-        where: { id: student.id }
-      }}
-      update={() => {
-        toggleModal();
-      }}
-    >
-      {(updateStudent, { loading, error }) => (
-        <Query
-          query={GET_STUDENT}
-          variables={{ id: student.id }}
-          onCompleted={data => {}}
+    <React.Fragment>
+      {student && (
+        <Mutation
+          mutation={UPDATE_STUDENT}
+          variables={{
+            data: { enrolledDegree: { connect: { id: student.degree.id } } },
+            where: { id: student.id }
+          }}
+          update={() => {
+            toggleModal();
+          }}
         >
-          {({ data: { student } }) => (
-            <Dialog
-              open={open}
-              onClose={() => {
-                toggleModal();
-              }}
+          {(updateStudent, { loading, error }) => (
+            <Query
+              query={GET_STUDENT}
+              variables={{ id: student.id }}
+              onCompleted={data => {}}
             >
-              {loading && <Loading />}
-              <ValidatorForm
-                ref="form"
-                onSubmit={() => {
-                  if (student.degree.id) {
-                    updateStudent();
-                  } else {
+              {({ data: { student } }) => (
+                <Dialog
+                  open={open}
+                  onClose={() => {
                     toggleModal();
-                  }
-                }}
-                onError={errors => console.log(errors)}
-              >
-                <DialogTitle>Change Degree</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam vel sagittis libero, eu volutpat orci. Nulla facilisi.
-                  </DialogContentText>
-                  {error && <Error message={error.message} />}
-                  <StudentDetailBodyDegreeEditDialogSelect
-                    student={student}
-                    handleChangeDegree={handleChangeDegree}
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={() => {
-                      toggleModal();
+                  }}
+                >
+                  {loading && <Loading />}
+                  <ValidatorForm
+                    ref="form"
+                    onSubmit={() => {
+                      if (student.degree.id) {
+                        updateStudent();
+                      } else {
+                        toggleModal();
+                      }
                     }}
+                    onError={errors => console.log(errors)}
                   >
-                    Cancel
-                  </Button>
-                  <Button type="submit" color="primary" autoFocus>
-                    Change
-                  </Button>
-                </DialogActions>
-              </ValidatorForm>
-            </Dialog>
+                    <DialogTitle>Change Degree</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Etiam vel sagittis libero, eu volutpat orci. Nulla
+                        facilisi.
+                      </DialogContentText>
+                      {error && <Error message={error.message} />}
+                      <StudentDetailBodyDegreeEditDialogSelect
+                        student={student}
+                        handleChangeDegree={handleChangeDegree}
+                      />
+                    </DialogContent>
+                    <DialogActions>
+                      <Button
+                        onClick={() => {
+                          toggleModal();
+                        }}
+                      >
+                        Cancel
+                      </Button>
+                      <Button type="submit" color="primary" autoFocus>
+                        Change
+                      </Button>
+                    </DialogActions>
+                  </ValidatorForm>
+                </Dialog>
+              )}
+            </Query>
           )}
-        </Query>
+        </Mutation>
       )}
-    </Mutation>
+    </React.Fragment>
   );
 }
 

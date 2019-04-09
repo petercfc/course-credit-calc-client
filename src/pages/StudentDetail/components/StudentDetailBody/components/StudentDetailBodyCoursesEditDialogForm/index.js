@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { ValidatorForm } from "react-material-ui-form-validator";
+import useStudentDetail from "../../../../hooks/useStudentDetail";
 
 // apollo
 import { Mutation, Query } from "react-apollo";
@@ -25,7 +26,7 @@ import StudentDetailBodyCoursesEditDialogSelect from "../StudentDetailBodyCourse
 //main function
 function StudentDetailBodyCoursesEditDialogForm(props) {
   //use material-ui styles custom hook
-  const { student, open, toggleModal } = props;
+  const { open, toggleModal } = props;
   const [degreeId, setDegreeId] = useState(student.degree);
   const studentId = student.id;
 
@@ -33,61 +34,68 @@ function StudentDetailBodyCoursesEditDialogForm(props) {
     setDegreeId(degree);
   };
 
+  //destructure hook
+  const { student } = useStudentDetail();
+
   //main return
   return (
-    <Mutation
-      mutation={UPDATE_STUDENT}
-      variables={{
-        data: { enrolledDegree: { connect: { id: degreeId } } },
-        where: { id: student.id }
-      }}
-      update={() => {
-        toggleModal();
-      }}
-    >
-      {(updateStudent, { loading, error }) => (
-        <Query
-          query={GET_STUDENT}
-          variables={{ id: studentId }}
-          onCompleted={data => {}}
+    <React.Fragment>
+      {student.degree && (
+        <Mutation
+          mutation={UPDATE_STUDENT}
+          variables={{
+            data: { enrolledDegree: { connect: { id: degreeId } } },
+            where: { id: student.id }
+          }}
+          update={() => {
+            toggleModal();
+          }}
         >
-          {({ data: { student } }) => (
-            <Dialog
-              // fullScreen
-              open={open}
-              onClose={() => {
-                toggleModal();
-              }}
+          {(updateStudent, { loading, error }) => (
+            <Query
+              query={GET_STUDENT}
+              variables={{ id: studentId }}
+              onCompleted={data => {}}
             >
-              {loading && <Loading />}
-              <DialogTitle>Change Courses</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  Select courses you have succesfully passed.
-                </DialogContentText>
-                {error && <Error message={error.message} />}
-              </DialogContent>
-              <StudentDetailBodyCoursesEditDialogSelect
-                student={student}
-                handleChangeCourses={handleChangeCourses}
-              />
-              <DialogActions>
-                <Button
-                  onClick={() => {
+              {({ data: { student } }) => (
+                <Dialog
+                  // fullScreen
+                  open={open}
+                  onClose={() => {
                     toggleModal();
                   }}
                 >
-                  Cancel
-                </Button>
-                <Button type="submit" color="primary" autoFocus>
-                  Change
-                </Button>
-              </DialogActions>
-            </Dialog>
+                  {loading && <Loading />}
+                  <DialogTitle>Change Courses</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Select courses you have succesfully passed.
+                    </DialogContentText>
+                    {error && <Error message={error.message} />}
+                  </DialogContent>
+                  <StudentDetailBodyCoursesEditDialogSelect
+                    student={student}
+                    handleChangeCourses={handleChangeCourses}
+                  />
+                  <DialogActions>
+                    <Button
+                      onClick={() => {
+                        toggleModal();
+                      }}
+                    >
+                      Cancel
+                    </Button>
+                    <Button type="submit" color="primary" autoFocus>
+                      Change
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              )}
+            </Query>
           )}
-        </Query>
+        </Mutation>
       )}
-    </Mutation>
+    </React.Fragment>
   );
 }
 

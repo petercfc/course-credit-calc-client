@@ -1,5 +1,6 @@
 //other
 import React from "react";
+import useStudentDetail from "../../../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -28,13 +29,14 @@ const useStyles = makeStyles(
 function StudentDetailContentDegree(props) {
   //use material-ui styles - custom hook
   const classes = useStyles();
-  const { student } = props;
+  //student detail state hook
+  const { student } = useStudentDetail();
 
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent>
-          {student.enrolledDegree ? (
+          {student && student.enrolledDegree ? (
             <React.Fragment>
               <Typography variant="body1" gutterBottom>
                 Enrolled Degree - {student.enrolledDegree.name}

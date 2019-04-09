@@ -1,5 +1,6 @@
 //other
 import React, { useState, useRef } from "react";
+import useStudentDetail from "../../../../hooks/useStudentDetail";
 import { withRouter } from "react-router-dom";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
@@ -23,7 +24,11 @@ import Error from "../../../../../../components/Error";
 //main function
 function HeaderMenuEditDialogForm(props) {
   //use material-ui styles custom hook
-  const { student, history, open, toggleModal } = props;
+  const { history, open, toggleModal } = props;
+
+  //use context state hook
+  const { student, closeMenu } = useStudentDetail();
+
   const [name, setName] = useState(student.name);
   const focusRef = useRef();
   const studentId = student.id;
@@ -59,7 +64,7 @@ function HeaderMenuEditDialogForm(props) {
               open={open}
               onClose={() => {
                 toggleModal();
-                handleCloseMenu();
+                closeMenu();
               }}
               onEnter={() => {
                 focusRef.current.focus();
@@ -70,7 +75,7 @@ function HeaderMenuEditDialogForm(props) {
                 ref="form"
                 onSubmit={() => {
                   createStudent();
-                  handleCloseMenu();
+                  closeMenu();
                 }}
                 onError={errors => console.log(errors)}
               >
@@ -98,7 +103,7 @@ function HeaderMenuEditDialogForm(props) {
                   <Button
                     onClick={() => {
                       toggleModal();
-                      handleCloseMenu();
+                      closeMenu();
                     }}
                   >
                     Cancel

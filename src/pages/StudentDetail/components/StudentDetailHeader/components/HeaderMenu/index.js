@@ -60,7 +60,7 @@ function HeaderMenu() {
         open={open}
         onClose={closeMenu}
       >
-        <HeaderMenuEdit handleCloseMenu={closeMenu} student={student} />
+        <HeaderMenuEdit />
         <HeaderMenuDelete />
       </Menu>
     </React.Fragment>

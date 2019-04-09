@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 //components
 import Header from "../../../../components/Header";
 import HeaderMenu from "./components/HeaderMenu";
-import BackButton from "../../../../components/BackButton";
+import HeaderBack from "./components/HeaderBack";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -33,12 +33,11 @@ function StudentDetailHeader() {
   //main return
   return (
     <Header>
-      <BackButton />
+      <HeaderBack />
       <Typography className={classes.title} variant="h6" noWrap>
-        {student && student.name}
+        {student.name}
       </Typography>
-
-      {student && <HeaderMenu />}
+      <HeaderMenu />
     </Header>
   );
 }

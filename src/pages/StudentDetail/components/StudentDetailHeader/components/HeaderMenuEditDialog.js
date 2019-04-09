@@ -1,13 +1,13 @@
 //other
 import React, { useState, useRef } from "react";
-import useStudentDetail from "../../../../hooks/useStudentDetail";
+import useStudentDetail from "../../../hooks/useStudentDetail";
 import { withRouter } from "react-router-dom";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 // apollo
 import { Mutation, Query } from "react-apollo";
-import { GET_STUDENT } from "../../../../../../apollo/queries";
-import { UPDATE_STUDENT } from "../../../../../../apollo/mutations";
+import { GET_STUDENT } from "../../../../../apollo/queries";
+import { UPDATE_STUDENT } from "../../../../../apollo/mutations";
 
 //material-ui
 import Button from "@material-ui/core/Button";
@@ -18,16 +18,21 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
 //components
-import Loading from "../../../../../../components/Loading";
-import Error from "../../../../../../components/Error";
+import Loading from "../../../../../components/Loading";
+import Error from "../../../../../components/Error";
 
 //main function
 function HeaderMenuEditDialogForm(props) {
   //use material-ui styles custom hook
-  const { history, open, toggleModal } = props;
+  const { history } = props;
 
   //use context state hook
-  const { student, closeMenu } = useStudentDetail();
+  const {
+    editNameModalState,
+    editNameModalToggle,
+    student,
+    closeMenu
+  } = useStudentDetail();
 
   const [name, setName] = useState(student.name);
   const focusRef = useRef();
@@ -36,8 +41,6 @@ function HeaderMenuEditDialogForm(props) {
     let value = event.target.value;
     setName(value);
   };
-
-  const handleCloseMenu = () => {};
 
   const navToNewStudent = id => {
     history.push(`/students/:${id}`);
@@ -49,7 +52,7 @@ function HeaderMenuEditDialogForm(props) {
       mutation={UPDATE_STUDENT}
       variables={{ data: { name: name }, where: { id: student.id } }}
       update={(cache, { data: { createStudent } }) => {
-        toggleModal();
+        editNameModalToggle();
         navToNewStudent(student.id);
       }}
     >
@@ -61,9 +64,9 @@ function HeaderMenuEditDialogForm(props) {
         >
           {({ data: { student } }) => (
             <Dialog
-              open={open}
+              open={editNameModalState}
               onClose={() => {
-                toggleModal();
+                editNameModalToggle();
                 closeMenu();
               }}
               onEnter={() => {
@@ -102,7 +105,7 @@ function HeaderMenuEditDialogForm(props) {
                 <DialogActions>
                   <Button
                     onClick={() => {
-                      toggleModal();
+                      editNameModalToggle();
                       closeMenu();
                     }}
                   >

@@ -1,12 +1,12 @@
 //other
 import React from "react";
 import { withRouter } from "react-router-dom";
-import useStudentDetail from "../../../../hooks/useStudentDetail";
+import useStudentDetail from "../../../hooks/useStudentDetail";
 
 // apollo
 import { Mutation } from "react-apollo";
-import { DELETE_STUDENT } from "../../../../../../apollo/mutations";
-import { GET_ALL_STUDENTS } from "../../../../../../apollo/queries";
+import { DELETE_STUDENT } from "../../../../../apollo/mutations";
+import { GET_ALL_STUDENTS } from "../../../../../apollo/queries";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";

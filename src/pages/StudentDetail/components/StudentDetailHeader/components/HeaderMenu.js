@@ -1,6 +1,6 @@
 //other
 import React from "react";
-import useStudentDetail from "../../../../hooks/useStudentDetail";
+import useStudentDetail from "../../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -9,8 +9,8 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 
 //components
-import HeaderMenuEdit from "../HeaderMenuEdit";
-import HeaderMenuDelete from "../HeaderMenuDelete";
+import HeaderMenuEdit from "./HeaderMenuEdit";
+import HeaderMenuDelete from "./HeaderMenuDelete";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -29,7 +29,7 @@ function HeaderMenu() {
   const classes = useStyles();
 
   //use context state hook
-  const { student, anchorEl, openMenu, closeMenu } = useStudentDetail();
+  const { anchorEl, openMenu, closeMenu } = useStudentDetail();
 
   //menu open
   const handleOpenMenu = event => {

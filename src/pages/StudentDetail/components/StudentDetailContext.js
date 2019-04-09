@@ -7,8 +7,9 @@ const StudentDetailContext = React.createContext([{}, () => {}]);
 //create provider and init state
 const StudentDetailProvider = props => {
   const [state, setState] = useState({
-    student: null,
-    anchorEl: null
+    student: { name: "" },
+    anchorEl: null,
+    editNameModalState: false
   });
   return (
     <StudentDetailContext.Provider value={[state, setState]}>

@@ -17,6 +17,15 @@ const useStudentDetail = () => {
   }
 
   //opens 3 dot menu
+  function editNameModalToggle() {
+    setState(state => ({
+      ...state,
+      editNameModalState: !state.editNameModalState
+    }));
+    console.log("toggled modal");
+  }
+
+  //opens 3 dot menu
   function openMenu(event) {
     setState(state => ({ ...state, anchorEl: event.currentTarget }));
     console.log("did open menu");
@@ -34,7 +43,9 @@ const useStudentDetail = () => {
     student: state.student,
     anchorEl: state.anchorEl,
     openMenu,
-    closeMenu
+    closeMenu,
+    editNameModalState: state.editNameModalState,
+    editNameModalToggle
   };
 };
 

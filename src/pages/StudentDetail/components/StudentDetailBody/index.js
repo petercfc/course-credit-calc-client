@@ -5,8 +5,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/styles";
 
 //components
-// import StudentDetailBodyDegree from "./components/StudentDetailBodyDegree";
-// import StudentDetailBodyCourses from "./components/StudentDetailBodyCourses";
+import BodyDegree from "./components/BodyDegree";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -22,9 +21,7 @@ function StudentDetailBody() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {/* <StudentDetailBodyDegree />
-      <StudentDetailBodyCourses /> */}
-      YO
+      <BodyDegree />
     </div>
   );
 }

@@ -46,6 +46,9 @@ function StudentDetailView(props) {
   //return error message
   if (error) return <Error message={error} />;
 
+  //return error message
+  if (!student) return <EmptyState message="This student does not exist." />;
+
   //set student when student updates
   useEffect(() => {
     setStudent(student);
@@ -54,7 +57,7 @@ function StudentDetailView(props) {
   return (
     <div className={classes.view}>
       <StudentDetailHeader />
-      {/* <StudentDetailBody /> */}
+      <StudentDetailBody />
     </div>
   );
 }

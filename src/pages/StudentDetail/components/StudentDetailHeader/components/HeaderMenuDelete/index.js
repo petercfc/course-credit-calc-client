@@ -1,6 +1,7 @@
 //other
 import React from "react";
 import { withRouter } from "react-router-dom";
+import useStudentDetail from "../../../../hooks/useStudentDetail";
 
 // apollo
 import { Mutation } from "react-apollo";
@@ -48,9 +49,15 @@ const update = (cache, { data: { deleteStudent } }) => {
 
 //main function
 function HeaderMenuDelete(props) {
+  //destructure props
+  const { history } = props;
+
   //use material-ui styles custom hook
   const classes = useStyles();
-  const { student, history } = props;
+
+  //use context state hook
+  const { student } = useStudentDetail();
+
   //main return
   return (
     <Mutation mutation={DELETE_STUDENT} update={update}>
@@ -62,7 +69,7 @@ function HeaderMenuDelete(props) {
             await deleteStudent({
               variables: { id: student.id }
             });
-            history.goBack();
+            history.push("/students");
           }}
         >
           Delete Student

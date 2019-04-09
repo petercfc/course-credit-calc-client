@@ -23,12 +23,14 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailHeader(props) {
-  //use material-ui styles - custom hook
+function StudentDetailHeader() {
+  //material-ui hook
   const classes = useStyles();
 
-  //student detail state hook
+  //state hook
   const { student } = useStudentDetail();
+
+  //main return
   return (
     <Header>
       <BackButton />
@@ -36,7 +38,7 @@ function StudentDetailHeader(props) {
         {student && student.name}
       </Typography>
 
-      {student && <HeaderMenu student={student} />}
+      {student && <HeaderMenu />}
     </Header>
   );
 }

@@ -22,12 +22,17 @@ import Loading from "../../../../../components/Loading";
 import Error from "../../../../../components/Error";
 
 //main function
-function HeaderMenuEditDialogForm(props) {
+function BodyDegreeEditDialogForm(props) {
   //use material-ui styles custom hook
   const { history } = props;
 
   //use context state hook
-  const { modals, toggleModal, student, closeMenu } = useStudentDetail();
+  const {
+    isEditNameModalOpen,
+    editNameModalToggle,
+    student,
+    closeMenu
+  } = useStudentDetail();
 
   const [name, setName] = useState(student.name);
   const focusRef = useRef();
@@ -47,7 +52,7 @@ function HeaderMenuEditDialogForm(props) {
       mutation={UPDATE_STUDENT}
       variables={{ data: { name: name }, where: { id: student.id } }}
       update={(cache, { data: { createStudent } }) => {
-        toggleModal("editName");
+        editNameModalToggle();
         navToNewStudent(student.id);
       }}
     >
@@ -59,9 +64,9 @@ function HeaderMenuEditDialogForm(props) {
         >
           {({ data: { student } }) => (
             <Dialog
-              open={modals.editName}
+              open={isEditNameModalOpen}
               onClose={() => {
-                toggleModal("editName");
+                editNameModalToggle();
                 closeMenu();
               }}
               onEnter={() => {
@@ -100,8 +105,8 @@ function HeaderMenuEditDialogForm(props) {
                 <DialogActions>
                   <Button
                     onClick={() => {
-                      toggleModal("editName");
-                      // closeMenu();
+                      editNameModalToggle();
+                      closeMenu();
                     }}
                   >
                     Cancel
@@ -120,4 +125,4 @@ function HeaderMenuEditDialogForm(props) {
 }
 
 //main export - with router HOC
-export default withRouter(HeaderMenuEditDialogForm);
+export default withRouter(BodyDegreeEditDialogForm);

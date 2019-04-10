@@ -25,7 +25,7 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailContentDegree() {
+const BodyDegree = () => {
   //use material-ui styles - custom hook
   const classes = useStyles();
   //student detail state hook
@@ -55,7 +55,7 @@ function StudentDetailContentDegree() {
       </Card>
     </div>
   );
-}
+};
 
 //main export
-export default StudentDetailContentDegree;
+export default BodyDegree;

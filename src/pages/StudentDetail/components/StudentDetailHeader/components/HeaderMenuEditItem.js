@@ -8,12 +8,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 //main function
 function HeaderMenuEditItem() {
   //use context state hook
-  const { editNameModalToggle } = useStudentDetail();
+  const { toggleModal } = useStudentDetail();
   //main return
   return (
     <MenuItem
       onClick={() => {
-        editNameModalToggle();
+        toggleModal("editName");
       }}
     >
       Change Name

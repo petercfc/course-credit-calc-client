@@ -9,7 +9,7 @@ const StudentDetailProvider = props => {
   const [state, setState] = useState({
     student: { name: "" },
     anchorEl: null,
-    editNameModalState: false
+    modals: { editName: false, editDegree: false }
   });
   return (
     <StudentDetailContext.Provider value={[state, setState]}>

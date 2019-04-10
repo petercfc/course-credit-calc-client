@@ -24,7 +24,7 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailView(props) {
+const StudentDetailView = props => {
   //destructure props
   const { studentId } = props;
 
@@ -34,7 +34,7 @@ function StudentDetailView(props) {
   //state hook
   const { setStudent } = useStudentDetail();
 
-  //apollo query return student
+  //apollo query
   const {
     data: { student },
     error
@@ -54,13 +54,14 @@ function StudentDetailView(props) {
     setStudent(student);
   }, [student]);
 
+  //main
   return (
     <div className={classes.view}>
       <StudentDetailHeader />
       <StudentDetailBody />
     </div>
   );
-}
+};
 
 //main export
 export default StudentDetailView;

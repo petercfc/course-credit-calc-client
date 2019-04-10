@@ -7,35 +7,36 @@ const useStudentDetail = () => {
   const [state, setState] = useContext(StudentDetailContext);
 
   //sets selected student
-  function setStudent(student) {
+  const setStudent = student => {
     setState(state => ({
       ...state,
       student: student
     }));
     console.log("setStudent");
     console.log(student);
-  }
+  };
 
-  //opens 3 dot menu
-  function editNameModalToggle() {
+  //toggles modal based on name
+  const toggleModal = modalName => {
+    console.log("state");
+    console.log(state);
     setState(state => ({
       ...state,
-      editNameModalState: !state.editNameModalState
+      modals: { ...state.modals, [modalName]: !state.modals[modalName] }
     }));
-    console.log("toggled modal");
-  }
+  };
 
   //opens 3 dot menu
-  function openMenu(event) {
+  const openMenu = event => {
     setState(state => ({ ...state, anchorEl: event.currentTarget }));
     console.log("did open menu");
-  }
+  };
 
   //closes 3 dot menu
-  function closeMenu() {
+  const closeMenu = () => {
     setState(state => ({ ...state, anchorEl: null }));
     console.log("did close menu");
-  }
+  };
 
   //main return
   return {
@@ -44,8 +45,8 @@ const useStudentDetail = () => {
     anchorEl: state.anchorEl,
     openMenu,
     closeMenu,
-    editNameModalState: state.editNameModalState,
-    editNameModalToggle
+    modals: state.modals,
+    toggleModal
   };
 };
 

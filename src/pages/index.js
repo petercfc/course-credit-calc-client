@@ -6,6 +6,7 @@ import loadable from "@loadable/component";
 // material-ui
 import { withStyles } from "@material-ui/core/styles";
 import withTheme from "../configs/withTheme";
+import "typeface-ibm-plex-sans";
 
 // // code split pages
 const StudentsView = loadable(() => import("./StudentsView"));

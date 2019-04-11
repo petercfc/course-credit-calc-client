@@ -2,12 +2,12 @@
 import React, { useState, useRef } from "react";
 import useStudentDetail from "../../../hooks/useStudentDetail";
 import { withRouter } from "react-router-dom";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 // apollo
 import { Mutation, Query } from "react-apollo";
 import { GET_STUDENT } from "../../../../../apollo/queries";
 import { UPDATE_STUDENT } from "../../../../../apollo/mutations";
+import { useMutation, useQuery } from "react-apollo-hooks";
 
 //material-ui
 import Button from "@material-ui/core/Button";
@@ -29,93 +29,50 @@ function BodyDegreeEditDialogForm(props) {
   //use context state hook
   const { modals, toggleModal, student, closeMenu } = useStudentDetail();
 
-  const [name, setName] = useState(student.name);
-  const focusRef = useRef();
-  const studentId = student.id;
-  const handleChangeName = () => event => {
-    let value = event.target.value;
-    setName(value);
-  };
-
+  //nav to student
   const navToNewStudent = id => {
     history.push(`/students/:${id}`);
   };
 
+  //create student mutation
+  const updateStudent = useMutation(UPDATE_STUDENT, {
+    variables: { data: { name: "wayo" }, where: { id: student.id } },
+    update: (cache, { data: { createStudent } }) => {
+      toggleModal("editDegree");
+      navToNewStudent(student.id);
+    }
+  });
+
   //main return
   return (
-    <Mutation
-      mutation={UPDATE_STUDENT}
-      variables={{ data: { name: name }, where: { id: student.id } }}
-      update={(cache, { data: { createStudent } }) => {
+    <Dialog
+      open={modals.editDegree}
+      onClose={() => {
         toggleModal("editDegree");
-        navToNewStudent(student.id);
+        closeMenu();
       }}
     >
-      {(createStudent, { loading, error }) => (
-        <Query
-          query={GET_STUDENT}
-          variables={{ id: studentId }}
-          onCompleted={data => {}}
+      <DialogTitle>Change Degree</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel
+          sagittis libero, eu volutpat orci. Nulla facilisi.
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          onClick={() => {
+            toggleModal("editDegree");
+            closeMenu();
+          }}
         >
-          {({ data: { student } }) => (
-            <Dialog
-              open={modals.editDegree}
-              onClose={() => {
-                toggleModal("editDegree");
-                closeMenu();
-              }}
-              onEnter={() => {
-                focusRef.current.focus();
-              }}
-            >
-              {loading && <Loading />}
-              <ValidatorForm
-                ref="form"
-                onSubmit={() => {
-                  createStudent();
-                  closeMenu();
-                }}
-                onError={errors => console.log(errors)}
-              >
-                <DialogTitle>Change Degree</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam vel sagittis libero, eu volutpat orci. Nulla facilisi.
-                  </DialogContentText>
-                  {error && <Error message={error.message} />}
-                  <TextValidator
-                    inputRef={focusRef}
-                    margin="normal"
-                    variant="outlined"
-                    fullWidth
-                    label="Degree"
-                    onChange={handleChangeName()}
-                    name="Name"
-                    value={name}
-                    validators={["required"]}
-                    errorMessages={["This field is required."]}
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={() => {
-                      toggleModal("editDegree");
-                      closeMenu();
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="submit" color="primary" autoFocus>
-                    Change
-                  </Button>
-                </DialogActions>
-              </ValidatorForm>
-            </Dialog>
-          )}
-        </Query>
-      )}
-    </Mutation>
+          Cancel
+        </Button>
+        <Button type="submit" color="primary" autoFocus>
+          Change
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 

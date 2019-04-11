@@ -27,7 +27,7 @@ const useStyles = makeStyles(
 
 //main function
 const BodyDegree = () => {
-  //use material-ui styles - custom hook
+  //material-ui hook
   const classes = useStyles();
   //student detail state hook
   const { student } = useStudentDetail();

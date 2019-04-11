@@ -35,15 +35,12 @@ import Error from "../../../../../components/Error";
 const useStyles = makeStyles(
   theme => ({
     root: {
-      // display: "flex"
+      // display: "flex",
       // flexWrap: "wrap"
     },
     formControl: {
-      margin: theme.spacing.unit,
+      margin: theme.spacing(1),
       minWidth: 120
-    },
-    selectEmpty: {
-      marginTop: theme.spacing.unit * 2
     }
   }),
   { withTheme: true }
@@ -84,6 +81,7 @@ function BodyDegreeEditDialogForm(props) {
   // effect hook to listen for labelWidth changes
   React.useEffect(() => {
     changeLabelWidth();
+    console.log("should change width");
   }, []);
 
   //form hook
@@ -122,7 +120,10 @@ function BodyDegreeEditDialogForm(props) {
             </InputLabel>
             <Select
               value={values.degree || ""}
-              onChange={handleChange}
+              onChange={event => {
+                handleChange(event);
+                changeLabelWidth();
+              }}
               input={
                 <OutlinedInput
                   labelWidth={labelWidth}

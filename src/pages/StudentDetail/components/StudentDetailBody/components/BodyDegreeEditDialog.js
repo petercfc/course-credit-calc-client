@@ -27,12 +27,7 @@ function BodyDegreeEditDialogForm(props) {
   const { history } = props;
 
   //use context state hook
-  const {
-    isEditNameModalOpen,
-    editNameModalToggle,
-    student,
-    closeMenu
-  } = useStudentDetail();
+  const { modals, toggleModal, student, closeMenu } = useStudentDetail();
 
   const [name, setName] = useState(student.name);
   const focusRef = useRef();
@@ -52,7 +47,7 @@ function BodyDegreeEditDialogForm(props) {
       mutation={UPDATE_STUDENT}
       variables={{ data: { name: name }, where: { id: student.id } }}
       update={(cache, { data: { createStudent } }) => {
-        editNameModalToggle();
+        toggleModal("editDegree");
         navToNewStudent(student.id);
       }}
     >
@@ -64,9 +59,9 @@ function BodyDegreeEditDialogForm(props) {
         >
           {({ data: { student } }) => (
             <Dialog
-              open={isEditNameModalOpen}
+              open={modals.editDegree}
               onClose={() => {
-                editNameModalToggle();
+                toggleModal("editDegree");
                 closeMenu();
               }}
               onEnter={() => {
@@ -82,7 +77,7 @@ function BodyDegreeEditDialogForm(props) {
                 }}
                 onError={errors => console.log(errors)}
               >
-                <DialogTitle>Change Name</DialogTitle>
+                <DialogTitle>Change Degree</DialogTitle>
                 <DialogContent>
                   <DialogContentText>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -94,7 +89,7 @@ function BodyDegreeEditDialogForm(props) {
                     margin="normal"
                     variant="outlined"
                     fullWidth
-                    label="Name"
+                    label="Degree"
                     onChange={handleChangeName()}
                     name="Name"
                     value={name}
@@ -105,7 +100,7 @@ function BodyDegreeEditDialogForm(props) {
                 <DialogActions>
                   <Button
                     onClick={() => {
-                      editNameModalToggle();
+                      toggleModal("editDegree");
                       closeMenu();
                     }}
                   >

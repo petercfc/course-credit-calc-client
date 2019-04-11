@@ -6,14 +6,14 @@ import useStudentDetail from "../../../hooks/useStudentDetail";
 import Button from "@material-ui/core/Button";
 
 //main function
-function BodyDegreeEditItem() {
+function BodyDegreeEditButton() {
   //use context state hook
-  const { editDegreeModalToggle } = useStudentDetail();
+  const { toggleModal } = useStudentDetail();
   //main return
   return (
     <Button
       onClick={() => {
-        editDegreeModalToggle();
+        toggleModal("editDegree");
       }}
     >
       Change Degree
@@ -22,4 +22,4 @@ function BodyDegreeEditItem() {
 }
 
 //main export
-export default BodyDegreeEditItem;
+export default BodyDegreeEditButton;

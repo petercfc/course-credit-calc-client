@@ -2,7 +2,7 @@
 import React from "react";
 
 //components
-import BodyDegreeEditItem from "./BodyDegreeEditItem";
+import BodyDegreeEditButton from "./BodyDegreeEditButton";
 import BodyDegreeEditDialog from "./BodyDegreeEditDialog";
 
 //main function
@@ -10,7 +10,7 @@ const BodyDegreeEdit = () => {
   //main return
   return (
     <React.Fragment>
-      <BodyDegreeEditItem />
+      <BodyDegreeEditButton />
       <BodyDegreeEditDialog />
     </React.Fragment>
   );

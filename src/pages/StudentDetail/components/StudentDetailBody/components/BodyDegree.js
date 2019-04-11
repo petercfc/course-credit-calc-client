@@ -12,6 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 
 //components
 import EmptyState from "../../../../../components/EmptyState";
+import BodyDegreeEdit from "./BodyDegreeEdit";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -51,7 +52,9 @@ const BodyDegree = () => {
             />
           )}
         </CardContent>
-        <CardActions className={classes.actions} />
+        <CardActions className={classes.actions}>
+          <BodyDegreeEdit />
+        </CardActions>
       </Card>
     </div>
   );

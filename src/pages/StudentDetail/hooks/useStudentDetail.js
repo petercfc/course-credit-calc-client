@@ -12,8 +12,6 @@ const useStudentDetail = () => {
       ...state,
       student: student
     }));
-    console.log("setStudent");
-    console.log(student);
   };
 
   //toggles modal based on name
@@ -29,13 +27,11 @@ const useStudentDetail = () => {
   //opens 3 dot menu
   const openMenu = event => {
     setState(state => ({ ...state, anchorEl: event.currentTarget }));
-    console.log("did open menu");
   };
 
   //closes 3 dot menu
   const closeMenu = () => {
     setState(state => ({ ...state, anchorEl: null }));
-    console.log("did close menu");
   };
 
   //main return

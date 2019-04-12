@@ -7,10 +7,9 @@ import useForm from "../hooks/useForm";
 import useLabelWidth from "../hooks/useLabelWidth";
 
 // apollo
+import { Mutation, Query } from "react-apollo";
 import { GET_ALL_DEGREES } from "../../../../../apollo/queries";
 import { UPDATE_STUDENT } from "../../../../../apollo/mutations";
-
-import { useQuery, useMutation } from "react-apollo-hooks";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -27,8 +26,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 //components
-import EmptyState from "../../../../../components/EmptyState";
-import Error from "../../../../../components/Error";
+import Loading from "../../../../../components/Loading";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -53,25 +51,8 @@ function BodyDegreeEditDialogForm(props) {
   //use context state hook
   const { modals, toggleModal, closeMenu, student } = useStudentDetail();
 
-  //form initial values
-  const initValues = { degree: "steve" };
-  console.log("student", student);
-
   //form hook
-  const { values, handleChange, handleSubmit } = useForm(
-    testCallback,
-    initValues
-  );
-
-  //degrees query
-  const {
-    data: { degrees },
-    error
-  } = useQuery(GET_ALL_DEGREES);
-
-  function testCallback() {
-    console.log(values);
-  }
+  const { values, handleChange, handleSubmit } = useForm();
 
   //input ref for field length
   const inputLabelRef = React.useRef(null);
@@ -84,70 +65,100 @@ function BodyDegreeEditDialogForm(props) {
     changeLabelWidth();
   }, []);
 
-  //return error message
-  if (error) return <Error message={error} />;
-
-  //return error message
-  if (!degrees) return <EmptyState message="There are no degrees." />;
-
   //main return
   return (
-    <Dialog
-      open={modals.editDegree}
-      onClose={() => {
-        toggleModal("editDegree");
-        closeMenu();
+    <Mutation
+      mutation={UPDATE_STUDENT}
+      variables={{
+        data: {
+          enrolledDegree: { connect: { id: "cjt3olkq9r8a00b35hr6u45o1" } }
+        },
+        where: { id: "cjubc4sjmgkek0b03qztplk4p" }
+      }}
+      update={() => {
+        console.log("mutation update");
+        // toggleModal("editDegree");
+        // closeMenu();
       }}
     >
-      <form className={classes.root} onSubmit={handleSubmit} autoComplete="off">
-        {console.log(student)}
-        <DialogTitle>Change Degree</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel
-            sagittis libero, eu volutpat orci. Nulla facilisi.
-          </DialogContentText>
-          <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel ref={inputLabelRef} htmlFor="degree-id">
-              Degree
-            </InputLabel>
-            <Select
-              value={values.degree || student.enrolledDegree.id}
-              onChange={event => {
-                handleChange(event);
-                changeLabelWidth();
-              }}
-              input={
-                <OutlinedInput
-                  labelWidth={labelWidth}
-                  name="degree"
-                  id="degree-id"
-                />
-              }
-            >
-              {degrees.map(degree => (
-                <MenuItem key={degree.id} value={degree.id}>
-                  {degree.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={() => {
-              toggleModal("editDegree");
-              closeMenu();
-            }}
+      {(updateStudent, { loading, error }) => (
+        <Dialog
+          open={modals.editDegree}
+          onClose={() => {
+            toggleModal("editDegree");
+            closeMenu();
+          }}
+        >
+          {loading && <Loading />}
+          <form
+            className={classes.root}
+            onSubmit={handleSubmit}
+            autoComplete="off"
           >
-            Cancel
-          </Button>
-          <Button type="submit" color="primary" autoFocus>
-            Change
-          </Button>
-        </DialogActions>
-      </form>
-    </Dialog>
+            <DialogTitle>Change Degree</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                vel sagittis libero, eu volutpat orci. Nulla facilisi.
+              </DialogContentText>
+              <Query query={GET_ALL_DEGREES}>
+                {({ data: { degrees } }) => (
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
+                  >
+                    <InputLabel ref={inputLabelRef} htmlFor="degree-id">
+                      Degree
+                    </InputLabel>
+                    <Select
+                      value={values.degree || student.enrolledDegree.id}
+                      onChange={event => {
+                        handleChange(event);
+                        changeLabelWidth();
+                      }}
+                      input={
+                        <OutlinedInput
+                          labelWidth={labelWidth}
+                          name="degree"
+                          id="degree-id"
+                        />
+                      }
+                    >
+                      {degrees.map(degree => (
+                        <MenuItem key={degree.id} value={degree.id}>
+                          {degree.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
+              </Query>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  toggleModal("editDegree");
+                  closeMenu();
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  console.log("clicked change");
+                  updateStudent();
+                }}
+                type="submit"
+                color="primary"
+                autoFocus
+              >
+                Change
+              </Button>
+            </DialogActions>
+          </form>
+        </Dialog>
+      )}
+    </Mutation>
   );
 }
 

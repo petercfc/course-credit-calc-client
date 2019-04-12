@@ -1,9 +1,7 @@
 //other
-import React, { Suspense } from "react";
-import { StudentDetailProvider } from "./components/StudentDetailContext";
+import React from "react";
 
 //components
-import Loading from "../../components/Loading";
 import StudentDetailView from "./components/StudentDetailView";
 
 //main function
@@ -20,13 +18,7 @@ const StudentDetail = props => {
   };
 
   //main return
-  return (
-    <StudentDetailProvider>
-      <Suspense fallback={<Loading isCircular />}>
-        <StudentDetailView studentId={extractStudentId(pathname)} />
-      </Suspense>
-    </StudentDetailProvider>
-  );
+  return <StudentDetailView studentId={extractStudentId(pathname)} />;
 };
 
 //main export

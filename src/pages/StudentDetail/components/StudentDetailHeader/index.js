@@ -1,6 +1,5 @@
 //other
 import React from "react";
-import useStudentDetail from "../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -27,15 +26,12 @@ function StudentDetailHeader() {
   //material-ui hook
   const classes = useStyles();
 
-  //state hook
-  const { student } = useStudentDetail();
-
   //main return
   return (
     <Header>
       <HeaderBack />
       <Typography className={classes.title} variant="h6" noWrap>
-        {student.name}
+        Header
       </Typography>
       <HeaderMenu />
     </Header>

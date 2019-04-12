@@ -3,6 +3,10 @@ import React from "react";
 import { render } from "react-dom";
 import * as serviceWorker from "./configs/serviceWorker";
 
+//redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 //apollo
 import { ApolloClient } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
@@ -53,11 +57,11 @@ const client = new ApolloClient({
 waitOnCache.then(() => {
   const rootElement = document.querySelector("#root");
   const AppBundle = (
-    <ApolloProvider client={client}>
-      <ApolloProviderHooks client={client}>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
         <Index />
-      </ApolloProviderHooks>
-    </ApolloProvider>
+      </ApolloProvider>
+    </Provider>
   );
   render(AppBundle, rootElement);
 });

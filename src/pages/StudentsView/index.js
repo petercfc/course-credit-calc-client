@@ -12,7 +12,6 @@ import { makeStyles } from "@material-ui/styles";
 import StudentsBodyList from "./components/StudentsBodyList";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
-import CreateStudent from "./components/CreateStudent";
 
 //create material-ui styles custom hook
 const useStyles = makeStyles(
@@ -35,7 +34,6 @@ function StudentsView() {
         return (
           <div className={classes.root}>
             <StudentsBodyList students={data.students} />
-            <CreateStudent />
           </div>
         );
       }}

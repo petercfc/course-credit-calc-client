@@ -31,64 +31,23 @@ const cache = new InMemoryCache();
 const storage = window.localStorage;
 const waitOnCache = persistCache({ cache, storage });
 
+//apollo defaults
 const defaultOptions = {
-  watchQuery: {
-    // fetchPolicy: "cache-and-network",
-    // errorPolicy: "ignore"
-  },
+  watchQuery: {},
   query: {
     fetchPolicy: "cache-and-network"
-    // errorPolicy: "all"
   },
-  mutate: {
-    // errorPolicy: "all"
-  }
+  mutate: {}
 };
 
 // create apollo client
 const client = new ApolloClient({
   cache,
   link,
-  typeDefs,
-  resolvers,
+  // typeDefs,
+  // resolvers,
   defaultOptions
 });
-
-//init cache
-
-const cacheInitData = {
-  data: {
-    selectedStudent: "No Student Selected",
-    modals: [
-      {
-        id: "createStudent",
-        isOpen: false,
-        __typename: "Modal"
-      },
-      {
-        id: "editStudent",
-        isOpen: false,
-        __typename: "Modal"
-      },
-      {
-        id: "editStudentDegree",
-        isOpen: false,
-        __typename: "Modal"
-      },
-      {
-        id: "editStudentCourses",
-        isOpen: false,
-        __typename: "Modal"
-      }
-    ]
-  }
-};
-cache.writeData(cacheInitData);
-
-// notes for nuking store
-// client.clearStore();
-// client.resetStore();
-// client.onResetStore(() => cache.writeData({ cacheInitData }));
 
 // wait for cache to load before init
 waitOnCache.then(() => {

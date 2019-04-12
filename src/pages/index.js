@@ -10,10 +10,8 @@ import withTheme from "../configs/withTheme";
 // // code split pages
 const StudentsView = loadable(() => import("./StudentsView"));
 const StudentDetail = loadable(() => import("./StudentDetail"));
-const CoursesView = loadable(() => import("./CoursesView"));
 
 // code split components
-
 const Footer = loadable(() => import("../components/Footer"));
 
 // styles
@@ -42,7 +40,6 @@ function Index(props) {
                 <Switch>
                   <Route path="/students/:id" component={StudentDetail} />
                   <Route path="/students" component={StudentsView} />
-                  <Route path="/courses" component={CoursesView} />
                   <Route path="/" component={StudentsView} />
                 </Switch>
               </Fragment>

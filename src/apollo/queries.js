@@ -1,15 +1,6 @@
 // apollo
 import gql from "graphql-tag";
 
-export const GET_MODAL = gql`
-  query GetModal($id: Int!) {
-    getModal(id: $id) @client {
-      id
-      isOpen
-    }
-  }
-`;
-
 export const GET_ALL_DEGREES = gql`
   query GetAllDegrees {
     degrees {
@@ -77,11 +68,5 @@ export const GET_STUDENT = gql`
         credits
       }
     }
-  }
-`;
-
-export const GET_SELECTED_STUDENT = gql`
-  {
-    selectedStudent @client
   }
 `;

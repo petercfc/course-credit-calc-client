@@ -112,7 +112,7 @@ function BodyDegreeEditDialogForm(props) {
               Degree
             </InputLabel>
             <Select
-              value={values.degree || student.degree.id || ""}
+              value={values.degree || student.enrolledDegree.id}
               onChange={event => {
                 handleChange(event);
                 changeLabelWidth();

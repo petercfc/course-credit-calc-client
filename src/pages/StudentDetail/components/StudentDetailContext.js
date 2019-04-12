@@ -7,7 +7,7 @@ const StudentDetailContext = React.createContext([{}, () => {}]);
 //create provider and init state
 const StudentDetailProvider = props => {
   const [state, setState] = useState({
-    student: { name: "" },
+    student: { id: "", name: "", enrolledDegree: { id: "", name: "" } },
     anchorEl: null,
     modals: { editName: false, editDegree: false }
   });

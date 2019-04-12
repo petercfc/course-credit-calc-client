@@ -27,12 +27,8 @@ function DialogForm(props) {
   //use material-ui styles custom hook
   const { open, toggleModal } = props;
   const { student } = useStudentDetail();
-  console.log("what is student");
-  console.log(student);
-
   const handleChangeDegree = degree => {
     // setDegreeId(degree);
-    console.log("set degree");
   };
 
   //main return

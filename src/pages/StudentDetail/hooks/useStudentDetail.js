@@ -16,8 +16,6 @@ const useStudentDetail = () => {
 
   //toggles modal based on name
   const toggleModal = modalName => {
-    console.log("state");
-    console.log(state);
     setState(state => ({
       ...state,
       modals: { ...state.modals, [modalName]: !state.modals[modalName] }

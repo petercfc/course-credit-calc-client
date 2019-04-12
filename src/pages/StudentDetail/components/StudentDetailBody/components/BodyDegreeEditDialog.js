@@ -20,7 +20,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -34,10 +33,7 @@ import Error from "../../../../../components/Error";
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    root: {
-      // display: "flex",
-      // flexWrap: "wrap"
-    },
+    root: {},
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120
@@ -55,7 +51,17 @@ function BodyDegreeEditDialogForm(props) {
   const classes = useStyles();
 
   //use context state hook
-  const { modals, toggleModal, student, closeMenu } = useStudentDetail();
+  const { modals, toggleModal, closeMenu, student } = useStudentDetail();
+
+  //form initial values
+  const initValues = { degree: "steve" };
+  console.log("student", student);
+
+  //form hook
+  const { values, handleChange, handleSubmit } = useForm(
+    testCallback,
+    initValues
+  );
 
   //degrees query
   const {
@@ -63,14 +69,9 @@ function BodyDegreeEditDialogForm(props) {
     error
   } = useQuery(GET_ALL_DEGREES);
 
-  //update student mutation
-  const updateStudent = useMutation(UPDATE_STUDENT, {
-    variables: { data: { name: student.name }, where: { id: student.id } },
-    update: () => {
-      toggleModal("editDegree");
-      navToNewStudent(student.id);
-    }
-  });
+  function testCallback() {
+    console.log(values);
+  }
 
   //input ref for field length
   const inputLabelRef = React.useRef(null);
@@ -81,16 +82,7 @@ function BodyDegreeEditDialogForm(props) {
   // effect hook to listen for labelWidth changes
   React.useEffect(() => {
     changeLabelWidth();
-    console.log("should change width");
   }, []);
-
-  //form hook
-  const { values, handleChange, handleSubmit } = useForm(updateStudent);
-
-  //nav to student
-  const navToNewStudent = id => {
-    history.push(`/students/:${id}`);
-  };
 
   //return error message
   if (error) return <Error message={error} />;
@@ -108,6 +100,7 @@ function BodyDegreeEditDialogForm(props) {
       }}
     >
       <form className={classes.root} onSubmit={handleSubmit} autoComplete="off">
+        {console.log(student)}
         <DialogTitle>Change Degree</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -119,7 +112,7 @@ function BodyDegreeEditDialogForm(props) {
               Degree
             </InputLabel>
             <Select
-              value={values.degree || ""}
+              value={values.degree || student.degree.id || ""}
               onChange={event => {
                 handleChange(event);
                 changeLabelWidth();

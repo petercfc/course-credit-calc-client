@@ -8,6 +8,7 @@ import useLabelWidth from "../hooks/useLabelWidth";
 
 // apollo
 import { Mutation, Query } from "react-apollo";
+import { useMutation, useQuery } from "react-apollo-hooks";
 import { GET_ALL_DEGREES } from "../../../../../apollo/queries";
 import { UPDATE_STUDENT } from "../../../../../apollo/mutations";
 
@@ -50,6 +51,7 @@ function BodyDegreeEditDialogForm(props) {
 
   //use context state hook
   const { modals, toggleModal, closeMenu, student } = useStudentDetail();
+  console.log(student);
 
   //form hook
   const { values, handleChange, handleSubmit } = useForm();
@@ -60,9 +62,13 @@ function BodyDegreeEditDialogForm(props) {
   //label width hook
   const { labelWidth, changeLabelWidth } = useLabelWidth(inputLabelRef);
 
+  let enrolledDegree = "";
   // effect hook to listen for labelWidth changes
   React.useEffect(() => {
     changeLabelWidth();
+    if (student.enrolledDegree) {
+      enrolledDegree = student.enrolledDegree.id;
+    }
   }, []);
 
   //main return
@@ -71,14 +77,16 @@ function BodyDegreeEditDialogForm(props) {
       mutation={UPDATE_STUDENT}
       variables={{
         data: {
-          enrolledDegree: { connect: { id: "cjt3olkq9r8a00b35hr6u45o1" } }
+          enrolledDegree: {
+            connect: { id: values.degree || enrolledDegree || null }
+          }
         },
-        where: { id: "cjubc4sjmgkek0b03qztplk4p" }
+        where: { id: student.id }
       }}
       update={() => {
         console.log("mutation update");
-        // toggleModal("editDegree");
-        // closeMenu();
+        toggleModal("editDegree");
+        closeMenu();
       }}
     >
       {(updateStudent, { loading, error }) => (
@@ -90,6 +98,7 @@ function BodyDegreeEditDialogForm(props) {
           }}
         >
           {loading && <Loading />}
+          {error && <div>error</div>}
           <form
             className={classes.root}
             onSubmit={handleSubmit}
@@ -101,7 +110,12 @@ function BodyDegreeEditDialogForm(props) {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
                 vel sagittis libero, eu volutpat orci. Nulla facilisi.
               </DialogContentText>
-              <Query query={GET_ALL_DEGREES}>
+              <Query
+                query={GET_ALL_DEGREES}
+                onComplete={() => {
+                  console.log("queried");
+                }}
+              >
                 {({ data: { degrees } }) => (
                   <FormControl
                     variant="outlined"
@@ -110,8 +124,9 @@ function BodyDegreeEditDialogForm(props) {
                     <InputLabel ref={inputLabelRef} htmlFor="degree-id">
                       Degree
                     </InputLabel>
+                    {console.log("degrees", degrees)}
                     <Select
-                      value={values.degree || student.enrolledDegree.id}
+                      value={values.degree || enrolledDegree}
                       onChange={event => {
                         handleChange(event);
                         changeLabelWidth();
@@ -124,11 +139,12 @@ function BodyDegreeEditDialogForm(props) {
                         />
                       }
                     >
-                      {degrees.map(degree => (
-                        <MenuItem key={degree.id} value={degree.id}>
-                          {degree.name}
-                        </MenuItem>
-                      ))}
+                      {degrees &&
+                        degrees.map(degree => (
+                          <MenuItem key={degree.id} value={degree.id}>
+                            {degree.name}
+                          </MenuItem>
+                        ))}
                     </Select>
                   </FormControl>
                 )}

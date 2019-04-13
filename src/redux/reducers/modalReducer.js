@@ -1,15 +1,18 @@
+import produce from "immer";
+
 const INITIAL_STATE = {
   modals: [{ id: "editName", isOpen: false }],
   error: null
 };
 
 function applyToggleModal(state, action) {
-  console.log("state", state);
-  return state.modals.map(modal =>
-    modal.id === action.id
-      ? Object.assign({}, modal, { isOpen: !modal.isOpen })
-      : modal
-  );
+  return produce(state, draftState => {
+    draftState.modals[
+      draftState.modals.findIndex(modal => modal.id === action.id)
+    ].isOpen = !draftState.modals[
+      draftState.modals.findIndex(modal => modal.id === action.id)
+    ].isOpen;
+  });
 }
 
 function modalReducer(state = INITIAL_STATE, action) {

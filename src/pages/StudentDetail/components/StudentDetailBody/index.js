@@ -27,7 +27,7 @@ const useStyles = makeStyles(
 //main function
 const StudentDetailBody = props => {
   //destructure props
-  const { modals, onToggle } = props;
+  const { modals, toggleModal } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
@@ -37,8 +37,8 @@ const StudentDetailBody = props => {
   //main return
   return (
     <div className={classes.root}>
-      {console.log(modals)}
-      <Button onClick={() => onToggle(id)}>Default</Button>
+      {modals[0].isOpen && <p>open</p>}
+      <Button onClick={() => toggleModal(id)}>Default</Button>
       <BodyDegree />
       <BodyCourses />
     </div>
@@ -50,7 +50,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onToggle: id => dispatch(doToggleModal(id))
+  toggleModal: id => dispatch(doToggleModal(id))
 });
 
 //main export

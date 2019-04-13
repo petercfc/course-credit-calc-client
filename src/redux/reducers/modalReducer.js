@@ -3,9 +3,10 @@ const INITIAL_STATE = {
   error: null
 };
 
-function appleToggleModal(state, action) {
+function applyToggleModal(state, action) {
+  console.log("state", state);
   return state.modals.map(modal =>
-    modal.id === action.modal.id
+    modal.id === action.id
       ? Object.assign({}, modal, { isOpen: !modal.isOpen })
       : modal
   );
@@ -14,7 +15,7 @@ function appleToggleModal(state, action) {
 function modalReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "TOGGLE_MODAL": {
-      return appleToggleModal(state, action);
+      return applyToggleModal(state, action);
     }
     default:
       return state;

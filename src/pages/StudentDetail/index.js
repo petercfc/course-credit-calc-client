@@ -1,11 +1,6 @@
 //other
 import React from "react";
 
-//redux
-import { connect } from "react-redux";
-import { doToggleModal } from "../../redux/actions/modal";
-import { getModals } from "../../redux/selectors/modal";
-
 //components
 import StudentDetailView from "./components/StudentDetailView";
 
@@ -24,24 +19,7 @@ const StudentDetail = props => {
   };
 
   //main return
-  return (
-    <div>
-      {console.log(modals)}
-      <StudentDetailView studentId={extractStudentId(pathname)} />
-    </div>
-  );
+  return <StudentDetailView studentId={extractStudentId(pathname)} />;
 };
-
-const mapStateToProps = state => ({
-  modals: getModals(state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  onToggle: id => dispatch(doToggleModal(id))
-});
-
 //main export
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StudentDetail);
+export default StudentDetail;

@@ -30,7 +30,7 @@ const StudentDetailView = props => {
   return (
     <div className={classes.view}>
       <StudentDetailHeader />
-      <StudentDetailBody modalType="editStudentName" />
+      <StudentDetailBody />
     </div>
   );
 };

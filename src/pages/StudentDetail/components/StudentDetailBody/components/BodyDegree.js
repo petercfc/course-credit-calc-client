@@ -1,14 +1,20 @@
 //other
 import React from "react";
 
+//redux
+import { connect } from "react-redux";
+import { doToggleModal } from "../../../../../redux/actions/modal";
+
 //material-ui
 import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
 //components
+import EditStudent from "../../../../../components/EditStudent";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -22,7 +28,9 @@ const useStyles = makeStyles(
 );
 
 //main function
-const BodyDegree = () => {
+const BodyDegree = props => {
+  //destructure props
+  const { toggleModal } = props;
   //material-ui hook
   const classes = useStyles();
 
@@ -38,14 +46,29 @@ const BodyDegree = () => {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions}>
-          <Typography variant="body1" gutterBottom>
-            Button
-          </Typography>
+          <Button
+            onClick={() =>
+              toggleModal("editStudentName", {
+                studentId: "cjubc4sjmgkek0b03qztplk4p"
+              })
+            }
+          >
+            Edit Student
+          </Button>
         </CardActions>
       </Card>
+      <EditStudent modalType="editStudentName" />
     </div>
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  toggleModal: (modalType, modalProps) =>
+    dispatch(doToggleModal(modalType, modalProps))
+});
+
 //main export
-export default BodyDegree;
+export default connect(
+  null,
+  mapDispatchToProps
+)(BodyDegree);

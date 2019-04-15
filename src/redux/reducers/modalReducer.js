@@ -1,17 +1,30 @@
 import produce from "immer";
 
 const INITIAL_STATE = {
-  modals: [{ id: "editName", isOpen: false }],
+  modals: [
+    {
+      modalType: "editStudentName",
+      modalProps: { studentId: "" },
+      isOpen: false
+    }
+  ],
   error: null
 };
 
 function applyToggleModal(state, action) {
+  //start wtih state return draftState
   return produce(state, draftState => {
+    //find the modal where modalType is equal to the action.modalType and toggle the isOpen property
     draftState.modals[
-      draftState.modals.findIndex(modal => modal.id === action.id)
+      draftState.modals.findIndex(modal => modal.modalType === action.modalType)
     ].isOpen = !draftState.modals[
-      draftState.modals.findIndex(modal => modal.id === action.id)
+      draftState.modals.findIndex(modal => modal.modalType === action.modalType)
     ].isOpen;
+
+    //set the modalProps to action.modalProps
+    draftState.modals[
+      draftState.modals.findIndex(modal => modal.modalType === action.modalType)
+    ].modalProps = action.modalProps;
   });
 }
 

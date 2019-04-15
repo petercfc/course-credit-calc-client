@@ -1,8 +1,9 @@
 import { TOGGLE_MODAL } from "../constants/actionTypes";
 
-const doToggleModal = id => ({
+const doToggleModal = (modalType, modalProps) => ({
   type: TOGGLE_MODAL,
-  id
+  modalType: modalType,
+  modalProps: modalProps
 });
 
 export { doToggleModal };

@@ -1,3 +1,10 @@
-const getModals = ({ modalState }) => modalState.modals;
+import { createSelector } from "reselect";
 
-export { getModals };
+const makeGetModal = () =>
+  createSelector(
+    (state, props) => props.modalType,
+    state => state.modalState.modals,
+    (modalType, modals) => modals.find(modal => modal.modalType === modalType)
+  );
+
+export { makeGetModal };

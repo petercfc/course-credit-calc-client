@@ -16,9 +16,8 @@ import { RetryLink } from "apollo-link-retry";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { HttpLink } from "apollo-link-http";
-
-import { typeDefs } from "./apollo/typeDefs";
-import { resolvers } from "./apollo/resolvers";
+// import { typeDefs } from "./apollo/typeDefs";
+// import { resolvers } from "./apollo/resolvers";
 
 //pages
 import Index from "./pages/index";
@@ -59,7 +58,9 @@ waitOnCache.then(() => {
   const AppBundle = (
     <Provider store={store}>
       <ApolloProvider client={client}>
-        <Index />
+        <ApolloProviderHooks client={client}>
+          <Index />
+        </ApolloProviderHooks>
       </ApolloProvider>
     </Provider>
   );

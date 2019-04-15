@@ -5,7 +5,7 @@ import React from "react";
 import { connect } from "react-redux";
 import store from "../../../../redux/store";
 import { doToggleModal } from "../../../../redux/actions/modal";
-import { getModals } from "../../../../redux/selectors/modal";
+import { makeGetModal } from "../../../../redux/selectors/modal";
 import { TOGGLE_MODAL } from "../../../../redux/constants/actionTypes";
 
 //material-ui
@@ -27,30 +27,42 @@ const useStyles = makeStyles(
 //main function
 const StudentDetailBody = props => {
   //destructure props
-  const { modals, toggleModal } = props;
+  const { editStudentNameModal, toggleModal } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
 
-  const id = "editName";
+  const modalType = "editStudentName";
+  const modalProps = { studentId: "cjubc4sjmgkek0b03qztplk4p" };
 
   //main return
   return (
     <div className={classes.root}>
-      {modals[0].isOpen && <p>open</p>}
-      <Button onClick={() => toggleModal(id)}>Default</Button>
+      <Button onClick={() => toggleModal(modalType, modalProps)}>
+        Toggle Modal
+      </Button>
+      {editStudentNameModal.isOpen && <p>open</p>}
+      {console.log("editStudentNameModal", editStudentNameModal)}
+
       <BodyDegree />
       <BodyCourses />
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  modals: getModals(state)
-});
+const mapStateToProps = () => {
+  //get reselect function
+  const getModal = makeGetModal();
+  //pass state and component props to the call to the selector
+  return (state, ownProps) => {
+    //recieve editNameModal from selector
+    return { editStudentNameModal: getModal(state, ownProps) };
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: id => dispatch(doToggleModal(id))
+  toggleModal: (modalType, modalProps) =>
+    dispatch(doToggleModal(modalType, modalProps))
 });
 
 //main export

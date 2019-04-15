@@ -18,15 +18,15 @@
     "jss": "next",
     "react": "latest",
     "react-apollo": "^2.5.2",
-    "react-apollo-hooks": "^0.4.4",
+    "react-apollo-hooks": "^0.4.5",
     "react-beautiful-dnd": "^10.1.0",
     "react-dom": "latest",
-    "react-material-ui-form-validator": "^2.0.7",
     "react-redux": "^7.0.2",
     "react-router-dom": "^4.4.0",
     "react-scripts": "latest",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
+    "reselect": "^4.0.0",
     "serve": "^10.1.2"
   },
   "scripts": {

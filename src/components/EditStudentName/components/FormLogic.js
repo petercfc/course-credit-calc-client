@@ -13,10 +13,10 @@ import FormFields from "./FormFields";
 //main function
 const FormLogic = props => {
   //destructure props
-  const { studentId, handleDialogClose } = props;
+  const { student, studentId, handleDialogClose } = props;
 
   //initial values for form
-  const initialValues = { name: "" };
+  const initialValues = { name: student.name };
 
   //yup validation rules for form
   const validationSchema = Yup.object({

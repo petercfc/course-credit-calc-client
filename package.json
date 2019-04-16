@@ -12,6 +12,8 @@
     "apollo-link": "^1.2.11",
     "apollo-link-http": "^1.5.14",
     "apollo-link-retry": "^2.2.13",
+    "formik": "^1.5.2",
+    "formik-material-ui": "0.0.16",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "immer": "^2.1.5",
@@ -27,7 +29,8 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "reselect": "^4.0.0",
-    "serve": "^10.1.2"
+    "serve": "^10.1.2",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "dev": "react-scripts start",

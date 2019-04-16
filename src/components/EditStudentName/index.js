@@ -19,7 +19,7 @@ import { makeGetModal } from "../../redux/selectors/modal";
 import FormLogic from "./components/FormLogic";
 
 //main function
-const EditStudent = props => {
+const EditStudentName = props => {
   //destructure props
   const { editStudentNameModal, toggleModal } = props;
 
@@ -41,7 +41,10 @@ const EditStudent = props => {
           gravida quis est vel, mattis posuere dui.
         </DialogContentText>
       </DialogContent>
-      <FormLogic handleDialogClose={handleDialogClose} />
+      <FormLogic
+        studentId={editStudentNameModal.modalProps.studentId}
+        handleDialogClose={handleDialogClose}
+      />
     </Dialog>
   );
 };
@@ -67,4 +70,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EditStudent);
+)(EditStudentName);

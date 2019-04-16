@@ -23,11 +23,12 @@ const FormFields = props => {
           label="Name"
           variant="outlined"
           component={TextField}
+          autoFocus
         />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleDialogClose}>Cancel</Button>
-        <Button type="submit" disabled={!isValid}>
+        <Button type="submit" disabled={!isValid} color="primary">
           Submit
         </Button>
       </DialogActions>

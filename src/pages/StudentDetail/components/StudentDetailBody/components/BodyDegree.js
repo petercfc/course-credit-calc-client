@@ -14,7 +14,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
 //components
-import EditStudent from "../../../../../components/EditStudent";
+import EditStudentName from "../../../../../components/EditStudentName";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -57,7 +57,7 @@ const BodyDegree = props => {
           </Button>
         </CardActions>
       </Card>
-      <EditStudent modalType="editStudentName" />
+      <EditStudentName modalType="editStudentName" />
     </div>
   );
 };

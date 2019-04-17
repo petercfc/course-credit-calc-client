@@ -22,7 +22,9 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailHeader() {
+function StudentDetailHeader(props) {
+  //destructure props
+  const { student } = props;
   //material-ui hook
   const classes = useStyles();
 
@@ -31,7 +33,7 @@ function StudentDetailHeader() {
     <Header>
       <HeaderBack />
       <Typography className={classes.title} variant="h6" noWrap>
-        Header
+        {student.name}
       </Typography>
       <HeaderMenu />
     </Header>

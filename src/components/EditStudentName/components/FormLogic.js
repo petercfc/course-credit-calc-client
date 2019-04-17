@@ -3,17 +3,13 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-//apollo
-import { Mutation } from "react-apollo";
-import { UPDATE_STUDENT } from "../../../apollo/mutations";
-
 //components
 import FormFields from "./FormFields";
 
 //main function
 const FormLogic = props => {
   //destructure props
-  const { student, studentId, handleDialogClose } = props;
+  const { student, studentId, updateStudent, handleDialogClose } = props;
 
   //initial values for form
   const initialValues = { name: student.name };
@@ -25,30 +21,24 @@ const FormLogic = props => {
 
   //main
   return (
-    <Mutation mutation={UPDATE_STUDENT}>
-      {updateStudent => (
-        <Formik
-          onSubmit={async (values, actions) => {
-            updateStudent({
-              variables: {
-                data: {
-                  name: values.name
-                },
-                where: { id: studentId }
-              }
-            });
-            actions.setSubmitting(false);
-            handleDialogClose();
-          }}
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-        >
-          {props => (
-            <FormFields {...props} handleDialogClose={handleDialogClose} />
-          )}
-        </Formik>
-      )}
-    </Mutation>
+    <Formik
+      onSubmit={async (values, actions) => {
+        await updateStudent({
+          variables: {
+            data: {
+              name: values.name
+            },
+            where: { id: studentId }
+          }
+        });
+        actions.setSubmitting(false);
+        handleDialogClose();
+      }}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+    >
+      {props => <FormFields {...props} handleDialogClose={handleDialogClose} />}
+    </Formik>
   );
 };
 

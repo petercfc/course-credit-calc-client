@@ -30,7 +30,7 @@ const useStyles = makeStyles(
 //main function
 const BodyDegree = props => {
   //destructure props
-  const { toggleModal } = props;
+  const { student, toggleModal } = props;
   //material-ui hook
   const classes = useStyles();
 
@@ -49,7 +49,7 @@ const BodyDegree = props => {
           <Button
             onClick={() =>
               toggleModal("editStudentName", {
-                studentId: "cjubc4sjmgkek0b03qztplk4p"
+                studentId: student.id
               })
             }
           >
@@ -57,7 +57,7 @@ const BodyDegree = props => {
           </Button>
         </CardActions>
       </Card>
-      <EditStudentName modalType="editStudentName" />
+      <EditStudentName student={student} modalType="editStudentName" />
     </div>
   );
 };

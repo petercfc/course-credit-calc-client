@@ -2,11 +2,11 @@
 import React from "react";
 
 //apollo
-import { Query } from "react-apollo";
-import { GET_STUDENT } from "../../apollo/queries";
+import { Mutation } from "react-apollo";
+
+import { UPDATE_STUDENT } from "../../apollo/mutations";
 
 //material-ui
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -17,15 +17,15 @@ import { connect } from "react-redux";
 import { doToggleModal } from "../../redux/actions/modal";
 import { makeGetModal } from "../../redux/selectors/modal";
 
-// apollo
-
 //components
 import FormLogic from "./components/FormLogic";
+import Loading from "../Loading/index";
+import Error from "../Error/index";
 
 //main function
 const EditStudentName = props => {
   //destructure props
-  const { editStudentNameModal, toggleModal } = props;
+  const { student, editStudentNameModal, toggleModal } = props;
 
   //callback for when dialog closes
   const handleDialogClose = () => {
@@ -34,44 +34,36 @@ const EditStudentName = props => {
     });
   };
 
-  //main
   return (
-    <div>
-      {console.log(
-        "editStudentNameModal.modalProps.studentId",
-        editStudentNameModal.modalProps.studentId
-      )}
-      <Query
-        query={GET_STUDENT}
-        variables={{ id: editStudentNameModal.modalProps.studentId }}
-      >
-        {({ loading, error, data: { student } }) => {
-          if (loading) return "Loading...";
-          if (error) return `Error! ${error.message}`;
-          return (
-            <Dialog
-              open={editStudentNameModal.isOpen}
-              onClose={handleDialogClose}
-            >
-              <DialogTitle>EditStudent</DialogTitle>
-              <DialogContent>
-                <DialogContentText>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  et mauris dapibus, fermentum mi nec, laoreet magna. Mauris
-                  turpis sapien, gravida quis est vel, mattis posuere dui.
-                </DialogContentText>
-                {console.log({ student })}
-              </DialogContent>
-              <FormLogic
-                student={student}
-                studentId={editStudentNameModal.modalProps.studentId}
-                handleDialogClose={handleDialogClose}
-              />
-            </Dialog>
-          );
-        }}
-      </Query>
-    </div>
+    <Mutation mutation={UPDATE_STUDENT}>
+      {(updateStudent, { loading, error }) => {
+        return (
+          <Dialog
+            open={editStudentNameModal.isOpen}
+            onClose={handleDialogClose}
+          >
+            {loading && <Loading />}
+
+            <DialogTitle>EditStudent</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
+                mauris dapibus, fermentum mi nec, laoreet magna. Mauris turpis
+                sapien, gravida quis est vel, mattis posuere dui.
+              </DialogContentText>
+              <br />
+              {error && <Error message={error.message} />}
+            </DialogContent>
+            <FormLogic
+              updateStudent={updateStudent}
+              student={student}
+              studentId={editStudentNameModal.modalProps.studentId}
+              handleDialogClose={handleDialogClose}
+            />
+          </Dialog>
+        );
+      }}
+    </Mutation>
   );
 };
 

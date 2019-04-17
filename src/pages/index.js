@@ -1,11 +1,14 @@
 // other
-import React, { Fragment } from "react";
+import React, { Suspense } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import loadable from "@loadable/component";
 
 // material-ui
 import { withStyles } from "@material-ui/core/styles";
 import withTheme from "../configs/withTheme";
+
+//components
+import Loading from "../components/Loading";
 
 // // code split pages
 const StudentsView = loadable(() => import("./StudentsView"));
@@ -36,13 +39,13 @@ function Index(props) {
           <Route
             path="/"
             render={() => (
-              <Fragment>
+              <Suspense fallback={<Loading isCircular />}>
                 <Switch>
                   <Route path="/students/:id" component={StudentDetail} />
                   <Route path="/students" component={StudentsView} />
                   <Route path="/" component={StudentsView} />
                 </Switch>
-              </Fragment>
+              </Suspense>
             )}
           />
         </div>

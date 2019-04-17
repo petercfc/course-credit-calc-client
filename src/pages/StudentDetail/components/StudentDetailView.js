@@ -21,7 +21,7 @@ const useStyles = makeStyles(
 //main function
 const StudentDetailView = props => {
   //destructure props
-  const { studentId } = props;
+  const { student } = props;
 
   //material-ui hook
   const classes = useStyles();
@@ -29,8 +29,8 @@ const StudentDetailView = props => {
   //main
   return (
     <div className={classes.view}>
-      <StudentDetailHeader />
-      <StudentDetailBody />
+      <StudentDetailHeader student={student} />
+      <StudentDetailBody student={student} />
     </div>
   );
 };

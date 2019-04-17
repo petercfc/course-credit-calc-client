@@ -3,6 +3,10 @@ import React from "react";
 import { render } from "react-dom";
 import * as serviceWorker from "./configs/serviceWorker";
 
+//redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+
 //apollo
 import { ApolloClient } from "apollo-client";
 import { ApolloProvider } from "react-apollo";
@@ -12,9 +16,8 @@ import { RetryLink } from "apollo-link-retry";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { HttpLink } from "apollo-link-http";
-
-import { typeDefs } from "./apollo/typeDefs";
-import { resolvers } from "./apollo/resolvers";
+// import { typeDefs } from "./apollo/typeDefs";
+// import { resolvers } from "./apollo/resolvers";
 
 //pages
 import Index from "./pages/index";
@@ -31,74 +34,35 @@ const cache = new InMemoryCache();
 const storage = window.localStorage;
 const waitOnCache = persistCache({ cache, storage });
 
+//apollo defaults
 const defaultOptions = {
-  watchQuery: {
-    // fetchPolicy: "cache-and-network",
-    // errorPolicy: "ignore"
-  },
+  watchQuery: {},
   query: {
     fetchPolicy: "cache-and-network"
-    // errorPolicy: "all"
   },
-  mutate: {
-    // errorPolicy: "all"
-  }
+  mutate: {}
 };
 
 // create apollo client
 const client = new ApolloClient({
   cache,
   link,
-  typeDefs,
-  resolvers,
+  // typeDefs,
+  // resolvers,
   defaultOptions
 });
-
-//init cache
-
-const cacheInitData = {
-  data: {
-    selectedStudent: "No Student Selected",
-    modals: [
-      {
-        id: "createStudent",
-        isOpen: false,
-        __typename: "Modal"
-      },
-      {
-        id: "editStudent",
-        isOpen: false,
-        __typename: "Modal"
-      },
-      {
-        id: "editStudentDegree",
-        isOpen: false,
-        __typename: "Modal"
-      },
-      {
-        id: "editStudentCourses",
-        isOpen: false,
-        __typename: "Modal"
-      }
-    ]
-  }
-};
-cache.writeData(cacheInitData);
-
-// notes for nuking store
-// client.clearStore();
-// client.resetStore();
-// client.onResetStore(() => cache.writeData({ cacheInitData }));
 
 // wait for cache to load before init
 waitOnCache.then(() => {
   const rootElement = document.querySelector("#root");
   const AppBundle = (
-    <ApolloProvider client={client}>
-      <ApolloProviderHooks client={client}>
-        <Index />
-      </ApolloProviderHooks>
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <ApolloProviderHooks client={client}>
+          <Index />
+        </ApolloProviderHooks>
+      </ApolloProvider>
+    </Provider>
   );
   render(AppBundle, rootElement);
 });

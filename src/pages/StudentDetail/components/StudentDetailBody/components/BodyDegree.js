@@ -1,18 +1,20 @@
 //other
 import React from "react";
-import useStudentDetail from "../../../hooks/useStudentDetail";
+
+//redux
+import { connect } from "react-redux";
+import { doToggleModal } from "../../../../../redux/actions/modal";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
-import SchoolIcon from "@material-ui/icons/School";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
 //components
-import EmptyState from "../../../../../components/EmptyState";
-import BodyDegreeEdit from "./BodyDegreeEdit";
+import EditStudentName from "../../../../../components/EditStudentName";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -26,39 +28,47 @@ const useStyles = makeStyles(
 );
 
 //main function
-const BodyDegree = () => {
+const BodyDegree = props => {
+  //destructure props
+  const { student, toggleModal } = props;
   //material-ui hook
   const classes = useStyles();
-  //student detail state hook
-  const { student } = useStudentDetail();
 
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardContent>
-          {student && student.enrolledDegree ? (
-            <React.Fragment>
-              <Typography variant="body1" gutterBottom>
-                Enrolled Degree - {student.enrolledDegree.name}
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                Required Credits - {student.enrolledDegree.requiredCredits}
-              </Typography>
-            </React.Fragment>
-          ) : (
-            <EmptyState
-              message="This student is not enrolled in a degree."
-              icon={<SchoolIcon />}
-            />
-          )}
+          <Typography variant="body1" gutterBottom>
+            Enrolled Degree
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Required Credits
+          </Typography>
         </CardContent>
         <CardActions className={classes.actions}>
-          <BodyDegreeEdit />
+          <Button
+            onClick={() =>
+              toggleModal("editStudentName", {
+                studentId: student.id
+              })
+            }
+          >
+            Edit Student
+          </Button>
         </CardActions>
       </Card>
+      <EditStudentName student={student} modalType="editStudentName" />
     </div>
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  toggleModal: (modalType, modalProps) =>
+    dispatch(doToggleModal(modalType, modalProps))
+});
+
 //main export
-export default BodyDegree;
+export default connect(
+  null,
+  mapDispatchToProps
+)(BodyDegree);

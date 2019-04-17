@@ -1,6 +1,5 @@
 //other
 import React from "react";
-import useStudentDetail from "../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -23,12 +22,11 @@ const useStyles = makeStyles(
 );
 
 //main function
-function StudentDetailHeader() {
+function StudentDetailHeader(props) {
+  //destructure props
+  const { student } = props;
   //material-ui hook
   const classes = useStyles();
-
-  //state hook
-  const { student } = useStudentDetail();
 
   //main return
   return (

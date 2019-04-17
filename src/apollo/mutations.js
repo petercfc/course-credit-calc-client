@@ -1,12 +1,6 @@
 // apollo
 import gql from "graphql-tag";
 
-export const TOGGLE_MODAL = gql`
-  mutation ToggleModal($id: Int!) {
-    toggleModal(id: $id) @client
-  }
-`;
-
 export const CREATE_STUDENT = gql`
   mutation createStudent($data: StudentCreateInput!) {
     createStudent(data: $data) {

@@ -1,6 +1,5 @@
 //other
 import React from "react";
-import useStudentDetail from "../../../hooks/useStudentDetail";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -28,16 +27,14 @@ function HeaderMenu() {
   //use material-ui styles custom hook
   const classes = useStyles();
 
-  //use context state hook
-  const { anchorEl, openMenu, closeMenu } = useStudentDetail();
-
   //menu open
-  const handleOpenMenu = event => {
-    openMenu(event);
-  };
+  const handleOpenMenu = event => {};
+
+  //menu close
+  const handleCloseMenu = event => {};
 
   //menu open as bool
-  const open = Boolean(anchorEl);
+  const isMenuOpen = false;
 
   //main return
   return (
@@ -48,7 +45,7 @@ function HeaderMenu() {
       <Menu
         className={classes.menuButton}
         id="menu-appbar"
-        anchorEl={anchorEl}
+        anchorEl={null}
         anchorOrigin={{
           vertical: "top",
           horizontal: "right"
@@ -57,8 +54,8 @@ function HeaderMenu() {
           vertical: "top",
           horizontal: "right"
         }}
-        open={open}
-        onClose={closeMenu}
+        open={isMenuOpen}
+        onClose={handleCloseMenu}
       >
         <HeaderMenuEdit />
         <HeaderMenuDelete />

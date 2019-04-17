@@ -3,7 +3,6 @@ import React from "react";
 
 //apollo
 import { Mutation } from "react-apollo";
-
 import { UPDATE_STUDENT } from "../../apollo/mutations";
 
 //material-ui
@@ -14,8 +13,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 
 //redux
 import { connect } from "react-redux";
-import { doToggleModal } from "../../redux/actions/modal";
-import { makeGetModal } from "../../redux/selectors/modal";
+import { makeGetModalState } from "../../redux/ducks/modal/selectors";
 
 //components
 import FormLogic from "./components/FormLogic";
@@ -25,23 +23,20 @@ import Error from "../Error/index";
 //main function
 const EditStudentName = props => {
   //destructure props
-  const { student, editStudentNameModal, toggleModal } = props;
+  const { student, modal } = props;
 
   //callback for when dialog closes
   const handleDialogClose = () => {
-    toggleModal(editStudentNameModal.modalType, {
-      studentId: editStudentNameModal.modalProps.studentId
-    });
+    // toggleModal(editStudentNameModal.modalType, {
+    //   studentId: editStudentNameModal.modalProps.studentId
+    // });
   };
 
   return (
     <Mutation mutation={UPDATE_STUDENT}>
       {(updateStudent, { loading, error }) => {
         return (
-          <Dialog
-            open={editStudentNameModal.isOpen}
-            onClose={handleDialogClose}
-          >
+          <Dialog open={modal.isOpen} onClose={handleDialogClose}>
             {loading && <Loading />}
 
             <DialogTitle>EditStudent</DialogTitle>
@@ -57,7 +52,7 @@ const EditStudentName = props => {
             <FormLogic
               updateStudent={updateStudent}
               student={student}
-              studentId={editStudentNameModal.modalProps.studentId}
+              studentId={modal.modalProps.studentId}
               handleDialogClose={handleDialogClose}
             />
           </Dialog>
@@ -67,25 +62,10 @@ const EditStudentName = props => {
   );
 };
 
-//init editStudentNameModal in props
-const mapStateToProps = () => {
-  //get reselect function
-  const getModal = makeGetModal();
-  //pass state and component props to the call to the selector
-  return (state, modalType) => {
-    //recieve editNameModal from selector
-    return { editStudentNameModal: getModal(state, modalType) };
-  };
+const makeMapStateToProps = () => {
+  const getModalState = makeGetModalState();
+  return (state, props) => getModalState(state, props);
 };
 
-//init toggleModal in props
-const mapDispatchToProps = dispatch => ({
-  toggleModal: (modalType, modalProps) =>
-    dispatch(doToggleModal(modalType, modalProps))
-});
-
 //main export
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditStudentName);
+export default connect(makeMapStateToProps)(EditStudentName);

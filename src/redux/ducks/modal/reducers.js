@@ -38,7 +38,7 @@ function applyToggle(state, action) {
 
 function modalReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case "app/modal/TOGGLE_MODAL": {
+    case types.TOGGLE_MODAL: {
       return applyToggle(state, action);
     }
     default:

@@ -3,6 +3,7 @@ import React from "react";
 
 //redux
 import { connect } from "react-redux";
+import { modalOperations } from "../../../../../redux/ducks/modal";
 import { makeGetModalState } from "../../../../../redux/ducks/modal/selectors";
 
 //material-ui
@@ -46,7 +47,13 @@ const BodyDegree = props => {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions}>
-          <Button onClick={() => toggleModal()}>Edit Student</Button>
+          <Button
+            onClick={() =>
+              toggleModal("editStudentName", { studentId: "asd123" })
+            }
+          >
+            Edit Student
+          </Button>
         </CardActions>
       </Card>
       <EditStudentName student={student} modalType="editStudentName" />
@@ -54,15 +61,9 @@ const BodyDegree = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  toggleModal: () =>
-    dispatch({
-      type: "TOGGLE_MODAL",
-      modalType: "editStudentName",
-      modalProps: { studentId: "asd" },
-      isOpen: "true"
-    })
-});
+const mapDispatchToProps = {
+  toggleModal: modalOperations.toggleModal
+};
 
 //main export
 export default connect(

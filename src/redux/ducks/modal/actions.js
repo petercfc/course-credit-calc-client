@@ -1,8 +1,8 @@
 import types from "./types";
 
-const doToggle = (modalType, modalProps) => ({
-  type: types.TOGGLE,
+const toggleModal = (modalType, modalProps) => ({
+  type: types.TOGGLE_MODAL,
   payload: { modalType: modalType, modalProps: modalProps }
 });
 
-export { doToggleModal };
+export { toggleModal };

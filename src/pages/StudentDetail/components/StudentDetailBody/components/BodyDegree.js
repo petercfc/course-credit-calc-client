@@ -3,7 +3,6 @@ import React from "react";
 
 //redux
 import { connect } from "react-redux";
-import { doToggleModal } from "../../../../../redux/actions/modal";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -30,7 +29,7 @@ const useStyles = makeStyles(
 //main function
 const BodyDegree = props => {
   //destructure props
-  const { student, toggleModal } = props;
+  const { student } = props;
   //material-ui hook
   const classes = useStyles();
 
@@ -46,7 +45,7 @@ const BodyDegree = props => {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions}>
-          <Button
+          {/* <Button
             onClick={() =>
               toggleModal("editStudentName", {
                 studentId: student.id
@@ -54,7 +53,7 @@ const BodyDegree = props => {
             }
           >
             Edit Student
-          </Button>
+          </Button> */}
         </CardActions>
       </Card>
       <EditStudentName student={student} modalType="editStudentName" />
@@ -62,13 +61,5 @@ const BodyDegree = props => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  toggleModal: (modalType, modalProps) =>
-    dispatch(doToggleModal(modalType, modalProps))
-});
-
 //main export
-export default connect(
-  null,
-  mapDispatchToProps
-)(BodyDegree);
+export default BodyDegree;

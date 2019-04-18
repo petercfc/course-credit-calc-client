@@ -14,7 +14,6 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 //redux
 import { connect } from "react-redux";
 import { makeGetModalState } from "../../redux/ducks/modal/selectors";
-import { doToggleModal } from "../../redux/ducks/modal/reducers";
 
 //components
 import FormLogic from "./components/FormLogic";
@@ -24,13 +23,11 @@ import Error from "../Error/index";
 //main function
 const EditStudentName = props => {
   //destructure props
-  const { student, modal } = props;
+  const { student, modal, toggleModal } = props;
 
   //callback for when dialog closes
   const handleDialogClose = () => {
-    // toggleModal(editStudentNameModal.modalType, {
-    //   studentId: editStudentNameModal.modalProps.studentId
-    // });
+    toggleModal();
   };
 
   return (
@@ -68,10 +65,13 @@ const makeMapStateToProps = () => {
   return (state, props) => getModalState(state, props);
 };
 
-//init toggleModal in props
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (modalType, modalProps) =>
-    dispatch(doToggleModal(modalType, modalProps))
+  toggleModal: () =>
+    dispatch({
+      type: "TOGGLE_MODAL",
+      modalType: "editStudentName",
+      modalProps: { studentId: "asd" }
+    })
 });
 
 //main export

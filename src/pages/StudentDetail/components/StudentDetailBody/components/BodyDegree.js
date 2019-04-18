@@ -3,6 +3,7 @@ import React from "react";
 
 //redux
 import { connect } from "react-redux";
+import { makeGetModalState } from "../../../../../redux/ducks/modal/selectors";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -29,7 +30,7 @@ const useStyles = makeStyles(
 //main function
 const BodyDegree = props => {
   //destructure props
-  const { student } = props;
+  const { student, toggleModal } = props;
   //material-ui hook
   const classes = useStyles();
 
@@ -45,15 +46,7 @@ const BodyDegree = props => {
           </Typography>
         </CardContent>
         <CardActions className={classes.actions}>
-          {/* <Button
-            onClick={() =>
-              toggleModal("editStudentName", {
-                studentId: student.id
-              })
-            }
-          >
-            Edit Student
-          </Button> */}
+          <Button onClick={() => toggleModal()}>Edit Student</Button>
         </CardActions>
       </Card>
       <EditStudentName student={student} modalType="editStudentName" />
@@ -61,5 +54,18 @@ const BodyDegree = props => {
   );
 };
 
+const mapDispatchToProps = dispatch => ({
+  toggleModal: () =>
+    dispatch({
+      type: "TOGGLE_MODAL",
+      modalType: "editStudentName",
+      modalProps: { studentId: "asd" },
+      isOpen: "true"
+    })
+});
+
 //main export
-export default BodyDegree;
+export default connect(
+  null,
+  mapDispatchToProps
+)(BodyDegree);

@@ -5,26 +5,12 @@ import { withRouter } from "react-router-dom";
 //material-ui
 import { makeStyles } from "@material-ui/styles";
 import AppBar from "@material-ui/core/AppBar";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
-import Fab from "@material-ui/core/Fab";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import Avatar from "@material-ui/core/Avatar";
 import MenuIcon from "@material-ui/icons/Menu";
-import AddIcon from "@material-ui/icons/Add";
+import AccountCircle from "@material-ui/icons/AccountCircle";
 import SearchIcon from "@material-ui/icons/Search";
-import MoreIcon from "@material-ui/icons/MoreVert";
-
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import PeopleIcon from "@material-ui/icons/People";
-import FormatListBulletedIcon from "@material-ui/icons/FormatListBulleted";
 
 //create a custom material-ui hook to access class styles
 const useStyles = makeStyles(
@@ -121,28 +107,6 @@ function Footer(props) {
   //Footer return
   return (
     <div className={classes.root}>
-      {/* <BottomNavigation
-        className={classes.bottomNavigation}
-        component={paperComponent}
-        elevation={5}
-        showLabels
-        value={currentTab}
-        onChange={handleChange}
-      >
-        <BottomNavigationAction
-          className={classes.bottomNavigationActionLeft}
-          value="/students"
-          label="Students"
-          icon={<PeopleIcon />}
-        />
-        <BottomNavigationAction
-          className={classes.bottomNavigationActionLeft}
-          value="/courses"
-          label="Search"
-          icon={<FormatListBulletedIcon />}
-        />
-        />
-      </BottomNavigation> */}
       <AppBar position="fixed" color="default" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <IconButton aria-label="Open drawer">
@@ -153,7 +117,7 @@ function Footer(props) {
               <SearchIcon />
             </IconButton>
             <IconButton>
-              <MoreIcon />
+              <AccountCircle />
             </IconButton>
           </div>
         </Toolbar>

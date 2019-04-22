@@ -16,7 +16,7 @@ const StudentDetail = loadable(() => import("./StudentDetail"));
 
 // code split components
 const Footer = loadable(() => import("../components/Footer"));
-
+const Alert = loadable(() => import("../components/Alert"));
 // styles
 const styles = theme => ({
   root: {
@@ -49,6 +49,7 @@ function Index(props) {
             )}
           />
         </div>
+        <Alert />
         <Footer />
       </div>
     </BrowserRouter>

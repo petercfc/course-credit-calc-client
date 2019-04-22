@@ -61,8 +61,8 @@ const theme = createMuiTheme({
     },
     MuiDialogActions: {
       root: {
-        paddingRight: 8,
-        paddingBottom: 8
+        paddingRight: 16,
+        paddingBottom: 16
       }
     },
     MuiFab: {

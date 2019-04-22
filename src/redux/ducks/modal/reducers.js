@@ -8,6 +8,11 @@ const INITIAL_STATE = {
       modalType: "editStudentName",
       modalProps: { studentId: "" },
       isOpen: false
+    },
+    {
+      modalType: "createStudent",
+      modalProps: {},
+      isOpen: false
     }
   ],
   error: null
@@ -26,13 +31,14 @@ function applyToggle(state, action) {
         modal => modal.modalType === action.payload.modalType
       )
     ].isOpen;
-
     //set the modalProps to action.modalProps
-    draftState.modals[
-      draftState.modals.findIndex(
-        modal => modal.modalType === action.payload.modalType
-      )
-    ].modalProps = action.payload.modalProps;
+    if (action.payload.modalProps) {
+      draftState.modals[
+        draftState.modals.findIndex(
+          modal => modal.modalType === action.payload.modalType
+        )
+      ].modalProps = action.payload.modalProps;
+    }
   });
 }
 

@@ -9,6 +9,7 @@ import { GET_ALL_STUDENTS } from "../../apollo/queries";
 import { makeStyles } from "@material-ui/styles";
 
 //components
+import CreateStudentButton from "./components/CreateStudentButton";
 import StudentsBodyList from "./components/StudentsBodyList";
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
@@ -34,6 +35,7 @@ function StudentsView() {
         return (
           <div className={classes.root}>
             <StudentsBodyList students={data.students} />
+            <CreateStudentButton />
           </div>
         );
       }}

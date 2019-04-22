@@ -3,7 +3,8 @@ import React from "react";
 
 //apollo
 import { Mutation } from "react-apollo";
-import { UPDATE_STUDENT } from "../../apollo/mutations";
+import { GET_ALL_STUDENTS } from "../../apollo/queries";
+import { CREATE_STUDENT } from "../../apollo/mutations";
 
 //material-ui
 import Dialog from "@material-ui/core/Dialog";
@@ -22,23 +23,32 @@ import Loading from "../Loading/index";
 import Error from "../Error/index";
 
 //main function
-const EditStudentName = props => {
+const CreateStudentDialog = props => {
   //destructure props
-  const { student, modal, toggleModal } = props;
+  const { modal, toggleModal } = props;
 
   //callback for when dialog closes
   const handleDialogClose = () => {
-    toggleModal("editStudentName", { studentId: "asd123" });
+    toggleModal("createStudent");
   };
 
   return (
-    <Mutation mutation={UPDATE_STUDENT}>
-      {(updateStudent, { loading, error }) => {
+    <Mutation
+      mutation={CREATE_STUDENT}
+      update={(cache, { data: { createStudent } }) => {
+        const { students } = cache.readQuery({ query: GET_ALL_STUDENTS });
+        cache.writeQuery({
+          query: GET_ALL_STUDENTS,
+          data: { students: students.concat([createStudent]) }
+        });
+      }}
+    >
+      {(createStudent, { loading, error }) => {
         return (
           <Dialog open={modal.isOpen} onClose={handleDialogClose}>
             {loading && <Loading />}
 
-            <DialogTitle>EditStudent</DialogTitle>
+            <DialogTitle>Create Student</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
@@ -48,9 +58,7 @@ const EditStudentName = props => {
               {error && <Error message={error.message} />}
             </DialogContent>
             <FormLogic
-              updateStudent={updateStudent}
-              student={student}
-              studentId={modal.modalProps.studentId}
+              createStudent={createStudent}
               handleDialogClose={handleDialogClose}
             />
           </Dialog>
@@ -73,4 +81,4 @@ const mapDispatchToProps = {
 export default connect(
   makeMapStateToProps,
   mapDispatchToProps
-)(EditStudentName);
+)(CreateStudentDialog);

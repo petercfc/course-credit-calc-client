@@ -28,7 +28,7 @@ const FormLogic = props => {
             data: {
               name: values.name
             },
-            where: { id: studentId }
+            where: { id: student.id }
           }
         });
         actions.setSubmitting(false);

@@ -28,7 +28,7 @@ const EditStudentName = props => {
 
   //callback for when dialog closes
   const handleDialogClose = () => {
-    toggleModal("editStudentName", { studentId: "asd123" });
+    toggleModal("editStudentName", { studentId: student.id });
   };
 
   return (
@@ -38,9 +38,10 @@ const EditStudentName = props => {
           <Dialog open={modal.isOpen} onClose={handleDialogClose}>
             {loading && <Loading />}
 
-            <DialogTitle>EditStudent</DialogTitle>
+            <DialogTitle>Edit Student</DialogTitle>
             <DialogContent>
               <DialogContentText>
+                {student.id}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
                 mauris dapibus, fermentum mi nec, laoreet magna. Mauris turpis
                 sapien, gravida quis est vel, mattis posuere dui.

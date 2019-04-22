@@ -15,7 +15,7 @@ const FormFields = props => {
 
   //main
   return (
-    <Form>
+    <Form autoComplete="off">
       <DialogContent>
         <Field
           type="name"

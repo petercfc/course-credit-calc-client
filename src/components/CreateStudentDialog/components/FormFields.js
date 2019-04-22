@@ -15,7 +15,7 @@ const FormFields = props => {
 
   //main
   return (
-    <Form>
+    <Form autoComplete="off">
       <DialogContent>
         <Field
           type="name"
@@ -30,7 +30,7 @@ const FormFields = props => {
       <DialogActions>
         <Button onClick={handleDialogClose}>Cancel</Button>
         <Button type="submit" disabled={!isValid} color="primary">
-          Change Name
+          Create Student
         </Button>
       </DialogActions>
     </Form>

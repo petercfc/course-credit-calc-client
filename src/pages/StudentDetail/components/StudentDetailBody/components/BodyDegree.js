@@ -49,7 +49,7 @@ const BodyDegree = props => {
         <CardActions className={classes.actions}>
           <Button
             onClick={() =>
-              toggleModal("editStudentName", { studentId: "asd123" })
+              toggleModal("editStudentName", { studentId: student.studentId })
             }
           >
             Edit Student

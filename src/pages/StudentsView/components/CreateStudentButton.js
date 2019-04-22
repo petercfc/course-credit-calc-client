@@ -7,7 +7,8 @@ import { modalOperations } from "../../../redux/ducks/modal";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
-import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
 
 //components
 import CreateStudentDialog from "../../../components/CreateStudentDialog";
@@ -15,9 +16,18 @@ import CreateStudentDialog from "../../../components/CreateStudentDialog";
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    root: {},
-    actions: {
-      justifyContent: "flex-end"
+    root: {
+      position: "fixed",
+      display: "flex",
+      justifyContent: "center",
+      width: "100%"
+    },
+    fab: {
+      position: "fixed",
+      bottom: 72
+    },
+    extendedIcon: {
+      marginRight: theme.spacing(1)
     }
   }),
   { withTheme: true }
@@ -32,9 +42,16 @@ const CreateStudentButton = props => {
 
   return (
     <div className={classes.root}>
-      <Button onClick={() => toggleModal("createStudent")}>
+      <Fab
+        className={classes.fab}
+        size="large"
+        variant="extended"
+        aria-label="Create Student"
+        onClick={() => toggleModal("createStudent")}
+      >
+        <AddIcon className={classes.extendedIcon} />
         Create Student
-      </Button>
+      </Fab>
       <CreateStudentDialog modalType="createStudent" />
     </div>
   );

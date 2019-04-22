@@ -1,5 +1,6 @@
 //other
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 //apollo
 import { Mutation } from "react-apollo";
@@ -13,6 +14,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 
 //redux
+import { compose } from "redux";
 import { connect } from "react-redux";
 import { makeGetModalState } from "../../redux/ducks/modal/selectors";
 import { modalOperations } from "../../redux/ducks/modal";
@@ -25,7 +27,7 @@ import Error from "../Error/index";
 //main function
 const CreateStudentDialog = props => {
   //destructure props
-  const { modal, toggleModal } = props;
+  const { history, modal, toggleModal } = props;
 
   //callback for when dialog closes
   const handleDialogClose = () => {
@@ -41,6 +43,7 @@ const CreateStudentDialog = props => {
           query: GET_ALL_STUDENTS,
           data: { students: students.concat([createStudent]) }
         });
+        history.push(`/students/:${createStudent.id}`);
       }}
     >
       {(createStudent, { loading, error }) => {
@@ -77,8 +80,13 @@ const mapDispatchToProps = {
   toggleModal: modalOperations.toggleModal
 };
 
+//compose hocs
+const enhance = compose(
+  withRouter,
+  connect(
+    makeMapStateToProps,
+    mapDispatchToProps
+  )
+);
 //main export
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(CreateStudentDialog);
+export default enhance(CreateStudentDialog);

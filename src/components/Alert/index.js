@@ -64,7 +64,6 @@ function Alert(props) {
             <IconButton
               key="close"
               aria-label="Close"
-              color="inherit"
               className={classes.close}
               onClick={handleClose}
             >

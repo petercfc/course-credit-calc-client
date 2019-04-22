@@ -1,5 +1,5 @@
 //other
-import React from "react";
+import React, { useState } from "react";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -23,18 +23,25 @@ const useStyles = makeStyles(
 );
 
 //main function
-function HeaderMenu() {
+function HeaderMenu(props) {
+  //destructure props
+  const { student } = props;
+
   //use material-ui styles custom hook
   const classes = useStyles();
 
   //menu open
-  const handleOpenMenu = event => {};
+  const handleOpenMenu = event => {
+    setAnchorEl(event.currentTarget);
+  };
 
   //menu close
-  const handleCloseMenu = event => {};
+  const handleCloseMenu = event => {
+    setAnchorEl(null);
+  };
 
   //menu open as bool
-  const isMenuOpen = false;
+  const [anchorEl, setAnchorEl] = useState(null);
 
   //main return
   return (
@@ -45,20 +52,11 @@ function HeaderMenu() {
       <Menu
         className={classes.menuButton}
         id="menu-appbar"
-        anchorEl={null}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "right"
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right"
-        }}
-        open={isMenuOpen}
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
       >
-        <HeaderMenuEdit />
-        <HeaderMenuDelete />
+        <HeaderMenuDelete student={student} />
       </Menu>
     </React.Fragment>
   );

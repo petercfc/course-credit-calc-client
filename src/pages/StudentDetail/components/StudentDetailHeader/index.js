@@ -35,7 +35,7 @@ function StudentDetailHeader(props) {
       <Typography className={classes.title} variant="h6" noWrap>
         {student.name}
       </Typography>
-      <HeaderMenu />
+      <HeaderMenu student={student} />
     </Header>
   );
 }

@@ -1,6 +1,12 @@
 //other
 import React from "react";
 
+//redux
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { makeGetAlertState } from "../../redux/ducks/alert/selectors";
+import { alertOperations } from "../../redux/ducks/alert";
+
 //material-ui
 import { makeStyles } from "@material-ui/styles";
 import Button from "@material-ui/core/Button";
@@ -27,12 +33,13 @@ const useStyles = makeStyles(
 
 //Header function
 function Alert(props) {
+  //destructure props
+  const { alert, setAlert } = props;
   //material-ui styles custom hook
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
   function handleClick() {
-    setOpen(true);
+    setAlert(true, "oh wow");
   }
 
   function handleClose(event, reason) {
@@ -40,7 +47,7 @@ function Alert(props) {
       return;
     }
 
-    setOpen(false);
+    setAlert(false, "");
   }
 
   //Header return
@@ -53,13 +60,15 @@ function Alert(props) {
           vertical: "bottom",
           horizontal: "center"
         }}
-        open={open}
+        open={alert.isOpen}
         autoHideDuration={1200}
         onClose={handleClose}
       >
         <SnackbarContent
           className={classes.snackBarContent}
-          message={<span id="message-id">Student Deleted</span>}
+          message={
+            <span id="message-id">Student Deleted{alert && alert.message}</span>
+          }
           action={[
             <IconButton
               key="close"
@@ -70,13 +79,27 @@ function Alert(props) {
               <CloseIcon />
             </IconButton>
           ]}
-        >
-          asd
-        </SnackbarContent>
+        />
       </Snackbar>
     </div>
   );
 }
 
-//Header export - with router HOC
-export default Alert;
+const makeMapStateToProps = () => {
+  const getAlertState = makeGetAlertState();
+  return (state, props) => getAlertState(state, props);
+};
+
+const mapDispatchToProps = {
+  setAlert: alertOperations.setAlert
+};
+
+//compose hocs
+const enhance = compose(
+  connect(
+    makeMapStateToProps,
+    mapDispatchToProps
+  )
+);
+//main export
+export default enhance(Alert);

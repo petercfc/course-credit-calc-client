@@ -3,26 +3,22 @@ import { combineReducers } from "redux";
 import types from "./types";
 
 const INITIAL_STATE = {
-  alert: {
-    message: "",
-    isOpen: false
-  },
+  message: "wayo",
+  isOpen: false,
   error: null
 };
 
-function applySetModal(state, action) {
-  //start wtih state return draftState
+function applySetAlert(state, action) {
   return produce(state, draftState => {
-    //find the modal where modalType is equal to the action.modalType and toggle the isOpen property
-    draftState.alert.message = action.payload.message;
-    draftState.alert.isOpen = action.payload.isOpen;
+    draftState.message = action.payload.message;
+    draftState.isOpen = action.payload.isOpen;
   });
 }
 
-function modalReducer(state = INITIAL_STATE, action) {
+function alertReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case types.SET_MODAL: {
-      return applySetModal(state, action);
+    case types.SET_ALERT: {
+      return applySetAlert(state, action);
     }
     default:
       return state;
@@ -30,4 +26,4 @@ function modalReducer(state = INITIAL_STATE, action) {
 }
 
 //main export
-export default modalReducer;
+export default alertReducer;

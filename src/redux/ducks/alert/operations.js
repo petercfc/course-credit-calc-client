@@ -1,3 +1,3 @@
-import { setModal } from "./actions";
+import { setAlert } from "./actions";
 
-export { setModal };
+export { setAlert };

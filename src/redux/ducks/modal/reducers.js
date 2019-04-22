@@ -18,21 +18,27 @@ function applyToggle(state, action) {
   return produce(state, draftState => {
     //find the modal where modalType is equal to the action.modalType and toggle the isOpen property
     draftState.modals[
-      draftState.modals.findIndex(modal => modal.modalType === action.modalType)
+      draftState.modals.findIndex(
+        modal => modal.modalType === action.payload.modalType
+      )
     ].isOpen = !draftState.modals[
-      draftState.modals.findIndex(modal => modal.modalType === action.modalType)
+      draftState.modals.findIndex(
+        modal => modal.modalType === action.payload.modalType
+      )
     ].isOpen;
 
     //set the modalProps to action.modalProps
     draftState.modals[
-      draftState.modals.findIndex(modal => modal.modalType === action.modalType)
-    ].modalProps = action.modalProps;
+      draftState.modals.findIndex(
+        modal => modal.modalType === action.payload.modalType
+      )
+    ].modalProps = action.payload.modalProps;
   });
 }
 
 function modalReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case "TOGGLE": {
+    case types.TOGGLE_MODAL: {
       return applyToggle(state, action);
     }
     default:

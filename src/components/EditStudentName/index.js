@@ -41,7 +41,6 @@ const EditStudentName = props => {
             <DialogTitle>Edit Student</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                {student.id}
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
                 mauris dapibus, fermentum mi nec, laoreet magna. Mauris turpis
                 sapien, gravida quis est vel, mattis posuere dui.

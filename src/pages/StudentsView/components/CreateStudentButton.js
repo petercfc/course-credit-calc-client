@@ -20,11 +20,12 @@ const useStyles = makeStyles(
       position: "fixed",
       display: "flex",
       justifyContent: "center",
-      width: "100%"
+      width: "100%",
+      zIndex: 1200
     },
     fab: {
       position: "fixed",
-      bottom: 72
+      bottom: 32
     },
     extendedIcon: {
       marginRight: theme.spacing(1)

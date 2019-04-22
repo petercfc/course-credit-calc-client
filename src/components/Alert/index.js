@@ -13,13 +13,13 @@ import CloseIcon from "@material-ui/icons/Close";
 const useStyles = makeStyles(
   theme => ({
     root: {},
-    snackBar: {
-      backgroundColor: theme.palette.background.paper,
-      borderRadius: theme.spacing(2)
-    },
+    snackBar: {},
     snackBarContent: {
+      color: theme.palette.text.primary,
       backgroundColor: theme.palette.background.paper,
-      borderRadius: theme.spacing(2)
+      borderRadius: theme.spacing(2),
+      margin: theme.spacing(2),
+      marginBottom: theme.spacing(12)
     }
   }),
   { withTheme: true }
@@ -51,10 +51,10 @@ function Alert(props) {
         className={classes.snackBar}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "left"
+          horizontal: "center"
         }}
         open={open}
-        // autoHideDuration={600}
+        autoHideDuration={1200}
         onClose={handleClose}
       >
         <SnackbarContent

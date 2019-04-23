@@ -38,7 +38,7 @@ const waitOnCache = persistCache({ cache, storage });
 const defaultOptions = {
   watchQuery: {},
   query: {
-    fetchPolicy: "cache-and-network"
+    fetchPolicy: "network-only"
   },
   mutate: {}
 };

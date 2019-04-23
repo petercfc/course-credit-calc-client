@@ -10,6 +10,24 @@ export const GET_ALL_DEGREES = gql`
   }
 `;
 
+export const GET_ALL_DEPARTMENTS = gql`
+  query GetAllDepartments {
+    departments {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_ALL_SUBJECTS = gql`
+  query GetAllSubjects {
+    subjects {
+      id
+      name
+    }
+  }
+`;
+
 export const GET_ALL_COURSES = gql`
   query getAllCourses {
     courses {

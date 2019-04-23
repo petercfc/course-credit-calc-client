@@ -8,9 +8,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
-import MenuIcon from "@material-ui/icons/Menu";
+
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import SearchIcon from "@material-ui/icons/Search";
+
+//components
+import BottomDrawer from "../BottomDrawer";
 
 //create a custom material-ui hook to access class styles
 const useStyles = makeStyles(
@@ -109,9 +112,7 @@ function Footer(props) {
     <div className={classes.root}>
       <AppBar position="fixed" color="default" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <IconButton aria-label="Open drawer">
-            <MenuIcon />
-          </IconButton>
+          <BottomDrawer />
           <div>
             <IconButton>
               <SearchIcon />

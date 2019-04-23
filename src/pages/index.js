@@ -3,6 +3,9 @@ import React, { Suspense } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 import loadable from "@loadable/component";
 
+//redux
+import { compose } from "redux";
+
 // material-ui
 import { withStyles } from "@material-ui/core/styles";
 import withTheme from "../configs/withTheme";
@@ -65,4 +68,7 @@ function Index(props) {
   );
 }
 
-export default withTheme(withStyles(styles)(Index));
+export default compose(
+  withTheme,
+  withStyles(styles)
+)(Index);

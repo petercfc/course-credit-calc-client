@@ -2,6 +2,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
+//redux
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { makeGetAlertState } from "../../../../../redux/ducks/alert/selectors";
+import { alertOperations } from "../../../../../redux/ducks/alert";
+
 // apollo
 import { Mutation } from "react-apollo";
 import { DELETE_STUDENT } from "../../../../../apollo/mutations";
@@ -22,7 +28,7 @@ const useStyles = makeStyles(
 //main function
 function HeaderMenuDelete(props) {
   //destructure props
-  const { student, history } = props;
+  const { student, history, setAlert } = props;
 
   //use material-ui styles custom hook
   const classes = useStyles();
@@ -65,6 +71,8 @@ function HeaderMenuDelete(props) {
             await deleteStudent({
               variables: { id: student.id }
             });
+            console.log(student.name);
+            setAlert(true, `Deleted student: ${student.name}`);
             history.push("/students");
           }}
         >
@@ -75,5 +83,17 @@ function HeaderMenuDelete(props) {
   );
 }
 
-//main export - with router HOC
-export default withRouter(HeaderMenuDelete);
+const mapDispatchToProps = {
+  setAlert: alertOperations.setAlert
+};
+
+//compose hocs
+const enhance = compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatchToProps
+  )
+);
+//main export
+export default enhance(HeaderMenuDelete);

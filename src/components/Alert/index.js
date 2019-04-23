@@ -25,7 +25,9 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.background.paper,
       borderRadius: theme.spacing(2),
       margin: theme.spacing(2),
-      marginBottom: theme.spacing(12)
+      // marginBottom: theme.spacing(12),
+      paddingTop: 0,
+      paddingBottom: 0
     }
   }),
   { withTheme: true }
@@ -38,10 +40,6 @@ function Alert(props) {
   //material-ui styles custom hook
   const classes = useStyles();
 
-  function handleClick() {
-    setAlert(true, "oh wow");
-  }
-
   function handleClose(event, reason) {
     if (reason === "clickaway") {
       return;
@@ -53,22 +51,19 @@ function Alert(props) {
   //Header return
   return (
     <div className={classes.root}>
-      <Button onClick={handleClick}>Open simple snackbar</Button>
       <Snackbar
         className={classes.snackBar}
         anchorOrigin={{
-          vertical: "bottom",
+          vertical: "top",
           horizontal: "center"
         }}
         open={alert.isOpen}
-        autoHideDuration={1200}
+        autoHideDuration={1600}
         onClose={handleClose}
       >
         <SnackbarContent
           className={classes.snackBarContent}
-          message={
-            <span id="message-id">Student Deleted{alert && alert.message}</span>
-          }
+          message={<span id="message-id">{alert.message}</span>}
           action={[
             <IconButton
               key="close"

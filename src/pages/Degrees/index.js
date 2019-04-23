@@ -16,7 +16,7 @@ const useStyles = makeStyles(
 );
 
 //main function
-function Courses() {
+function Degrees() {
   //material-ui styles hook
   const classes = useStyles();
   //main return
@@ -24,7 +24,7 @@ function Courses() {
     <div className={classes.root}>
       <Card className={classes.card}>
         <List className={classes.root}>
-          <ListSubheader>Courses</ListSubheader>
+          <ListSubheader>Degrees</ListSubheader>
         </List>
       </Card>
     </div>
@@ -32,4 +32,4 @@ function Courses() {
 }
 
 //main export
-export default Courses;
+export default Degrees;

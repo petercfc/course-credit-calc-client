@@ -14,6 +14,9 @@ import Loading from "../components/Loading";
 const StudentsView = loadable(() => import("./StudentsView"));
 const StudentDetail = loadable(() => import("./StudentDetail"));
 const Courses = loadable(() => import("./Courses"));
+const Degrees = loadable(() => import("./Degrees"));
+const Departments = loadable(() => import("./Departments"));
+const Subjects = loadable(() => import("./Subjects"));
 
 // code split components
 const Footer = loadable(() => import("../components/Footer"));
@@ -46,6 +49,9 @@ function Index(props) {
                   <Route path="/students/:id" component={StudentDetail} />
                   <Route path="/students" component={StudentsView} />
                   <Route path="/courses" component={Courses} />
+                  <Route path="/degrees" component={Degrees} />
+                  <Route path="/departments" component={Departments} />
+                  <Route path="/subjects" component={Subjects} />
                   <Route path="/" component={StudentsView} />
                 </Switch>
               </Suspense>

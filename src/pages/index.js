@@ -13,10 +13,12 @@ import Loading from "../components/Loading";
 // // code split pages
 const StudentsView = loadable(() => import("./StudentsView"));
 const StudentDetail = loadable(() => import("./StudentDetail"));
+const Courses = loadable(() => import("./Courses"));
 
 // code split components
 const Footer = loadable(() => import("../components/Footer"));
 const Alert = loadable(() => import("../components/Alert"));
+
 // styles
 const styles = theme => ({
   root: {
@@ -43,6 +45,7 @@ function Index(props) {
                 <Switch>
                   <Route path="/students/:id" component={StudentDetail} />
                   <Route path="/students" component={StudentsView} />
+                  <Route path="/courses" component={Courses} />
                   <Route path="/" component={StudentsView} />
                 </Switch>
               </Suspense>

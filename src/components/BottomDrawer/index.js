@@ -22,6 +22,10 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 const useStyles = makeStyles(
   theme => ({
     root: {},
+    drawerPaper: {
+      borderTopLeftRadius: theme.spacing(2),
+      borderTopRightRadius: theme.spacing(2)
+    },
     list: {
       width: 250
     },
@@ -34,6 +38,9 @@ const useStyles = makeStyles(
 
 //Footer function
 function BottomDrawer(props) {
+  //destructure props
+  const { history } = props;
+
   //custom hook to bring in styles
   const classes = useStyles();
 
@@ -50,31 +57,56 @@ function BottomDrawer(props) {
     <div className={classes.fullList}>
       <List>
         <ListSubheader>Navigation</ListSubheader>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            history.push(`/students`);
+          }}
+        >
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText primary="Students" />
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            history.push(`/courses`);
+          }}
+        >
           <ListItemIcon>
             <ListAltIcon />
           </ListItemIcon>
           <ListItemText primary="Courses" />
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            history.push(`/degrees`);
+          }}
+        >
           <ListItemIcon>
             <SchoolIcon />
           </ListItemIcon>
           <ListItemText primary="Degrees" />
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            history.push(`/departments`);
+          }}
+        >
           <ListItemIcon>
             <DomainIcon />
           </ListItemIcon>
           <ListItemText primary="Departments" />
         </ListItem>
-        <ListItem button>
+        <ListItem
+          button
+          onClick={() => {
+            history.push(`/subjects`);
+          }}
+        >
           <ListItemIcon>
             <StorageIcon />
           </ListItemIcon>
@@ -94,6 +126,7 @@ function BottomDrawer(props) {
         <MenuIcon />
       </IconButton>
       <Drawer
+        PaperProps={{ classes: { root: classes.drawerPaper } }}
         anchor="bottom"
         open={state.bottom}
         onClose={toggleDrawer("bottom", false)}

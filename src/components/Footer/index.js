@@ -111,7 +111,7 @@ function Footer(props) {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" color="default" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar} disableGutters>
           <BottomDrawer />
           <div>
             <IconButton>

@@ -37,7 +37,7 @@ function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} color="default" position="static">
-        <Toolbar>
+        <Toolbar disableGutters>
           <HeaderBack backUrl={backUrl} />
           <HeaderTitle title={title} subTitle={subTitle} />
           {children}

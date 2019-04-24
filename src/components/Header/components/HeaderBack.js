@@ -11,7 +11,6 @@ import ArrowBackButton from "@material-ui/icons/ArrowBack";
 const useStyles = makeStyles(
   theme => ({
     backButton: {
-      marginLeft: -12,
       marginRight: 20
     }
   }),

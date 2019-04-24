@@ -65,6 +65,12 @@ const theme = createMuiTheme({
         paddingBottom: 16
       }
     },
+    MuiToolbar: {
+      root: {
+        paddingLeft: 4,
+        paddingRight: 4
+      }
+    },
     MuiCardContent: {
       root: {
         paddingTop: 24,

@@ -8,7 +8,8 @@ import IconButton from "@material-ui/core/IconButton";
 import Drawer from "@material-ui/core/Drawer";
 import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
-import ListSubheader from "@material-ui/core/ListSubheader";
+import Typography from "@material-ui/core/Typography";
+import CardContent from "@material-ui/core/CardContent";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -31,6 +32,10 @@ const useStyles = makeStyles(
     },
     fullList: {
       width: "auto"
+    },
+    listItem: {
+      paddingLeft: 0,
+      paddingRight: 0
     }
   }),
   { withTheme: true }
@@ -55,64 +60,77 @@ function BottomDrawer(props) {
 
   const fullList = (
     <div className={classes.fullList}>
-      <List>
-        <ListSubheader>Navigation</ListSubheader>
-        <ListItem
-          button
-          onClick={() => {
-            history.push(`/students`);
-          }}
-        >
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Students" />
-        </ListItem>
-        <ListItem
-          button
-          onClick={() => {
-            history.push(`/courses`);
-          }}
-        >
-          <ListItemIcon>
-            <ListAltIcon />
-          </ListItemIcon>
-          <ListItemText primary="Courses" />
-        </ListItem>
-        <ListItem
-          button
-          onClick={() => {
-            history.push(`/degrees`);
-          }}
-        >
-          <ListItemIcon>
-            <SchoolIcon />
-          </ListItemIcon>
-          <ListItemText primary="Degrees" />
-        </ListItem>
-        <ListItem
-          button
-          onClick={() => {
-            history.push(`/departments`);
-          }}
-        >
-          <ListItemIcon>
-            <DomainIcon />
-          </ListItemIcon>
-          <ListItemText primary="Departments" />
-        </ListItem>
-        <ListItem
-          button
-          onClick={() => {
-            history.push(`/subjects`);
-          }}
-        >
-          <ListItemIcon>
-            <StorageIcon />
-          </ListItemIcon>
-          <ListItemText primary="Subjects" />
-        </ListItem>
-      </List>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          Navigation
+        </Typography>
+        <List>
+          <ListItem
+            className={classes.listItem}
+            divider
+            button
+            onClick={() => {
+              history.push(`/students`);
+            }}
+          >
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Students" />
+          </ListItem>
+          <ListItem
+            className={classes.listItem}
+            divider
+            button
+            onClick={() => {
+              history.push(`/courses`);
+            }}
+          >
+            <ListItemIcon>
+              <ListAltIcon />
+            </ListItemIcon>
+            <ListItemText primary="Courses" />
+          </ListItem>
+          <ListItem
+            className={classes.listItem}
+            divider
+            button
+            onClick={() => {
+              history.push(`/degrees`);
+            }}
+          >
+            <ListItemIcon>
+              <SchoolIcon />
+            </ListItemIcon>
+            <ListItemText primary="Degrees" />
+          </ListItem>
+          <ListItem
+            className={classes.listItem}
+            divider
+            button
+            onClick={() => {
+              history.push(`/departments`);
+            }}
+          >
+            <ListItemIcon>
+              <DomainIcon />
+            </ListItemIcon>
+            <ListItemText primary="Departments" />
+          </ListItem>
+          <ListItem
+            className={classes.listItem}
+            button
+            onClick={() => {
+              history.push(`/subjects`);
+            }}
+          >
+            <ListItemIcon>
+              <StorageIcon />
+            </ListItemIcon>
+            <ListItemText primary="Subjects" />
+          </ListItem>
+        </List>
+      </CardContent>
     </div>
   );
 

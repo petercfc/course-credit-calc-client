@@ -18,6 +18,7 @@ import SchoolIcon from "@material-ui/icons/School";
 import DomainIcon from "@material-ui/icons/Domain";
 import StorageIcon from "@material-ui/icons/Storage";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import Divider from "@material-ui/core/Divider";
 
 //create a custom material-ui hook to access class styles
 const useStyles = makeStyles(
@@ -36,6 +37,9 @@ const useStyles = makeStyles(
     listItem: {
       paddingLeft: 0,
       paddingRight: 0
+    },
+    divider: {
+      marginLeft: 56
     }
   }),
   { withTheme: true }
@@ -67,7 +71,6 @@ function BottomDrawer(props) {
         <List>
           <ListItem
             className={classes.listItem}
-            divider
             button
             onClick={() => {
               history.push(`/students`);
@@ -78,9 +81,9 @@ function BottomDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Students" />
           </ListItem>
+          <Divider className={classes.divider} variant="inset" />
           <ListItem
             className={classes.listItem}
-            divider
             button
             onClick={() => {
               history.push(`/courses`);
@@ -91,9 +94,9 @@ function BottomDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Courses" />
           </ListItem>
+          <Divider className={classes.divider} variant="inset" />
           <ListItem
             className={classes.listItem}
-            divider
             button
             onClick={() => {
               history.push(`/degrees`);
@@ -104,9 +107,9 @@ function BottomDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Degrees" />
           </ListItem>
+          <Divider className={classes.divider} variant="inset" />
           <ListItem
             className={classes.listItem}
-            divider
             button
             onClick={() => {
               history.push(`/departments`);
@@ -117,6 +120,7 @@ function BottomDrawer(props) {
             </ListItemIcon>
             <ListItemText primary="Departments" />
           </ListItem>
+          <Divider className={classes.divider} variant="inset" />
           <ListItem
             className={classes.listItem}
             button

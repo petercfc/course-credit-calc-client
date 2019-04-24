@@ -22,13 +22,12 @@ function Courses(props) {
         <Typography variant="h6" gutterBottom>
           Courses
         </Typography>
-
         <List>
           {courses.map((course, i) => (
             <CoursesListItem
               key={course.id}
               course={course}
-              isLast={courses[i + 1] && true}
+              isLast={courses[i + 1] && false}
             />
           ))}
         </List>

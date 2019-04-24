@@ -8,6 +8,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import Divider from "@material-ui/core/Divider";
 import blue from "@material-ui/core/colors/blue";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -21,6 +22,9 @@ const useStyles = makeStyles(
     listItem: {
       paddingLeft: 0,
       paddingRight: 0
+    },
+    divider: {
+      marginLeft: 56
     }
   }),
   { withTheme: true }
@@ -35,19 +39,21 @@ function Courses(props) {
 
   //main return
   return (
-    <ListItem
-      className={classes.listItem}
-      button
-      divider={isLast}
-      onClick={() => history.push(`/courses/${course.id}`)}
-    >
-      <ListItemAvatar>
-        <Avatar className={classes.avatar}>
-          <ListAltIcon />
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText primary={course.name} secondary={course.number} />
-    </ListItem>
+    <React.Fragment>
+      <ListItem
+        className={classes.listItem}
+        button
+        onClick={() => history.push(`/courses/${course.id}`)}
+      >
+        <ListItemAvatar>
+          <Avatar className={classes.avatar}>
+            <ListAltIcon />
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={course.name} secondary={course.number} />
+      </ListItem>
+      {!isLast && <Divider className={classes.divider} variant="inset" />}
+    </React.Fragment>
   );
 }
 

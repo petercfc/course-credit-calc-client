@@ -9,8 +9,11 @@ function CourseHeader(props) {
   //destructure props
   const { course } = props;
 
+  //format title
+  const title = `${course.name} - ${course.number}`;
+
   //main return
-  return <Header backUrl="/courses" title={course.name} subTitle="Courses" />;
+  return <Header backUrl="/courses" title={title} subTitle="Courses" />;
 }
 
 //main export

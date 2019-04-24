@@ -71,6 +71,11 @@ const theme = createMuiTheme({
         paddingRight: 4
       }
     },
+    MuiListItemIcon: {
+      root: {
+        minWidth: 48
+      }
+    },
     MuiCardContent: {
       root: {
         paddingTop: 24,

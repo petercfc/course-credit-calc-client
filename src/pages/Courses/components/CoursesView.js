@@ -2,9 +2,10 @@
 import React from "react";
 
 //material-ui
+import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 import List from "@material-ui/core/List";
-import ListSubheader from "@material-ui/core/ListSubheader";
 
 //components
 import CoursesListItem from "./CoursesListItem";
@@ -17,12 +18,21 @@ function Courses(props) {
   //main return
   return (
     <Card>
-      <List>
-        <ListSubheader>Courses</ListSubheader>
-        {courses.map(course => (
-          <CoursesListItem key={course.id} course={course} />
-        ))}
-      </List>
+      <CardContent>
+        <Typography variant="h6" gutterBottom>
+          Courses
+        </Typography>
+
+        <List>
+          {courses.map((course, i) => (
+            <CoursesListItem
+              key={course.id}
+              course={course}
+              isLast={courses[i + 1] && true}
+            />
+          ))}
+        </List>
+      </CardContent>
     </Card>
   );
 }

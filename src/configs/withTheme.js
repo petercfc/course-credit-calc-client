@@ -65,6 +65,14 @@ const theme = createMuiTheme({
         paddingBottom: 16
       }
     },
+    MuiCardContent: {
+      root: {
+        paddingTop: 24,
+        "&:last-child": {
+          paddingBottom: 8
+        }
+      }
+    },
     MuiFab: {
       root: {
         textTransform: "none",

@@ -7,6 +7,7 @@ import { GET_ALL_COURSES } from "../../apollo/queries";
 
 //components
 import CoursesView from "./components/CoursesView";
+import Error from "../../components/Error";
 
 //main function
 function Courses() {
@@ -18,6 +19,10 @@ function Courses() {
     suspend: true
   });
 
+  //error return
+  if (error) {
+    return <Error message={error.message} />;
+  }
   //main return
   return <CoursesView courses={courses} />;
 }

@@ -8,7 +8,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
@@ -17,7 +16,11 @@ import ListItemText from "@material-ui/core/ListItemText";
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    root: { paddingTop: theme.spacing(6) }
+    root: { paddingTop: theme.spacing(6) },
+    listItem: {
+      paddingLeft: 0,
+      paddingRight: 0
+    }
   }),
   { withTheme: true }
 );
@@ -26,7 +29,7 @@ const useStyles = makeStyles(
 function CourseBody(props) {
   //destructure props
   const { course } = props;
-  console.log(course);
+
   //use material-ui styles - custom hook
   const classes = useStyles();
 
@@ -58,46 +61,48 @@ function CourseBody(props) {
       </Card>
       <Card>
         <CardContent>
-          <Typography variant="h6">Details</Typography>
+          <Typography variant="h6" gutterBottom>
+            Details
+          </Typography>
+          <List>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText primary="Name" secondary={course.name} />
+            </ListItem>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText primary="Credits" secondary={course.credits} />
+            </ListItem>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText primary="Number" secondary={course.number} />
+            </ListItem>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText primary="Level" secondary={course.level} />
+            </ListItem>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText
+                primary="Subject"
+                secondary={subjectName || "None selected"}
+              />
+            </ListItem>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText
+                primary="Degree"
+                secondary={degreeName || "None selected"}
+              />
+            </ListItem>
+            <ListItem className={classes.listItem} button divider>
+              <ListItemText
+                primary="Department"
+                secondary={departmentName || "None selected"}
+              />
+            </ListItem>
+            <ListItem className={classes.listItem} button>
+              <ListItemText
+                primary="Prerequisite"
+                secondary={prerequisiteName || "None selected"}
+              />
+            </ListItem>
+          </List>
         </CardContent>
-        <List>
-          <ListItem button divider>
-            <ListItemText primary="Name" secondary={course.name} />
-          </ListItem>
-          <ListItem button divider>
-            <ListItemText primary="Credits" secondary={course.credits} />
-          </ListItem>
-          <ListItem button divider>
-            <ListItemText primary="Number" secondary={course.number} />
-          </ListItem>
-          <ListItem button divider>
-            <ListItemText primary="Level" secondary={course.level} />
-          </ListItem>
-          <ListItem button divider>
-            <ListItemText
-              primary="Subject"
-              secondary={subjectName || "None selected"}
-            />
-          </ListItem>
-          <ListItem button divider>
-            <ListItemText
-              primary="Degree"
-              secondary={degreeName || "None selected"}
-            />
-          </ListItem>
-          <ListItem button divider>
-            <ListItemText
-              primary="Department"
-              secondary={departmentName || "None selected"}
-            />
-          </ListItem>
-          <ListItem button>
-            <ListItemText
-              primary="Prerequisite"
-              secondary={prerequisiteName || "None selected"}
-            />
-          </ListItem>
-        </List>
       </Card>
     </div>
   );

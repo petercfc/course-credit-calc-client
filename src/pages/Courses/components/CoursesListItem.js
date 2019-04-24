@@ -1,7 +1,6 @@
 //other
 import React from "react";
 import { withRouter } from "react-router-dom";
-import t from "typy"; // ES6 style import
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -18,6 +17,10 @@ const useStyles = makeStyles(
     avatar: {
       backgroundColor: blue[100],
       color: blue[600]
+    },
+    listItem: {
+      paddingLeft: 0,
+      paddingRight: 0
     }
   }),
   { withTheme: true }
@@ -26,17 +29,18 @@ const useStyles = makeStyles(
 //main function
 function Courses(props) {
   //destructure props
-  const { history, course } = props;
-
+  const { history, course, isLast } = props;
   //material-ui styles hook
   const classes = useStyles();
 
-  //check for null check for prerequsiite name
-  const prerequisite = t(course, "prerequisite.name").safeString;
-
   //main return
   return (
-    <ListItem button onClick={() => history.push(`/courses/${course.id}`)}>
+    <ListItem
+      className={classes.listItem}
+      button
+      divider={isLast}
+      onClick={() => history.push(`/courses/${course.id}`)}
+    >
       <ListItemAvatar>
         <Avatar className={classes.avatar}>
           <ListAltIcon />

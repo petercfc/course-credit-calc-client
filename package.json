@@ -30,6 +30,7 @@
     "redux-devtools-extension": "^2.13.8",
     "reselect": "^4.0.0",
     "serve": "^10.1.2",
+    "typy": "^3.0.2",
     "yup": "^0.27.0"
   },
   "scripts": {

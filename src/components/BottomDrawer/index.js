@@ -39,7 +39,7 @@ const useStyles = makeStyles(
       paddingRight: 0
     },
     divider: {
-      marginLeft: 56
+      marginLeft: 48
     }
   }),
   { withTheme: true }

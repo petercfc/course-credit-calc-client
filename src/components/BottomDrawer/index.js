@@ -72,7 +72,9 @@ function BottomDrawer(props) {
   const fullList = (
     <div className={classes.fullList}>
       <CardContent className={classes.contentHeader}>
-        <Typography variant="h6">Navigation</Typography>
+        <Typography variant="h6" gutterBottom>
+          Navigation
+        </Typography>
       </CardContent>
       <List>
         <ListItem

@@ -33,7 +33,9 @@ function Courses(props) {
   return (
     <Card>
       <CardContent className={classes.contentHeader}>
-        <Typography variant="h6">Courses</Typography>
+        <Typography variant="h6" gutterBottom>
+          Courses
+        </Typography>
       </CardContent>
       <List>
         {courses.map((course, i) => (

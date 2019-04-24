@@ -33,7 +33,7 @@ const useStyles = makeStyles(
 //main function
 function Courses(props) {
   //destructure props
-  const { history, course, isLast } = props;
+  const { history, course, hasDivider } = props;
   //material-ui styles hook
   const classes = useStyles();
 
@@ -52,7 +52,7 @@ function Courses(props) {
         </ListItemAvatar>
         <ListItemText primary={course.name} secondary={course.number} />
       </ListItem>
-      {!isLast && <Divider className={classes.divider} variant="inset" />}
+      {hasDivider && <Divider className={classes.divider} variant="inset" />}
     </React.Fragment>
   );
 }

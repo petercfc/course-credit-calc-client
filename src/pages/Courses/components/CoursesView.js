@@ -27,7 +27,7 @@ function Courses(props) {
             <CoursesListItem
               key={course.id}
               course={course}
-              isLast={courses[i + 1] && false}
+              hasDivider={courses[i + 1] && true}
             />
           ))}
         </List>

@@ -90,10 +90,33 @@ export const GET_STUDENT = gql`
 `;
 
 export const GET_COURSE = gql`
-  query getStudent($id: ID!) {
+  query getCourse($id: ID!) {
     course(where: { id: $id }) {
       id
       name
+      number
+      level
+      credits
+      subject {
+        id
+        name
+      }
+      degree {
+        id
+        name
+        requiredCredits
+      }
+      department {
+        id
+        name
+      }
+      prerequisite {
+        id
+        name
+        number
+        level
+        credits
+      }
     }
   }
 `;

@@ -2,6 +2,10 @@
 import React from "react";
 import t from "typy"; // ES6 style import
 
+//redux
+import { connect } from "react-redux";
+import { modalOperations } from "../../../redux/ducks/modal";
+
 //material-ui
 import { makeStyles } from "@material-ui/styles";
 import Card from "@material-ui/core/Card";
@@ -43,7 +47,7 @@ const useStyles = makeStyles(
 //main function
 function CourseBody(props) {
   //destructure props
-  const { course } = props;
+  const { course, toggleModal } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
@@ -75,13 +79,35 @@ function CourseBody(props) {
         </CardContent>
       </Card>
       <Card>
+        <CardContent>
+          <Typography variant="h6" gutterBottom>
+            Students Who Have Completed
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque mi nulla, auctor id vestibulum vel, posuere a eros.
+            Vivamus viverra et risus sed luctus. Cras auctor ligula ut ipsum
+            condimentum, sit amet mattis felis fringilla. Suspendisse potenti.
+            Proin pellentesque dui vel lacus tincidunt aliquam. Donec aliquet
+            augue non tellus consectetur suscipit ac sed sapien. Curabitur
+            commodo dui eu sagittis sagittis. Ut ac orci quis ipsum ornare
+            dignissim vitae vitae tortor.
+          </Typography>
+        </CardContent>
+      </Card>
+      <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
             Details
           </Typography>
         </CardContent>
         <List>
-          <ListItem button>
+          <ListItem
+            button
+            onClick={() =>
+              toggleModal("editCourseName", { courseId: course.courseId })
+            }
+          >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <EditIcon />
@@ -170,5 +196,12 @@ function CourseBody(props) {
   );
 }
 
+const mapDispatchToProps = {
+  toggleModal: modalOperations.toggleModal
+};
+
 //main export
-export default CourseBody;
+export default connect(
+  null,
+  mapDispatchToProps
+)(CourseBody);

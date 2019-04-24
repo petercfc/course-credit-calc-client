@@ -13,6 +13,11 @@ const INITIAL_STATE = {
       modalType: "createStudent",
       modalProps: {},
       isOpen: false
+    },
+    {
+      modalType: "editCourseName",
+      modalProps: { courseId: "" },
+      isOpen: false
     }
   ],
   error: null

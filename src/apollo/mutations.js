@@ -38,6 +38,18 @@ export const UPDATE_STUDENT = gql`
   }
 `;
 
+export const UPDATE_COURSE = gql`
+  mutation updateCourse(
+    $data: CourseUpdateInput!
+    $where: CourseWhereUniqueInput!
+  ) {
+    updateCourse(data: $data, where: $where) {
+      id
+      name
+    }
+  }
+`;
+
 export const DELETE_STUDENT = gql`
   mutation deleteStudent($id: ID!) {
     deleteStudent(where: { id: $id }) {

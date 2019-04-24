@@ -7,9 +7,14 @@ import { makeStyles } from "@material-ui/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import blue from "@material-ui/core/colors/blue";
+import EditIcon from "@material-ui/icons/Edit";
 
 //components
 
@@ -17,9 +22,19 @@ import ListItemText from "@material-ui/core/ListItemText";
 const useStyles = makeStyles(
   theme => ({
     root: { paddingTop: theme.spacing(6) },
-    listItem: {
-      paddingLeft: 0,
-      paddingRight: 0
+    avatar: {
+      backgroundColor: blue[100],
+      color: blue[600]
+    },
+    contentHeader: {
+      paddingBottom: 0
+    },
+    divider: {
+      marginLeft: 72,
+      marginRight: 16,
+      borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
+      backgroundClip: "padding-box",
+      backgroundColor: "transparent"
     }
   }),
   { withTheme: true }
@@ -60,49 +75,96 @@ function CourseBody(props) {
         </CardContent>
       </Card>
       <Card>
-        <CardContent>
+        <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
             Details
           </Typography>
-          <List>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText primary="Name" secondary={course.name} />
-            </ListItem>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText primary="Credits" secondary={course.credits} />
-            </ListItem>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText primary="Number" secondary={course.number} />
-            </ListItem>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText primary="Level" secondary={course.level} />
-            </ListItem>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText
-                primary="Subject"
-                secondary={subjectName || "None selected"}
-              />
-            </ListItem>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText
-                primary="Degree"
-                secondary={degreeName || "None selected"}
-              />
-            </ListItem>
-            <ListItem className={classes.listItem} button divider>
-              <ListItemText
-                primary="Department"
-                secondary={departmentName || "None selected"}
-              />
-            </ListItem>
-            <ListItem className={classes.listItem} button>
-              <ListItemText
-                primary="Prerequisite"
-                secondary={prerequisiteName || "None selected"}
-              />
-            </ListItem>
-          </List>
         </CardContent>
+        <List>
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Name" secondary={course.name} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Credits" secondary={course.credits} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Number" secondary={course.number} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Level" secondary={course.level} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Subject"
+              secondary={subjectName || "None selected"}
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Degree"
+              secondary={degreeName || "None selected"}
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Department"
+              secondary={departmentName || "None selected"}
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Prerequisite"
+              secondary={prerequisiteName || "None selected"}
+            />
+          </ListItem>
+        </List>
       </Card>
     </div>
   );

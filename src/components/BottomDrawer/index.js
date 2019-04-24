@@ -35,11 +35,18 @@ const useStyles = makeStyles(
       width: "auto"
     },
     listItem: {
-      paddingLeft: 0,
-      paddingRight: 0
+      // paddingLeft: 0,
+      // paddingRight: 0
     },
     divider: {
-      marginLeft: 48
+      marginLeft: 64,
+      marginRight: 16,
+      borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
+      backgroundClip: "padding-box",
+      backgroundColor: "transparent"
+    },
+    contentHeader: {
+      paddingBottom: 0
     }
   }),
   { withTheme: true }
@@ -64,77 +71,75 @@ function BottomDrawer(props) {
 
   const fullList = (
     <div className={classes.fullList}>
-      <CardContent>
-        <Typography variant="h6" gutterBottom>
-          Navigation
-        </Typography>
-        <List>
-          <ListItem
-            className={classes.listItem}
-            button
-            onClick={() => {
-              history.push(`/students`);
-            }}
-          >
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Students" />
-          </ListItem>
-          <Divider className={classes.divider} variant="inset" />
-          <ListItem
-            className={classes.listItem}
-            button
-            onClick={() => {
-              history.push(`/courses`);
-            }}
-          >
-            <ListItemIcon>
-              <ListAltIcon />
-            </ListItemIcon>
-            <ListItemText primary="Courses" />
-          </ListItem>
-          <Divider className={classes.divider} variant="inset" />
-          <ListItem
-            className={classes.listItem}
-            button
-            onClick={() => {
-              history.push(`/degrees`);
-            }}
-          >
-            <ListItemIcon>
-              <SchoolIcon />
-            </ListItemIcon>
-            <ListItemText primary="Degrees" />
-          </ListItem>
-          <Divider className={classes.divider} variant="inset" />
-          <ListItem
-            className={classes.listItem}
-            button
-            onClick={() => {
-              history.push(`/departments`);
-            }}
-          >
-            <ListItemIcon>
-              <DomainIcon />
-            </ListItemIcon>
-            <ListItemText primary="Departments" />
-          </ListItem>
-          <Divider className={classes.divider} variant="inset" />
-          <ListItem
-            className={classes.listItem}
-            button
-            onClick={() => {
-              history.push(`/subjects`);
-            }}
-          >
-            <ListItemIcon>
-              <StorageIcon />
-            </ListItemIcon>
-            <ListItemText primary="Subjects" />
-          </ListItem>
-        </List>
+      <CardContent className={classes.contentHeader}>
+        <Typography variant="h6">Navigation</Typography>
       </CardContent>
+      <List>
+        <ListItem
+          className={classes.listItem}
+          button
+          onClick={() => {
+            history.push(`/students`);
+          }}
+        >
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Students" />
+        </ListItem>
+        <Divider className={classes.divider} component="li" variant="inset" />
+        <ListItem
+          className={classes.listItem}
+          button
+          onClick={() => {
+            history.push(`/courses`);
+          }}
+        >
+          <ListItemIcon>
+            <ListAltIcon />
+          </ListItemIcon>
+          <ListItemText primary="Courses" />
+        </ListItem>
+        <Divider className={classes.divider} component="li" variant="inset" />
+        <ListItem
+          className={classes.listItem}
+          button
+          onClick={() => {
+            history.push(`/degrees`);
+          }}
+        >
+          <ListItemIcon>
+            <SchoolIcon />
+          </ListItemIcon>
+          <ListItemText primary="Degrees" />
+        </ListItem>
+        <Divider className={classes.divider} component="li" variant="inset" />
+        <ListItem
+          className={classes.listItem}
+          button
+          onClick={() => {
+            history.push(`/departments`);
+          }}
+        >
+          <ListItemIcon>
+            <DomainIcon />
+          </ListItemIcon>
+          <ListItemText primary="Departments" />
+        </ListItem>
+        <Divider className={classes.divider} component="li" variant="inset" />
+        <ListItem
+          className={classes.listItem}
+          button
+          onClick={() => {
+            history.push(`/subjects`);
+          }}
+        >
+          <ListItemIcon>
+            <StorageIcon />
+          </ListItemIcon>
+          <ListItemText primary="Subjects" />
+        </ListItem>
+      </List>
     </div>
   );
 

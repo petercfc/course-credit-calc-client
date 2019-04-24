@@ -19,12 +19,12 @@ const useStyles = makeStyles(
       backgroundColor: blue[100],
       color: blue[600]
     },
-    listItem: {
-      paddingLeft: 0,
-      paddingRight: 0
-    },
     divider: {
-      marginLeft: 56
+      marginLeft: 72,
+      marginRight: 16,
+      borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
+      backgroundClip: "padding-box",
+      backgroundColor: "transparent"
     }
   }),
   { withTheme: true }
@@ -52,7 +52,9 @@ function Courses(props) {
         </ListItemAvatar>
         <ListItemText primary={course.name} secondary={course.number} />
       </ListItem>
-      {hasDivider && <Divider className={classes.divider} variant="inset" />}
+      {hasDivider && (
+        <Divider className={classes.divider} component="li" variant="inset" />
+      )}
     </React.Fragment>
   );
 }

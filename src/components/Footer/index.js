@@ -117,9 +117,6 @@ function Footer(props) {
             <IconButton>
               <SearchIcon />
             </IconButton>
-            <IconButton>
-              <AccountCircle />
-            </IconButton>
           </div>
         </Toolbar>
       </AppBar>

@@ -6,6 +6,10 @@ import { makeStyles } from "@material-ui/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
+//components
+import HeaderBack from "./components/HeaderBack";
+import HeaderTitle from "./components/HeaderTitle";
+
 //create material-ui styles custom hook
 const useStyles = makeStyles(
   theme => ({
@@ -27,13 +31,17 @@ const useStyles = makeStyles(
 function Header(props) {
   //material-ui styles custom hook
   const classes = useStyles();
-  const { children } = props;
+  const { children, backUrl, title, subTitle } = props;
 
   //Header return
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} color="default" position="static">
-        <Toolbar>{children}</Toolbar>
+        <Toolbar>
+          <HeaderBack backUrl={backUrl} />
+          <HeaderTitle title={title} subTitle={subTitle} />
+          {children}
+        </Toolbar>
       </AppBar>
     </div>
   );

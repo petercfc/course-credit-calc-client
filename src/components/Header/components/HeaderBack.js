@@ -10,7 +10,6 @@ import ArrowBackButton from "@material-ui/icons/ArrowBack";
 //create material-ui styles custom hook
 const useStyles = makeStyles(
   theme => ({
-    root: {},
     backButton: {
       marginLeft: -12,
       marginRight: 20
@@ -23,13 +22,13 @@ const useStyles = makeStyles(
 function HeaderMenuBack(props) {
   //material-ui styles custom hook
   const classes = useStyles();
-  const { history } = props;
+  const { history, backUrl } = props;
 
   //main return
   return (
     <IconButton
       className={classes.backButton}
-      onClick={() => history.push("/students")}
+      onClick={() => history.push(backUrl)}
     >
       <ArrowBackButton />
     </IconButton>

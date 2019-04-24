@@ -37,7 +37,6 @@ function Courses(props) {
   //main return
   return (
     <ListItem button onClick={() => history.push(`/courses/${course.id}`)}>
-      {console.log(course)}
       <ListItemAvatar>
         <Avatar className={classes.avatar}>
           <ListAltIcon />

@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 //components
 import Header from "../../../../components/Header";
 import HeaderMenu from "./components/HeaderMenu";
-import HeaderBack from "./components/HeaderBack";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -30,8 +29,7 @@ function StudentDetailHeader(props) {
 
   //main return
   return (
-    <Header>
-      <HeaderBack />
+    <Header backUrl="/student">
       <Typography className={classes.title} variant="h6" noWrap>
         {student.name}
       </Typography>

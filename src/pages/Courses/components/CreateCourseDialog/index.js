@@ -44,6 +44,7 @@ const CreateCourseDialog = props => {
           proxy,
           queriesToUpdate: [GET_ALL_COURSES],
           searchVariables: {},
+          operation: { type: "ADD", row: { type: "SORT", field: "name" } },
           mutationResult
         });
         if (updates) {

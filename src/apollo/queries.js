@@ -29,8 +29,8 @@ export const GET_ALL_SUBJECTS = gql`
 `;
 
 export const GET_ALL_COURSES = gql`
-  query getAllCourses {
-    courses {
+  query getAllCourses($orderBy: CourseOrderByInput) {
+    courses(orderBy: $orderBy) {
       id
       name
       number

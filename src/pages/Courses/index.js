@@ -16,7 +16,8 @@ function Courses() {
     data: { courses },
     error
   } = useQuery(GET_ALL_COURSES, {
-    suspend: true
+    suspend: true,
+    variables: { orderBy: "name_ASC" }
   });
 
   //error return

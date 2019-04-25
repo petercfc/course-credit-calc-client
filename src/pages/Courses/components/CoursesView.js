@@ -10,6 +10,8 @@ import List from "@material-ui/core/List";
 
 //components
 import CoursesListItem from "./CoursesListItem";
+import CreateCourseDialog from "./CreateCourseDialog";
+import CreateCourseButton from "./CreateCourseButton";
 
 //material-ui styles hook
 const useStyles = makeStyles(
@@ -31,22 +33,26 @@ function Courses(props) {
 
   //main return
   return (
-    <Card>
-      <CardContent className={classes.contentHeader}>
-        <Typography variant="h6" gutterBottom>
-          Courses
-        </Typography>
-      </CardContent>
-      <List>
-        {courses.map((course, i) => (
-          <CoursesListItem
-            key={course.id}
-            course={course}
-            hasDivider={courses[i + 1] && true}
-          />
-        ))}
-      </List>
-    </Card>
+    <React.Fragment>
+      <Card>
+        <CardContent className={classes.contentHeader}>
+          <Typography variant="h6" gutterBottom>
+            Courses
+          </Typography>
+        </CardContent>
+        <List>
+          {courses.map((course, i) => (
+            <CoursesListItem
+              key={course.id}
+              course={course}
+              hasDivider={courses[i + 1] && true}
+            />
+          ))}
+        </List>
+      </Card>
+      <CreateCourseButton />
+      <CreateCourseDialog modalType="createCourse" />
+    </React.Fragment>
   );
 }
 

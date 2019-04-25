@@ -5,12 +5,17 @@ import types from "./types";
 const INITIAL_STATE = {
   modals: [
     {
+      modalType: "createStudent",
+      modalProps: {},
+      isOpen: false
+    },
+    {
       modalType: "editStudentName",
       modalProps: { studentId: "" },
       isOpen: false
     },
     {
-      modalType: "createStudent",
+      modalType: "createCourse",
       modalProps: {},
       isOpen: false
     },

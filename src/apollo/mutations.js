@@ -38,21 +38,30 @@ export const UPDATE_STUDENT = gql`
   }
 `;
 
-export const UPDATE_COURSE = gql`
-  mutation updateCourse(
-    $data: CourseUpdateInput!
-    $where: CourseWhereUniqueInput!
-  ) {
-    updateCourse(data: $data, where: $where) {
+export const DELETE_STUDENT = gql`
+  mutation deleteStudent($id: ID!) {
+    deleteStudent(where: { id: $id }) {
       id
       name
     }
   }
 `;
 
-export const DELETE_STUDENT = gql`
-  mutation deleteStudent($id: ID!) {
-    deleteStudent(where: { id: $id }) {
+export const CREATE_COURSE = gql`
+  mutation createCourse($data: CourseCreateInput!) {
+    createCourse(data: $data) {
+      id
+      name
+    }
+  }
+`;
+
+export const UPDATE_COURSE = gql`
+  mutation updateCourse(
+    $data: CourseUpdateInput!
+    $where: CourseWhereUniqueInput!
+  ) {
+    updateCourse(data: $data, where: $where) {
       id
       name
     }

@@ -2,11 +2,9 @@
 import React from "react";
 
 //material-ui
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 
 //components
 import CourseHeaderMenuDelete from "./CourseHeaderMenuDelete";

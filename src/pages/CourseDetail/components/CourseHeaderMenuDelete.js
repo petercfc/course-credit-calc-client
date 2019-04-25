@@ -40,12 +40,12 @@ function CourseHeaderMenuDelete(props) {
     >
       {(deleteCourse, { data }) => (
         <MenuItem
-          onClick={handleClose}
           color="secondary"
           onClick={async () => {
             await deleteCourse({
               variables: { id: course.id }
             });
+            handleClose();
             setAlert(true, `Deleted course: ${course.name}`);
             history.push("/courses");
           }}

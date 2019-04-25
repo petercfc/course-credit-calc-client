@@ -9,7 +9,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
 //components
-import Header from "../../../components/Header";
+import CourseHeaderMenuDelete from "./CourseHeaderMenuDelete";
 
 //main function
 function CourseHeaderMenu(props) {
@@ -45,7 +45,7 @@ function CourseHeaderMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Delete Course</MenuItem>
+        <CourseHeaderMenuDelete course={course} handleClose={handleClose} />
       </Menu>
     </div>
   );

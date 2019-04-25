@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/styles";
 //components
 import StudentDetailHeader from "../components/StudentDetailHeader";
 import StudentDetailBody from "../components/StudentDetailBody";
+import CalculateCreditsButton from "./CalculateCreditsButton";
 import Error from "../../../components/Error";
 import EmptyState from "../../../components/EmptyState";
 
@@ -31,6 +32,7 @@ const StudentDetailView = props => {
     <div className={classes.view}>
       <StudentDetailHeader student={student} />
       <StudentDetailBody student={student} />
+      <CalculateCreditsButton />
     </div>
   );
 };

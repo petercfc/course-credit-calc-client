@@ -3,6 +3,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 
 //apollo
+import ApolloCacheUpdater from "apollo-cache-updater";
 import { Mutation } from "react-apollo";
 import { GET_ALL_COURSES } from "../../../../apollo/queries";
 import { CREATE_COURSE } from "../../../../apollo/mutations";
@@ -37,13 +38,18 @@ const CreateCourseDialog = props => {
   return (
     <Mutation
       mutation={CREATE_COURSE}
-      update={(cache, { data: { createCourse } }) => {
-        const { courses } = cache.readQuery({ query: GET_ALL_COURSES });
-        cache.writeQuery({
-          query: GET_ALL_COURSES,
-          data: { courses: courses.concat([createCourse]) }
+      update={(proxy, { data: { createCourse } }) => {
+        const mutationResult = createCourse;
+        const updates = ApolloCacheUpdater({
+          proxy,
+          queriesToUpdate: [GET_ALL_COURSES],
+          searchVariables: {},
+          mutationResult
         });
-        history.push(`/courses/${createCourse.id}`);
+        if (updates) {
+          console.log(`Course Created`);
+          history.push(`/courses/${createCourse.id}`);
+        }
       }}
     >
       {(createCourse, { loading, error }) => {

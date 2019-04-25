@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles(
   theme => ({
     root: {},
-    title: {},
+    title: { flexGrow: 1 },
     subTitle: {}
   }),
   { withTheme: true }
@@ -23,11 +23,11 @@ function HeaderMenuBack(props) {
 
   //main return
   return (
-    <div className={classes.root}>
-      <Typography className={classes.title} variant="subtitle2" noWrap>
+    <div className={classes.title}>
+      <Typography variant="subtitle2" noWrap>
         {title}
       </Typography>
-      <Typography className={classes.subTitle} variant="caption" noWrap>
+      <Typography variant="caption" noWrap>
         {subTitle}
       </Typography>
     </div>

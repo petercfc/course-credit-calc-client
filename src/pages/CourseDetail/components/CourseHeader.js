@@ -3,6 +3,7 @@ import React from "react";
 
 //components
 import Header from "../../../components/Header";
+import CourseHeaderMenu from "./CourseHeaderMenu";
 
 //main function
 function CourseHeader(props) {
@@ -13,7 +14,11 @@ function CourseHeader(props) {
   const title = `${course.name} - ${course.number}`;
 
   //main return
-  return <Header backUrl="/courses" title={title} subTitle="Courses" />;
+  return (
+    <Header backUrl="/courses" title={title} subTitle="Courses">
+      <CourseHeaderMenu course={course} />
+    </Header>
+  );
 }
 
 //main export

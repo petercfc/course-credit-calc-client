@@ -52,6 +52,25 @@ export const CREATE_COURSE = gql`
     createCourse(data: $data) {
       id
       name
+      number
+      level
+      credits
+      subject {
+        id
+        name
+      }
+      degree {
+        id
+        name
+      }
+      department {
+        id
+        name
+      }
+      prerequisite {
+        id
+        name
+      }
     }
   }
 `;

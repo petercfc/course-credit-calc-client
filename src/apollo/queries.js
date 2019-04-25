@@ -37,15 +37,19 @@ export const GET_ALL_COURSES = gql`
       level
       credits
       subject {
+        id
         name
       }
       degree {
+        id
         name
       }
       department {
+        id
         name
       }
       prerequisite {
+        id
         name
       }
     }

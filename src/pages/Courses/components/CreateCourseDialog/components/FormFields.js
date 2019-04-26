@@ -16,17 +16,35 @@ import DialogActions from "@material-ui/core/DialogActions";
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
+    prerequisite: {
+      minWidth: 140,
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
+    },
+    department: {
+      minWidth: 140,
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
+    },
+    degree: {
+      minWidth: 140,
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
+    },
     level: {
-      minWidth: 120,
-      marginTop: theme.spacing(1)
+      minWidth: 140,
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
     },
     credits: {
-      minWidth: 120,
-      marginTop: theme.spacing(1)
+      minWidth: 140,
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
     },
-    formControl: {
-      minWidth: 240,
-      marginTop: theme.spacing(1)
+    subject: {
+      minWidth: 140,
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
     }
   }),
   { withTheme: true }
@@ -35,26 +53,42 @@ const useStyles = makeStyles(
 //main function
 const FormFields = props => {
   //destructure props
-  const { isValid, handleDialogClose, subjects } = props;
+  const {
+    isValid,
+    handleDialogClose,
+    subjects,
+    degrees,
+    departments,
+    courses
+  } = props;
+
+  //use material-ui styles - custom hook
+  const classes = useStyles();
 
   //state hook for input labels
   const [levelLabelWidth, setLevelLabelWidth] = useState(0);
   const [creditsLabelWidth, setCreditsLabelWidth] = useState(0);
   const [subjectsLabelWidth, setSubjectsLabelWidth] = useState(0);
+  const [degreesLabelWidth, setDegreesLabelWidth] = useState(0);
+  const [departmentsLabelWidth, setDepartmentsLabelWidth] = useState(0);
+  const [prerequisitesLabelWidth, setPreqrequisitesLabelWidth] = useState(0);
 
   //ref hook for input labels
   const levelLabelRef = useRef(null);
   const creditsLabelRef = useRef(null);
   const subjectsLabelRef = useRef(null);
-
-  //use material-ui styles - custom hook
-  const classes = useStyles();
+  const degreesLabelRef = useRef(null);
+  const departmentsLabelRef = useRef(null);
+  const prerequisitesLabelRef = useRef(null);
 
   //effect hook
   React.useEffect(() => {
     setLevelLabelWidth(levelLabelRef.current.offsetWidth);
     setCreditsLabelWidth(creditsLabelRef.current.offsetWidth);
     setSubjectsLabelWidth(subjectsLabelRef.current.offsetWidth);
+    setDegreesLabelWidth(degreesLabelRef.current.offsetWidth);
+    setDepartmentsLabelWidth(departmentsLabelRef.current.offsetWidth);
+    setPreqrequisitesLabelWidth(prerequisitesLabelRef.current.offsetWidth);
   }, []);
 
   //main
@@ -143,7 +177,7 @@ const FormFields = props => {
             </MenuItem>
           </Field>
         </FormControl>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="outlined" className={classes.subject}>
           <InputLabel ref={subjectsLabelRef} htmlFor="subject-select">
             Subject
           </InputLabel>
@@ -166,6 +200,87 @@ const FormFields = props => {
             {subjects.map(subject => (
               <MenuItem key={subject.id} value={subject.id}>
                 {subject.name}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+        <FormControl variant="outlined" className={classes.degree}>
+          <InputLabel ref={degreesLabelRef} htmlFor="degree-select">
+            Degree
+          </InputLabel>
+          <Field
+            type="text"
+            name="degree"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={degreesLabelWidth}
+                name="degree"
+                id="degree-select"
+              />
+            }
+            inputProps={{ name: "degree", id: "degree" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {degrees.map(degree => (
+              <MenuItem key={degree.id} value={degree.id}>
+                {degree.name}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+        <FormControl variant="outlined" className={classes.department}>
+          <InputLabel ref={departmentsLabelRef} htmlFor="department-select">
+            Department
+          </InputLabel>
+          <Field
+            type="text"
+            name="department"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={departmentsLabelWidth}
+                name="department"
+                id="department-select"
+              />
+            }
+            inputProps={{ name: "department", id: "department" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {departments.map(department => (
+              <MenuItem key={department.id} value={department.id}>
+                {department.name}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+        <FormControl variant="outlined" className={classes.prerequisite}>
+          <InputLabel ref={prerequisitesLabelRef} htmlFor="prerequisite-select">
+            Prerequisite
+          </InputLabel>
+          <Field
+            type="text"
+            name="prerequisite"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={prerequisitesLabelWidth}
+                name="prerequisite"
+                id="prerequisite-select"
+              />
+            }
+            inputProps={{ name: "prerequisite", id: "prerequisite" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {courses.map(course => (
+              <MenuItem key={course.id} value={course.id}>
+                {course.name}
               </MenuItem>
             ))}
           </Field>

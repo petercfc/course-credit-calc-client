@@ -1,24 +1,6 @@
 // apollo
 import gql from "graphql-tag";
 
-export const GET_ALL_DEGREES = gql`
-  query GetAllDegrees {
-    degrees {
-      id
-      name
-    }
-  }
-`;
-
-export const GET_ALL_DEPARTMENTS = gql`
-  query GetAllDepartments {
-    departments {
-      id
-      name
-    }
-  }
-`;
-
 export const GET_ALL_COURSES = gql`
   query getAllCourses($orderBy: CourseOrderByInput) {
     courses(orderBy: $orderBy) {
@@ -119,6 +101,24 @@ export const GET_COURSE = gql`
 export const GET_ALL_SUBJECTS = gql`
   query getAllSubjects($orderBy: SubjectOrderByInput) {
     subjects(orderBy: $orderBy) {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_ALL_DEPARTMENTS = gql`
+  query getAllDepartments($orderBy: DepartmentOrderByInput) {
+    departments(orderBy: $orderBy) {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_ALL_DEGREES = gql`
+  query getAllDegrees($orderBy: DegreeOrderByInput) {
+    degrees(orderBy: $orderBy) {
       id
       name
     }

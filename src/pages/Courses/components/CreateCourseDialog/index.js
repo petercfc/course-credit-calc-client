@@ -37,7 +37,7 @@ function Transition(props) {
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    dialog: { paddingTop: theme.spacing(7) },
+    dialog: { height: "auto", top: "auto" },
     closeButton: {
       position: "fixed",
       top: -theme.spacing(6),
@@ -95,20 +95,11 @@ const CreateCourseDialog = props => {
             onClose={handleDialogClose}
           >
             {loading && <Loading />}
-            {/* <IconButton
-              className={classes.closeButton}
-              color="inherit"
-              onClick={handleDialogClose}
-              aria-label="Close"
-            >
-              <CloseIcon />
-            </IconButton> */}
             <DialogTitle>Create Course</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
-                mauris dapibus, fermentum mi nec, laoreet magna. Mauris turpis
-                sapien, gravida quis est vel, mattis posuere dui.
+                Create a new course. Lorem ipsum dolor sit amet, consectetur
+                adipiscing elit. Sed et mauris dapibus.
               </DialogContentText>
               {error && <Error message={error.message} />}
             </DialogContent>

@@ -8,27 +8,56 @@ import { Mutation } from "react-apollo";
 import { GET_ALL_COURSES } from "../../../../apollo/queries";
 import { CREATE_COURSE } from "../../../../apollo/mutations";
 
-//material-ui
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-
 //redux
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { makeGetModalState } from "../../../../redux/ducks/modal/selectors";
 import { modalOperations } from "../../../../redux/ducks/modal";
 
+//material-ui
+import { makeStyles } from "@material-ui/styles";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import Slide from "@material-ui/core/Slide";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+
 //components
 import FormLogic from "./components/FormLogic";
 import Loading from "../../../../components/Loading/index";
 import Error from "../../../../components/Error/index";
 
+//transition component
+function Transition(props) {
+  return <Slide direction="up" {...props} />;
+}
+
+//material-ui styles - custom hook
+const useStyles = makeStyles(
+  theme => ({
+    dialog: { paddingTop: theme.spacing(8) },
+    closeButton: {
+      position: "fixed",
+      top: -theme.spacing(7),
+      left: theme.spacing(1)
+    },
+    paperFullScreen: {
+      borderTopLeftRadius: theme.spacing(2),
+      borderTopRightRadius: theme.spacing(2)
+    }
+  }),
+  { withTheme: true }
+);
+
 //main function
 const CreateCourseDialog = props => {
   //destructure props
   const { history, modal, toggleModal } = props;
+
+  //use material-ui styles - custom hook
+  const classes = useStyles();
 
   //callback for when dialog closes
   const handleDialogClose = () => {
@@ -55,9 +84,25 @@ const CreateCourseDialog = props => {
     >
       {(createCourse, { loading, error }) => {
         return (
-          <Dialog open={modal.isOpen} onClose={handleDialogClose}>
+          <Dialog
+            className={classes.dialog}
+            classes={{
+              paperFullScreen: classes.paperFullScreen
+            }}
+            TransitionComponent={Transition}
+            fullScreen
+            open={modal.isOpen}
+            onClose={handleDialogClose}
+          >
             {loading && <Loading />}
-
+            {/* <IconButton
+              className={classes.closeButton}
+              color="inherit"
+              onClick={handleDialogClose}
+              aria-label="Close"
+            >
+              <CloseIcon />
+            </IconButton> */}
             <DialogTitle>Create Course</DialogTitle>
             <DialogContent>
               <DialogContentText>

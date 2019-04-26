@@ -2,17 +2,11 @@
 import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Field, Form } from "formik";
-import {
-  TextField,
-  Select,
-  SelectFieldProps,
-  fieldToSelect
-} from "formik-material-ui";
+import { TextField, Select } from "formik-material-ui";
 
 //material-ui
 import { Button } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
-import MuiSelect from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
@@ -29,8 +23,9 @@ const FormFields = props => {
   const inputLabelRef = useRef();
 
   React.useEffect(() => {
-    setLabelWidth(inputLabelRef.current.offsetWidth);
-  }, []);
+    setLabelWidth(ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth);
+    console.log("set label width");
+  }, [inputLabelRef]);
 
   //main
   return (
@@ -40,8 +35,8 @@ const FormFields = props => {
           type="name"
           name="name"
           label="Name"
-          variant="outlined"
           component={TextField}
+          variant="outlined"
           autoFocus
           fullWidth
         />
@@ -50,21 +45,12 @@ const FormFields = props => {
         <br />
         <br />
         <FormControl variant="outlined">
-          <InputLabel ref={inputLabelRef} htmlFor="subject-select">
-            Subject
-          </InputLabel>
+          <InputLabel ref={inputLabelRef} htmlFor="subject-select" />
           <Field
             type="text"
             name="subject"
-            label="Subject"
-            input={
-              <OutlinedInput
-                labelWidth={labelWidth}
-                id="subject-select"
-                fullWidth
-              />
-            }
             component={Select}
+            inputProps={{ name: "subject", id: "subject" }}
           >
             {subjects.map(subject => (
               <MenuItem key={subject.id} value={subject.id}>

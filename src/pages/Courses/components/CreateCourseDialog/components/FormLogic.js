@@ -15,7 +15,7 @@ const FormLogic = props => {
   const { createCourse, handleDialogClose } = props;
 
   //initial values for form
-  const initialValues = { name: "", subject: "someId" };
+  const initialValues = { name: "", subject: "" };
 
   //yup validation rules for form
   const validationSchema = Yup.object({
@@ -42,7 +42,9 @@ const FormLogic = props => {
               number: "COURSE000",
               level: 100,
               credits: 0,
-              subject: { connect: { id: values.subject } }
+              subject: values.subject
+                ? { connect: { id: values.subject } }
+                : undefined
             }
           }
         });

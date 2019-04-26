@@ -1,12 +1,18 @@
 //other
-import React from "react";
+import React, { useState, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Field, Form } from "formik";
-import { TextField, Select } from "formik-material-ui";
+import {
+  TextField,
+  Select,
+  SelectFieldProps,
+  fieldToSelect
+} from "formik-material-ui";
 
 //material-ui
 import { Button } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
+import MuiSelect from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
@@ -18,17 +24,12 @@ const FormFields = props => {
   //destructure props
   const { isValid, handleDialogClose, subjects } = props;
 
-  const [state, setState] = React.useState({
-    labelWidth: 0
-  });
+  const [labelWidth, setLabelWidth] = useState(0);
 
-  const inputLabelRef = React.useRef(null);
+  const inputLabelRef = useRef();
 
   React.useEffect(() => {
-    // setState({
-    //   ...state,
-    //   labelWidth: ReactDOM.findDOMNode(inputLabelRef.current).offsetWidth
-    // });
+    setLabelWidth(inputLabelRef.current.offsetWidth);
   }, []);
 
   //main
@@ -44,21 +45,26 @@ const FormFields = props => {
           autoFocus
           fullWidth
         />
+        <br />
+        <br />
+        <br />
+        <br />
         <FormControl variant="outlined">
-          <InputLabel htmlFor="subject-simple">Age</InputLabel>
+          <InputLabel ref={inputLabelRef} htmlFor="subject-select">
+            Subject
+          </InputLabel>
           <Field
             type="text"
             name="subject"
             label="Subject"
             input={
               <OutlinedInput
-                labelWidth={state.labelWidth}
-                name="subject"
-                id="subject-simple"
+                labelWidth={labelWidth}
+                id="subject-select"
+                fullWidth
               />
             }
             component={Select}
-            fullWidth
           >
             {subjects.map(subject => (
               <MenuItem key={subject.id} value={subject.id}>

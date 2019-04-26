@@ -16,6 +16,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
+    level: {
+      minWidth: 120,
+      marginTop: theme.spacing(1)
+    },
     credits: {
       minWidth: 120,
       marginTop: theme.spacing(1)
@@ -34,21 +38,23 @@ const FormFields = props => {
   const { isValid, handleDialogClose, subjects } = props;
 
   //state hook for input labels
-  const [subjectsLabelWidth, setSubjectsLabelWidth] = useState(0);
+  const [levelLabelWidth, setLevelLabelWidth] = useState(0);
   const [creditsLabelWidth, setCreditsLabelWidth] = useState(0);
+  const [subjectsLabelWidth, setSubjectsLabelWidth] = useState(0);
 
   //ref hook for input labels
-  const subjectsLabelRef = useRef(null);
+  const levelLabelRef = useRef(null);
   const creditsLabelRef = useRef(null);
+  const subjectsLabelRef = useRef(null);
 
   //use material-ui styles - custom hook
   const classes = useStyles();
 
   //effect hook
   React.useEffect(() => {
-    setSubjectsLabelWidth(subjectsLabelRef.current.offsetWidth);
+    setLevelLabelWidth(levelLabelRef.current.offsetWidth);
     setCreditsLabelWidth(creditsLabelRef.current.offsetWidth);
-    console.log("set label width");
+    setSubjectsLabelWidth(subjectsLabelRef.current.offsetWidth);
   }, []);
 
   //main
@@ -71,14 +77,38 @@ const FormFields = props => {
           variant="outlined"
           fullWidth
         />
-        <Field
-          type="number"
-          name="level"
-          label="Level"
-          component={TextField}
-          variant="outlined"
-          fullWidth
-        />
+
+        <FormControl variant="outlined" className={classes.level}>
+          <InputLabel ref={levelLabelRef} htmlFor="level-select">
+            Level
+          </InputLabel>
+          <Field
+            type="number"
+            name="level"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={levelLabelWidth}
+                name="level"
+                id="level-select"
+              />
+            }
+            inputProps={{ name: "level", id: "level" }}
+          >
+            <MenuItem key="100" value={100}>
+              100
+            </MenuItem>
+            <MenuItem key="200" value={200}>
+              200
+            </MenuItem>
+            <MenuItem key="300" value={300}>
+              300
+            </MenuItem>
+            <MenuItem key="400" value={400}>
+              400
+            </MenuItem>
+          </Field>
+        </FormControl>
         <FormControl variant="outlined" className={classes.credits}>
           <InputLabel ref={creditsLabelRef} htmlFor="credits-select">
             Credits
@@ -115,7 +145,7 @@ const FormFields = props => {
         </FormControl>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel ref={subjectsLabelRef} htmlFor="subject-select">
-            Subjects
+            Subject
           </InputLabel>
           <Field
             type="text"

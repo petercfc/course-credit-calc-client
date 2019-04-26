@@ -18,7 +18,7 @@ const FormLogic = props => {
   const initialValues = {
     name: "",
     number: "",
-    level: "",
+    level: 100,
     credits: 3,
     subject: ""
   };

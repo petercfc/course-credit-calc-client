@@ -16,34 +16,44 @@ import DialogActions from "@material-ui/core/DialogActions";
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
+    number: {
+      minWidth: 140,
+      marginTop: theme.spacing(2),
+      marginRight: theme.spacing(1)
+    },
+    name: {
+      minWidth: 140,
+      marginTop: theme.spacing(2),
+      marginRight: theme.spacing(1)
+    },
     prerequisite: {
       minWidth: 140,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
     },
     department: {
       minWidth: 140,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
     },
     degree: {
       minWidth: 140,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
     },
     level: {
       minWidth: 140,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
     },
     credits: {
       minWidth: 140,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
     },
     subject: {
       minWidth: 140,
-      marginTop: theme.spacing(1),
+      marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
     }
   }),
@@ -96,6 +106,7 @@ const FormFields = props => {
     <Form autoComplete="off">
       <DialogContent>
         <Field
+          className={classes.name}
           type="text"
           name="name"
           label="Name"
@@ -104,6 +115,7 @@ const FormFields = props => {
           fullWidth
         />
         <Field
+          className={classes.number}
           type="text"
           name="number"
           label="Number"
@@ -177,7 +189,8 @@ const FormFields = props => {
             </MenuItem>
           </Field>
         </FormControl>
-        <FormControl variant="outlined" className={classes.subject}>
+        <br />
+        <FormControl fullWidth variant="outlined" className={classes.subject}>
           <InputLabel ref={subjectsLabelRef} htmlFor="subject-select">
             Subject
           </InputLabel>
@@ -204,7 +217,8 @@ const FormFields = props => {
             ))}
           </Field>
         </FormControl>
-        <FormControl variant="outlined" className={classes.degree}>
+        <br />
+        <FormControl fullWidth variant="outlined" className={classes.degree}>
           <InputLabel ref={degreesLabelRef} htmlFor="degree-select">
             Degree
           </InputLabel>
@@ -231,7 +245,12 @@ const FormFields = props => {
             ))}
           </Field>
         </FormControl>
-        <FormControl variant="outlined" className={classes.department}>
+        <br />
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.department}
+        >
           <InputLabel ref={departmentsLabelRef} htmlFor="department-select">
             Department
           </InputLabel>
@@ -258,7 +277,12 @@ const FormFields = props => {
             ))}
           </Field>
         </FormControl>
-        <FormControl variant="outlined" className={classes.prerequisite}>
+        <br />
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.prerequisite}
+        >
           <InputLabel ref={prerequisitesLabelRef} htmlFor="prerequisite-select">
             Prerequisite
           </InputLabel>
@@ -288,7 +312,12 @@ const FormFields = props => {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleDialogClose}>Cancel</Button>
-        <Button type="submit" disabled={!isValid} color="primary">
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={!isValid}
+          color="primary"
+        >
           Create Course
         </Button>
       </DialogActions>

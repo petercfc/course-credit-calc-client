@@ -15,11 +15,28 @@ const FormLogic = props => {
   const { createCourse, handleDialogClose } = props;
 
   //initial values for form
-  const initialValues = { name: "", subject: "" };
+  const initialValues = {
+    name: "",
+    number: "",
+    level: "",
+    credits: 3,
+    subject: ""
+  };
 
   //yup validation rules for form
   const validationSchema = Yup.object({
-    name: Yup.string("Enter a name").required("Name is required")
+    name: Yup.string("Enter the course name").required(
+      "Course name is required"
+    ),
+    number: Yup.string("Enter the course number").required(
+      "Course number is required"
+    ),
+    number: Yup.string("Enter the course level").required(
+      "Course level is required"
+    ),
+    number: Yup.string("Enter the number of course credits").required(
+      "Number of course credit is required"
+    )
   });
 
   //apollo query hook
@@ -39,9 +56,9 @@ const FormLogic = props => {
           variables: {
             data: {
               name: values.name,
-              number: "COURSE000",
-              level: 100,
-              credits: 0,
+              number: values.number,
+              level: values.level,
+              credits: values.credits,
               subject: values.subject
                 ? { connect: { id: values.subject } }
                 : undefined

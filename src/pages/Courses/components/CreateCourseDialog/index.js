@@ -37,10 +37,10 @@ function Transition(props) {
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    dialog: { paddingTop: theme.spacing(8) },
+    dialog: { paddingTop: theme.spacing(7) },
     closeButton: {
       position: "fixed",
-      top: -theme.spacing(7),
+      top: -theme.spacing(6),
       left: theme.spacing(1)
     },
     paperFullScreen: {

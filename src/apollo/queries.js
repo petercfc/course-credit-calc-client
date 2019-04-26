@@ -19,15 +19,6 @@ export const GET_ALL_DEPARTMENTS = gql`
   }
 `;
 
-export const GET_ALL_SUBJECTS = gql`
-  query GetAllSubjects {
-    subjects {
-      id
-      name
-    }
-  }
-`;
-
 export const GET_ALL_COURSES = gql`
   query getAllCourses($orderBy: CourseOrderByInput) {
     courses(orderBy: $orderBy) {
@@ -121,6 +112,15 @@ export const GET_COURSE = gql`
         level
         credits
       }
+    }
+  }
+`;
+
+export const GET_ALL_SUBJECTS = gql`
+  query getAllSubjects($orderBy: SubjectOrderByInput) {
+    subjects(orderBy: $orderBy) {
+      id
+      name
     }
   }
 `;

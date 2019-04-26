@@ -3,6 +3,9 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
+import { useQuery } from "react-apollo-hooks";
+import { GET_ALL_SUBJECTS } from "../../../../../apollo/queries";
+
 //components
 import FormFields from "./FormFields";
 
@@ -12,11 +15,20 @@ const FormLogic = props => {
   const { createCourse, handleDialogClose } = props;
 
   //initial values for form
-  const initialValues = { name: "" };
+  const initialValues = { name: "", subject: "someId" };
 
   //yup validation rules for form
   const validationSchema = Yup.object({
     name: Yup.string("Enter a name").required("Name is required")
+  });
+
+  //apollo query hook
+  const {
+    data: { subjects },
+    error
+  } = useQuery(GET_ALL_SUBJECTS, {
+    suspend: true,
+    variables: { orderBy: "name_ASC" }
   });
 
   //main
@@ -29,17 +41,25 @@ const FormLogic = props => {
               name: values.name,
               number: "COURSE000",
               level: 100,
-              credits: 0
+              credits: 0,
+              subject: { connect: { id: values.subject } }
             }
           }
         });
+        console.log("submiteed", values);
         actions.setSubmitting(false);
         handleDialogClose();
       }}
       initialValues={initialValues}
       validationSchema={validationSchema}
     >
-      {props => <FormFields {...props} handleDialogClose={handleDialogClose} />}
+      {props => (
+        <FormFields
+          {...props}
+          handleDialogClose={handleDialogClose}
+          subjects={subjects}
+        />
+      )}
     </Formik>
   );
 };

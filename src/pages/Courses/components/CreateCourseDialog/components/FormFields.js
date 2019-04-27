@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import { Field, Form } from "formik";
 import { TextField, Select } from "formik-material-ui";
+import classNames from "classnames";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -22,8 +23,13 @@ const useStyles = makeStyles(
   theme => ({
     dialog: {
       paddingTop: theme.spacing(16),
-
       maxHeight: "-webkit-fill-available"
+    },
+    dialogTitle: {
+      borderBottom: "1px solid rgba(0,0,0,.12)"
+    },
+    dialogActions: {
+      borderTop: "1px solid rgba(0,0,0,.12)"
     },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
@@ -122,6 +128,31 @@ const FormFields = props => {
     // setPreqrequisitesLabelWidth(prerequisitesLabelRef.current.offsetWidth);
   }, []);
 
+  //state hook for input labels
+  const [headerScrollBar, setHeaderScrollBar] = useState(false);
+  const [footerScrollBar, setFooterScrollBar] = useState(false);
+
+  function precise(x) {
+    return Number.parseFloat(x).toPrecision(3);
+  }
+
+  const handleScroll = e => {
+    let element = e.target;
+    if (element.scrollTop != 0) {
+      setHeaderScrollBar(true);
+    } else {
+      setHeaderScrollBar(false);
+    }
+    const bottom =
+      precise(e.target.scrollHeight - e.target.scrollTop) ==
+      e.target.clientHeight;
+    if (bottom) {
+      setFooterScrollBar(false);
+    } else {
+      setFooterScrollBar(true);
+    }
+  };
+
   //main
   return (
     <Form autoComplete="off">
@@ -137,8 +168,14 @@ const FormFields = props => {
         onClose={handleDialogClose}
       >
         {loading && <Loading />}
-        <DialogTitle>Create Course</DialogTitle>
-        <DialogContent>
+        <DialogTitle
+          className={classNames({
+            [classes.dialogTitle]: headerScrollBar
+          })}
+        >
+          Create Course
+        </DialogTitle>
+        <DialogContent onScroll={handleScroll}>
           <Field
             className={classes.name}
             type="text"
@@ -348,7 +385,11 @@ const FormFields = props => {
             </Field>
           </FormControl>
         </DialogContent>
-        <DialogActions>
+        <DialogActions
+          className={classNames({
+            [classes.dialogActions]: footerScrollBar
+          })}
+        >
           <Button onClick={handleDialogClose}>Cancel</Button>
           <Button
             variant="contained"

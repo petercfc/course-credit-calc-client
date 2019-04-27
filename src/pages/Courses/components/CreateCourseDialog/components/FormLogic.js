@@ -17,7 +17,7 @@ import FormFields from "./FormFields";
 //main function
 const FormLogic = props => {
   //destructure props
-  const { createCourse, handleDialogClose } = props;
+  const { createCourse, handleDialogClose, modal, loading, error } = props;
 
   //initial values for form
   const initialValues = {
@@ -120,6 +120,9 @@ const FormLogic = props => {
           degrees={degrees}
           departments={departments}
           courses={courses}
+          modal={modal}
+          loading={loading}
+          error={error}
         />
       )}
     </Formik>

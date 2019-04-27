@@ -25,35 +25,11 @@ import Button from "@material-ui/core/Button";
 
 //components
 import FormLogic from "./components/FormLogic";
-import Loading from "../../../../components/Loading/index";
-
-//transition component
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
-
-//material-ui styles - custom hook
-const useStyles = makeStyles(
-  theme => ({
-    dialog: {
-      paddingTop: theme.spacing(3),
-      top: "auto"
-    },
-    paperFullScreen: {
-      borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2)
-    }
-  }),
-  { withTheme: true }
-);
 
 //main function
 const CreateCourseDialog = props => {
   //destructure props
   const { history, modal, toggleModal } = props;
-
-  //use material-ui styles - custom hook
-  const classes = useStyles();
 
   //callback for when dialog closes
   const handleDialogClose = () => {
@@ -80,37 +56,13 @@ const CreateCourseDialog = props => {
     >
       {(createCourse, { loading, error }) => {
         return (
-          <Dialog
-            className={classes.dialog}
-            classes={{
-              paperFullScreen: classes.paperFullScreen
-            }}
-            fullScreen
-            scroll="paper"
-            TransitionComponent={Transition}
-            open={modal.isOpen}
-            onClose={handleDialogClose}
-          >
-            {loading && <Loading />}
-            <DialogTitle>Create Course</DialogTitle>
-            <DialogContent>
-              <FormLogic
-                createCourse={createCourse}
-                handleDialogClose={handleDialogClose}
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleDialogClose}>Cancel</Button>
-              <Button
-                variant="contained"
-                type="submit"
-                disabled={!isValid}
-                color="primary"
-              >
-                Create Course
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <FormLogic
+            handleDialogClose={handleDialogClose}
+            modal={modal}
+            createCourse={createCourse}
+            loading={loading}
+            error={error}
+          />
         );
       }}
     </Mutation>

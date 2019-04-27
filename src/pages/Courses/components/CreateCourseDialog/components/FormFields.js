@@ -55,11 +55,6 @@ const useStyles = makeStyles(
       minWidth: 140,
       marginTop: theme.spacing(2),
       marginRight: theme.spacing(1)
-    },
-    dialogActions: {
-      paddingTop: 16,
-      paddingRight: 24,
-      paddingBottom: 24
     }
   }),
   { withTheme: true }
@@ -316,17 +311,6 @@ const FormFields = props => {
           </Field>
         </FormControl>
       </DialogContent>
-      <DialogActions className={classes.dialogActions}>
-        <Button onClick={handleDialogClose}>Cancel</Button>
-        <Button
-          variant="contained"
-          type="submit"
-          disabled={!isValid}
-          color="primary"
-        >
-          Create Course
-        </Button>
-      </DialogActions>
     </Form>
   );
 };

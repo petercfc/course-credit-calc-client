@@ -17,17 +17,15 @@ import { modalOperations } from "../../../../redux/ducks/modal";
 //material-ui
 import { makeStyles } from "@material-ui/styles";
 import Dialog from "@material-ui/core/Dialog";
+import Slide from "@material-ui/core/Slide";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import Slide from "@material-ui/core/Slide";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import DialogActions from "@material-ui/core/DialogActions";
+import Button from "@material-ui/core/Button";
 
 //components
 import FormLogic from "./components/FormLogic";
 import Loading from "../../../../components/Loading/index";
-import Error from "../../../../components/Error/index";
 
 //transition component
 function Transition(props) {
@@ -37,11 +35,9 @@ function Transition(props) {
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    dialog: { height: "auto", top: "auto" },
-    closeButton: {
-      position: "fixed",
-      top: -theme.spacing(6),
-      left: theme.spacing(1)
+    dialog: {
+      paddingTop: theme.spacing(3),
+      top: "auto"
     },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
@@ -89,24 +85,31 @@ const CreateCourseDialog = props => {
             classes={{
               paperFullScreen: classes.paperFullScreen
             }}
-            TransitionComponent={Transition}
             fullScreen
+            scroll="paper"
+            TransitionComponent={Transition}
             open={modal.isOpen}
             onClose={handleDialogClose}
           >
             {loading && <Loading />}
             <DialogTitle>Create Course</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                Create a new course. Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit. Sed et mauris dapibus.
-              </DialogContentText>
-              {error && <Error message={error.message} />}
+              <FormLogic
+                createCourse={createCourse}
+                handleDialogClose={handleDialogClose}
+              />
             </DialogContent>
-            <FormLogic
-              createCourse={createCourse}
-              handleDialogClose={handleDialogClose}
-            />
+            <DialogActions>
+              <Button onClick={handleDialogClose}>Cancel</Button>
+              <Button
+                variant="contained"
+                type="submit"
+                disabled={!isValid}
+                color="primary"
+              >
+                Create Course
+              </Button>
+            </DialogActions>
           </Dialog>
         );
       }}

@@ -53,7 +53,7 @@ const useStyles = makeStyles(
       flexGrow: 1
     },
     dialog: {
-      paddingTop: theme.spacing(16),
+      paddingTop: theme.spacing(3),
       maxHeight: "-webkit-fill-available"
     },
     dialogTitle: {

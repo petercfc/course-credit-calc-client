@@ -30,6 +30,8 @@ const useStyles = makeStyles(
       flexGrow: 1
     },
     appBar: {
+      paddingTop: 0,
+      paddingBottom: 0,
       backgroundColor: theme.palette.background.paper,
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2),
@@ -37,7 +39,7 @@ const useStyles = makeStyles(
       top: 0
     },
     backButton: {
-      marginLeft: -4,
+      marginLeft: -12,
       marginRight: 20
     },
     title: { flexGrow: 1 },
@@ -46,9 +48,12 @@ const useStyles = makeStyles(
       maxHeight: "-webkit-fill-available"
     },
     dialogTitle: {
-      borderBottom: "1px solid rgba(0,0,0,.12)"
+      paddingTop: 16,
+      boxShadow: "none",
+      paddingBottom: 0
+      // borderBottom: "1px solid rgba(0,0,0,.12)"
     },
-    content: { paddingTop: 56 },
+    content: { paddingTop: 72, paddingLeft: 16, paddingRight: 16 },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
@@ -157,9 +162,9 @@ const FormFields = props => {
     console.log(element);
     let element = e.target;
     if (element.scrollTop != 0) {
-      setHeaderScrollBar(true);
-    } else {
       setHeaderScrollBar(false);
+    } else {
+      setHeaderScrollBar(true);
     }
   };
 
@@ -180,7 +185,7 @@ const FormFields = props => {
       <Form autoComplete="off">
         {loading && <Loading />}
         <AppBar
-          elevation={0}
+          elevation={2}
           color="default"
           className={classNames(classes.appBar, {
             [classes.dialogTitle]: headerScrollBar

@@ -83,6 +83,7 @@ const FormLogic = props => {
   return (
     <Formik
       onSubmit={async (values, actions) => {
+        console.log("submitting");
         await createCourse({
           variables: {
             data: {

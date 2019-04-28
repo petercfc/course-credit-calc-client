@@ -17,10 +17,30 @@ import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Loading from "../../../../../components/Loading/index";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
+    root: {
+      flexGrow: 1
+    },
+    appBar: {
+      backgroundColor: theme.palette.background.paper,
+      borderTopLeftRadius: theme.spacing(2),
+      borderTopRightRadius: theme.spacing(2),
+      position: "fixed",
+      top: 0
+    },
+    backButton: {
+      marginLeft: -4,
+      marginRight: 20
+    },
+    title: { flexGrow: 1 },
     dialog: {
       paddingTop: theme.spacing(16),
       maxHeight: "-webkit-fill-available"
@@ -28,9 +48,7 @@ const useStyles = makeStyles(
     dialogTitle: {
       borderBottom: "1px solid rgba(0,0,0,.12)"
     },
-    dialogActions: {
-      borderTop: "1px solid rgba(0,0,0,.12)"
-    },
+    content: { paddingTop: 56 },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
@@ -130,52 +148,62 @@ const FormFields = props => {
 
   //state hook for input labels
   const [headerScrollBar, setHeaderScrollBar] = useState(false);
-  const [footerScrollBar, setFooterScrollBar] = useState(false);
 
   function precise(x) {
     return Number.parseFloat(x).toPrecision(3);
   }
 
   const handleScroll = e => {
+    console.log(element);
     let element = e.target;
     if (element.scrollTop != 0) {
       setHeaderScrollBar(true);
     } else {
       setHeaderScrollBar(false);
     }
-    const bottom =
-      precise(e.target.scrollHeight - e.target.scrollTop) ==
-      e.target.clientHeight;
-    if (bottom) {
-      setFooterScrollBar(false);
-    } else {
-      setFooterScrollBar(true);
-    }
   };
 
   //main
   return (
-    <Form autoComplete="off">
-      <Dialog
-        className={classes.dialog}
-        classes={{
-          paperFullScreen: classes.paperFullScreen
-        }}
-        fullScreen
-        scroll="paper"
-        TransitionComponent={Transition}
-        open={modal.isOpen}
-        onClose={handleDialogClose}
-      >
+    <Dialog
+      className={classes.dialog}
+      classes={{
+        paperFullScreen: classes.paperFullScreen
+      }}
+      fullScreen
+      scroll="paper"
+      TransitionComponent={Transition}
+      open={modal.isOpen}
+      onClose={handleDialogClose}
+      onScroll={handleScroll}
+    >
+      <Form autoComplete="off">
         {loading && <Loading />}
-        <DialogTitle
-          className={classNames({
+        <AppBar
+          elevation={0}
+          color="default"
+          className={classNames(classes.appBar, {
             [classes.dialogTitle]: headerScrollBar
           })}
         >
-          Create Course
-        </DialogTitle>
-        <DialogContent onScroll={handleScroll}>
+          <Toolbar>
+            <IconButton
+              className={classes.backButton}
+              onClick={handleDialogClose}
+              aria-label="Close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography variant="h6" color="inherit" className={classes.title}>
+              Create Course
+            </Typography>
+            <Button type="submit" disabled={!isValid} color="primary">
+              Create Course
+            </Button>
+          </Toolbar>
+        </AppBar>
+
+        <DialogContent className={classes.content}>
           <Field
             className={classes.name}
             type="text"
@@ -385,23 +413,8 @@ const FormFields = props => {
             </Field>
           </FormControl>
         </DialogContent>
-        <DialogActions
-          className={classNames({
-            [classes.dialogActions]: footerScrollBar
-          })}
-        >
-          <Button onClick={handleDialogClose}>Cancel</Button>
-          <Button
-            variant="contained"
-            type="submit"
-            disabled={!isValid}
-            color="primary"
-          >
-            Create Course
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Form>
+      </Form>
+    </Dialog>
   );
 };
 

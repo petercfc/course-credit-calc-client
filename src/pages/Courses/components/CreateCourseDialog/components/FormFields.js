@@ -39,14 +39,19 @@ const useStyles = makeStyles(
       top: 0
     },
     toolBar: {
-      paddingTop: 4,
-      paddingBottom: 4
+      // paddingTop: 12,
+      // paddingBottom: 12
     },
     backButton: {
       marginLeft: -12,
       marginRight: 20
     },
-    title: { flexGrow: 1 },
+    submitButton: {
+      // borderRadius: 4
+    },
+    title: {
+      flexGrow: 1
+    },
     dialog: {
       paddingTop: theme.spacing(16),
       maxHeight: "-webkit-fill-available"
@@ -57,7 +62,7 @@ const useStyles = makeStyles(
       paddingBottom: 0
       // borderBottom: "1px solid rgba(0,0,0,.12)"
     },
-    content: { paddingTop: 56, paddingLeft: 16, paddingRight: 16 },
+    content: { paddingTop: 64, paddingLeft: 16, paddingRight: 16 },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
@@ -204,8 +209,14 @@ const FormFields = props => {
             <Typography variant="h6" color="inherit" className={classes.title}>
               Create Course
             </Typography>
-            <Button type="submit" disabled={!isValid} color="primary">
-              Create Course
+            <Button
+              className={classes.submitButton}
+              variant="contained"
+              type="submit"
+              disabled={!isValid}
+              color="primary"
+            >
+              Save
             </Button>
           </Toolbar>
         </AppBar>
@@ -219,7 +230,8 @@ const FormFields = props => {
             component={TextField}
             variant="outlined"
             fullWidth
-            // autoFocus
+            required
+            autoFocus
           />
           <Field
             className={classes.number}
@@ -229,6 +241,7 @@ const FormFields = props => {
             component={TextField}
             variant="outlined"
             fullWidth
+            required
           />
 
           <FormControl variant="outlined" className={classes.level}>
@@ -239,6 +252,7 @@ const FormFields = props => {
               type="number"
               name="level"
               component={Select}
+              required
               input={
                 <OutlinedInput
                   labelWidth={levelLabelWidth}
@@ -270,6 +284,7 @@ const FormFields = props => {
               type="number"
               name="credits"
               component={Select}
+              required
               input={
                 <OutlinedInput
                   labelWidth={creditsLabelWidth}

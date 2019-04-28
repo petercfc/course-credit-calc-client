@@ -13,7 +13,7 @@ const theme = createMuiTheme({
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
-      // "IBM Plex Sans",
+      "IBM Plex Sans",
       '"Segoe UI"',
       "Roboto",
       '"Helvetica Neue"',
@@ -51,7 +51,7 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         textTransform: "none",
-        borderRadius: 16
+        borderRadius: 4
       }
     },
     MuiDialogTitle: {

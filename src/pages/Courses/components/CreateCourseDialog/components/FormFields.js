@@ -38,6 +38,10 @@ const useStyles = makeStyles(
       position: "fixed",
       top: 0
     },
+    toolBar: {
+      paddingTop: 4,
+      paddingBottom: 4
+    },
     backButton: {
       marginLeft: -12,
       marginRight: 20
@@ -48,12 +52,12 @@ const useStyles = makeStyles(
       maxHeight: "-webkit-fill-available"
     },
     dialogTitle: {
-      paddingTop: 16,
+      // paddingTop: 16,
       boxShadow: "none",
       paddingBottom: 0
       // borderBottom: "1px solid rgba(0,0,0,.12)"
     },
-    content: { paddingTop: 72, paddingLeft: 16, paddingRight: 16 },
+    content: { paddingTop: 64, paddingLeft: 16, paddingRight: 16 },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
@@ -162,9 +166,9 @@ const FormFields = props => {
     console.log(element);
     let element = e.target;
     if (element.scrollTop != 0) {
-      setHeaderScrollBar(false);
-    } else {
       setHeaderScrollBar(true);
+    } else {
+      setHeaderScrollBar(false);
     }
   };
 
@@ -185,13 +189,11 @@ const FormFields = props => {
       <Form autoComplete="off">
         {loading && <Loading />}
         <AppBar
-          elevation={2}
+          className={classes.appBar}
+          elevation={headerScrollBar ? 2 : 0}
           color="default"
-          className={classNames(classes.appBar, {
-            [classes.dialogTitle]: headerScrollBar
-          })}
         >
-          <Toolbar>
+          <Toolbar className={classes.toolBar}>
             <IconButton
               className={classes.backButton}
               onClick={handleDialogClose}
@@ -217,7 +219,7 @@ const FormFields = props => {
             component={TextField}
             variant="outlined"
             fullWidth
-            autoFocus
+            // autoFocus
           />
           <Field
             className={classes.number}

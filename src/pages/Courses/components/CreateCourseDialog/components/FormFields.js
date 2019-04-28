@@ -34,13 +34,17 @@ const useStyles = makeStyles(
       paddingBottom: 0,
       backgroundColor: theme.palette.background.paper,
       borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2),
-      position: "fixed",
-      top: 0
+      borderTopRightRadius: theme.spacing(2)
+      // position: "fixed",
+      // top: 4
+    },
+    progressBar: {
+      borderTopLeftRadius: theme.spacing(2),
+      borderTopRightRadius: theme.spacing(2)
     },
     toolBar: {
-      // paddingTop: 12,
-      // paddingBottom: 12
+      paddingTop: 8,
+      paddingBottom: 12
     },
     backButton: {
       marginLeft: -12,
@@ -192,7 +196,6 @@ const FormFields = props => {
       onScroll={handleScroll}
     >
       <Form autoComplete="off">
-        {loading && <Loading />}
         <AppBar
           className={classes.appBar}
           elevation={headerScrollBar ? 2 : 0}
@@ -219,8 +222,8 @@ const FormFields = props => {
               Save
             </Button>
           </Toolbar>
+          {loading && <Loading className={classes.progressBar} />}
         </AppBar>
-
         <DialogContent className={classes.content}>
           <Field
             className={classes.name}

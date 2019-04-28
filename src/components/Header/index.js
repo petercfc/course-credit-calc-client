@@ -22,6 +22,10 @@ const useStyles = makeStyles(
       borderBottomRightRadius: theme.spacing(2),
       position: "fixed",
       top: 0
+    },
+    toolBar: {
+      paddingTop: 4,
+      paddingBottom: 4
     }
   }),
   { withTheme: true }
@@ -37,7 +41,7 @@ function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} color="default" position="static">
-        <Toolbar disableGutters>
+        <Toolbar className={classes.toolBar} disableGutters>
           <HeaderBack backUrl={backUrl} />
           <HeaderTitle title={title} subTitle={subTitle} />
           {children}

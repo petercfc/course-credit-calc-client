@@ -57,7 +57,7 @@ const useStyles = makeStyles(
       paddingBottom: 0
       // borderBottom: "1px solid rgba(0,0,0,.12)"
     },
-    content: { paddingTop: 64, paddingLeft: 16, paddingRight: 16 },
+    content: { paddingTop: 56, paddingLeft: 16, paddingRight: 16 },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)

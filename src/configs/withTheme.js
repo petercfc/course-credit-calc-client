@@ -45,7 +45,7 @@ const theme = createMuiTheme({
     },
     MuiPaper: {
       rounded: {
-        borderRadius: 16
+        borderRadius: 4
       }
     },
     MuiButton: {

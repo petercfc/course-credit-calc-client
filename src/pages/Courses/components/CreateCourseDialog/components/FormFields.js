@@ -22,48 +22,33 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import Divider from "@material-ui/core/Divider";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
   theme => ({
-    root: {
-      flexGrow: 1
-    },
     appBar: {
-      paddingTop: 0,
-      paddingBottom: 0,
+      paddingTop: 8,
+      paddingBottom: 8,
       backgroundColor: theme.palette.background.paper,
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
     },
     progressBar: {
-      borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2)
+      paddingTop: 4
     },
-    toolBar: {
-      paddingTop: 8,
-      paddingBottom: 12
+    content: {
+      paddingTop: 64,
+      paddingLeft: 16,
+      paddingRight: 16
     },
+
     backButton: {
       marginLeft: -12,
       marginRight: 20
     },
-    submitButton: {},
     title: {
       flexGrow: 1
-    },
-    dialog: {
-      paddingTop: theme.spacing(3),
-      maxHeight: "-webkit-fill-available"
-    },
-    dialogTitle: {
-      boxShadow: "none",
-      paddingBottom: 0
-    },
-    content: { paddingTop: 64, paddingLeft: 16, paddingRight: 16 },
-    paperFullScreen: {
-      borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2)
     },
     number: {
       marginTop: theme.spacing(2)
@@ -74,6 +59,13 @@ const useStyles = makeStyles(
     formControl: {
       marginTop: theme.spacing(2),
       minWidth: 120
+    },
+    divider: {
+      marginLeft: 64,
+      marginRight: 16,
+      borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
+      backgroundClip: "padding-box",
+      backgroundColor: "transparent"
     }
   }),
   { withTheme: true }
@@ -90,7 +82,8 @@ const FormFields = props => {
     departments,
     courses,
     loading,
-    error
+    error,
+    isScrolled
   } = props;
 
   //use material-ui styles - custom hook
@@ -140,8 +133,12 @@ const FormFields = props => {
   //main
   return (
     <Form autoComplete="off">
-      <AppBar className={classes.appBar} elevation={0} color="default">
-        <Toolbar className={classes.toolBar}>
+      <AppBar
+        className={classes.appBar}
+        elevation={isScrolled ? 2 : 0}
+        color="default"
+      >
+        <Toolbar>
           <IconButton
             className={classes.backButton}
             onClick={handleDialogClose}
@@ -153,7 +150,6 @@ const FormFields = props => {
             Create Course
           </Typography>
           <Button
-            className={classes.submitButton}
             variant="contained"
             type="submit"
             disabled={!isValid}
@@ -164,6 +160,7 @@ const FormFields = props => {
         </Toolbar>
         {loading && <Loading className={classes.progressBar} />}
       </AppBar>
+      <Loading className={classes.progressBar} />
       <DialogContent className={classes.content}>
         <Field
           className={classes.name}
@@ -186,7 +183,11 @@ const FormFields = props => {
           fullWidth
           required
         />
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.formControl}
+        >
           <InputLabel ref={levelLabel} htmlFor="level-select">
             Credits
           </InputLabel>
@@ -219,7 +220,11 @@ const FormFields = props => {
           </Field>
         </FormControl>
         <br />
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.formControl}
+        >
           <InputLabel ref={creditsLabel} htmlFor="credits-select">
             Credits
           </InputLabel>
@@ -255,7 +260,11 @@ const FormFields = props => {
           </Field>
         </FormControl>
         <br />
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.formControl}
+        >
           <InputLabel ref={subjectsLabel} htmlFor="subject-select">
             Subject
           </InputLabel>
@@ -283,7 +292,11 @@ const FormFields = props => {
           </Field>
         </FormControl>
         <br />
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.formControl}
+        >
           <InputLabel ref={degreesLabel} htmlFor="degree-select">
             Degree
           </InputLabel>
@@ -311,7 +324,11 @@ const FormFields = props => {
           </Field>
         </FormControl>
         <br />
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.formControl}
+        >
           <InputLabel ref={departmentsLabel} htmlFor="department-select">
             Department
           </InputLabel>
@@ -339,7 +356,11 @@ const FormFields = props => {
           </Field>
         </FormControl>
         <br />
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl
+          fullWidth
+          variant="outlined"
+          className={classes.formControl}
+        >
           <InputLabel ref={prerequisitesLabel} htmlFor="prerequisite-select">
             Prerequisite
           </InputLabel>

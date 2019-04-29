@@ -16,6 +16,9 @@ import CreateCourseButton from "./CreateCourseButton";
 //material-ui styles hook
 const useStyles = makeStyles(
   theme => ({
+    card: {
+      borderRadius: theme.spacing(2)
+    },
     contentHeader: {
       paddingBottom: 0
     }
@@ -34,7 +37,7 @@ function Courses(props) {
   //main return
   return (
     <React.Fragment>
-      <Card>
+      <Card className={classes.card}>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
             Courses

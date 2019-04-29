@@ -1,5 +1,5 @@
 //other
-import React from "react";
+import React, { useState } from "react";
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -13,7 +13,6 @@ const useStyles = makeStyles(
       paddingTop: theme.spacing(3),
       maxHeight: "-webkit-fill-available"
     },
-    content: { paddingTop: 64, paddingLeft: 16, paddingRight: 16 },
     paperFullScreen: {
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
@@ -35,6 +34,23 @@ const FormFields = props => {
   //use material-ui styles - custom hook
   const classes = useStyles();
 
+  //state hook for input labels
+  const [isScrolled, setIsScrolled] = useState(false);
+  const handleScroll = e => {
+    let element = e.target;
+    if (element.scrollTop != 0) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  const childWithProp = React.Children.map(props.children, child => {
+    return React.cloneElement(child, {
+      isScrolled: isScrolled
+    });
+  });
+
   //main
   return (
     <Dialog
@@ -47,8 +63,9 @@ const FormFields = props => {
       TransitionComponent={Transition}
       open={modal.isOpen}
       onClose={handleDialogClose}
+      onScroll={handleScroll}
     >
-      {children}
+      {childWithProp}
     </Dialog>
   );
 };

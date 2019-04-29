@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import { Field, Form } from "formik";
 import { TextField, Select } from "formik-material-ui";
-import classNames from "classnames";
+import t from "typy"; // ES6 style import
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -35,8 +35,6 @@ const useStyles = makeStyles(
       backgroundColor: theme.palette.background.paper,
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
-      // position: "fixed",
-      // top: 4
     },
     progressBar: {
       borderTopLeftRadius: theme.spacing(2),
@@ -50,9 +48,7 @@ const useStyles = makeStyles(
       marginLeft: -12,
       marginRight: 20
     },
-    submitButton: {
-      // borderRadius: 4
-    },
+    submitButton: {},
     title: {
       flexGrow: 1
     },
@@ -61,10 +57,8 @@ const useStyles = makeStyles(
       maxHeight: "-webkit-fill-available"
     },
     dialogTitle: {
-      // paddingTop: 16,
       boxShadow: "none",
       paddingBottom: 0
-      // borderBottom: "1px solid rgba(0,0,0,.12)"
     },
     content: { paddingTop: 64, paddingLeft: 16, paddingRight: 16 },
     paperFullScreen: {
@@ -72,53 +66,18 @@ const useStyles = makeStyles(
       borderTopRightRadius: theme.spacing(2)
     },
     number: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
+      marginTop: theme.spacing(2)
     },
     name: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
+      marginTop: theme.spacing(2)
     },
-    prerequisite: {
-      minWidth: 140,
+    formControl: {
       marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
-    },
-    department: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
-    },
-    degree: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
-    },
-    level: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
-    },
-    credits: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
-    },
-    subject: {
-      minWidth: 140,
-      marginTop: theme.spacing(2),
-      marginRight: theme.spacing(1)
+      minWidth: 120
     }
   }),
   { withTheme: true }
 );
-
-//transition component
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 
 //main function
 const FormFields = props => {
@@ -130,7 +89,6 @@ const FormFields = props => {
     degrees,
     departments,
     courses,
-    modal,
     loading,
     error
   } = props;
@@ -138,308 +96,278 @@ const FormFields = props => {
   //use material-ui styles - custom hook
   const classes = useStyles();
 
-  //ref hook for input labels
-  const levelLabelRef = useRef(null);
-  const creditsLabelRef = useRef(null);
-  const subjectsLabelRef = useRef(null);
-  const degreesLabelRef = useRef(null);
-  const departmentsLabelRef = useRef(null);
-  const prerequisitesLabelRef = useRef(null);
-
-  //state hook for input labels
-  const [levelLabelWidth, setLevelLabelWidth] = useState(0);
-  const [creditsLabelWidth, setCreditsLabelWidth] = useState(0);
-  const [subjectsLabelWidth, setSubjectsLabelWidth] = useState(0);
-  const [degreesLabelWidth, setDegreesLabelWidth] = useState(0);
-  const [departmentsLabelWidth, setDepartmentsLabelWidth] = useState(0);
-  const [prerequisitesLabelWidth, setPreqrequisitesLabelWidth] = useState(0);
-
-  //effect hook
+  //input level setup
+  const levelLabel = React.useRef(null);
+  const [levelWidth, setLevelWidth] = React.useState(0);
   React.useEffect(() => {
-    // setLevelLabelWidth(levelLabelRef.current.offsetWidth);
-    // setCreditsLabelWidth(creditsLabelRef.current.offsetWidth);
-    // setSubjectsLabelWidth(subjectsLabelRef.current.offsetWidth);
-    // setDegreesLabelWidth(degreesLabelRef.current.offsetWidth);
-    // setDepartmentsLabelWidth(departmentsLabelRef.current.offsetWidth);
-    // setPreqrequisitesLabelWidth(prerequisitesLabelRef.current.offsetWidth);
+    setLevelWidth(levelLabel.current.offsetWidth);
   }, []);
 
-  //state hook for input labels
-  const [headerScrollBar, setHeaderScrollBar] = useState(false);
+  //input level setup
+  const creditsLabel = React.useRef(null);
+  const [creditsWidth, setCreditsWidth] = React.useState(0);
+  React.useEffect(() => {
+    setCreditsWidth(creditsLabel.current.offsetWidth);
+  }, []);
 
-  function precise(x) {
-    return Number.parseFloat(x).toPrecision(3);
-  }
+  //input level setup
+  const subjectsLabel = React.useRef(null);
+  const [subjectsWidth, setSubjectsWidth] = React.useState(0);
+  React.useEffect(() => {
+    setSubjectsWidth(subjectsLabel.current.offsetWidth);
+  }, []);
 
-  const handleScroll = e => {
-    console.log(element);
-    let element = e.target;
-    if (element.scrollTop != 0) {
-      setHeaderScrollBar(true);
-    } else {
-      setHeaderScrollBar(false);
-    }
-  };
+  //input level setup
+  const degreesLabel = React.useRef(null);
+  const [degreesWidth, setDegreesWidth] = React.useState(0);
+  React.useEffect(() => {
+    setDegreesWidth(degreesLabel.current.offsetWidth);
+  }, []);
 
+  //input level setup
+  const departmentsLabel = React.useRef(null);
+  const [departmentsWidth, setDepartmentsWidth] = React.useState(0);
+  React.useEffect(() => {
+    setDepartmentsWidth(departmentsLabel.current.offsetWidth);
+  }, []);
+
+  //input level setup
+  const prerequisitesLabel = React.useRef(null);
+  const [prerequisitesWidth, setPrerequisitesWidth] = React.useState(0);
+  React.useEffect(() => {
+    setPrerequisitesWidth(prerequisitesLabel.current.offsetWidth);
+  }, []);
   //main
   return (
-    <Dialog
-      className={classes.dialog}
-      classes={{
-        paperFullScreen: classes.paperFullScreen
-      }}
-      fullScreen
-      scroll="paper"
-      TransitionComponent={Transition}
-      open={modal.isOpen}
-      onClose={handleDialogClose}
-      onScroll={handleScroll}
-    >
-      <Form autoComplete="off">
-        <AppBar
-          className={classes.appBar}
-          elevation={headerScrollBar ? 2 : 0}
-          color="default"
-        >
-          <Toolbar className={classes.toolBar}>
-            <IconButton
-              className={classes.backButton}
-              onClick={handleDialogClose}
-              aria-label="Close"
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.title}>
-              Create Course
-            </Typography>
-            <Button
-              className={classes.submitButton}
-              variant="contained"
-              type="submit"
-              disabled={!isValid}
-              color="primary"
-            >
-              Save
-            </Button>
-          </Toolbar>
-          {loading && <Loading className={classes.progressBar} />}
-        </AppBar>
-        <DialogContent className={classes.content}>
-          <Field
-            className={classes.name}
-            type="text"
-            name="name"
-            label="Name"
-            component={TextField}
-            variant="outlined"
-            fullWidth
-            required
-            autoFocus
-          />
-          <Field
-            className={classes.number}
-            type="text"
-            name="number"
-            label="Number"
-            component={TextField}
-            variant="outlined"
-            fullWidth
-            required
-          />
-
-          <FormControl variant="outlined" className={classes.level}>
-            <InputLabel ref={levelLabelRef} htmlFor="level-select">
-              Level
-            </InputLabel>
-            <Field
-              type="number"
-              name="level"
-              component={Select}
-              required
-              input={
-                <OutlinedInput
-                  labelWidth={levelLabelWidth}
-                  name="level"
-                  id="level-select"
-                />
-              }
-              inputProps={{ name: "level", id: "level" }}
-            >
-              <MenuItem key="100" value={100}>
-                100
-              </MenuItem>
-              <MenuItem key="200" value={200}>
-                200
-              </MenuItem>
-              <MenuItem key="300" value={300}>
-                300
-              </MenuItem>
-              <MenuItem key="400" value={400}>
-                400
-              </MenuItem>
-            </Field>
-          </FormControl>
-          <FormControl variant="outlined" className={classes.credits}>
-            <InputLabel ref={creditsLabelRef} htmlFor="credits-select">
-              Credits
-            </InputLabel>
-            <Field
-              type="number"
-              name="credits"
-              component={Select}
-              required
-              input={
-                <OutlinedInput
-                  labelWidth={creditsLabelWidth}
-                  name="credits"
-                  id="credits-select"
-                />
-              }
-              inputProps={{ name: "credits", id: "credits" }}
-            >
-              <MenuItem key="1" value={1}>
-                1
-              </MenuItem>
-              <MenuItem key="2" value={2}>
-                2
-              </MenuItem>
-              <MenuItem key="3" value={3}>
-                3
-              </MenuItem>
-              <MenuItem key="4" value={4}>
-                4
-              </MenuItem>
-              <MenuItem key="5" value={5}>
-                5
-              </MenuItem>
-            </Field>
-          </FormControl>
-          <br />
-          <FormControl fullWidth variant="outlined" className={classes.subject}>
-            <InputLabel ref={subjectsLabelRef} htmlFor="subject-select">
-              Subject
-            </InputLabel>
-            <Field
-              type="text"
-              name="subject"
-              component={Select}
-              input={
-                <OutlinedInput
-                  labelWidth={subjectsLabelWidth}
-                  name="subject"
-                  id="subject-select"
-                />
-              }
-              inputProps={{ name: "subject", id: "subject" }}
-            >
-              <MenuItem key="0" value="">
-                Select None
-              </MenuItem>
-              {subjects.map(subject => (
-                <MenuItem key={subject.id} value={subject.id}>
-                  {subject.name}
-                </MenuItem>
-              ))}
-            </Field>
-          </FormControl>
-          <br />
-          <FormControl fullWidth variant="outlined" className={classes.degree}>
-            <InputLabel ref={degreesLabelRef} htmlFor="degree-select">
-              Degree
-            </InputLabel>
-            <Field
-              type="text"
-              name="degree"
-              component={Select}
-              input={
-                <OutlinedInput
-                  labelWidth={degreesLabelWidth}
-                  name="degree"
-                  id="degree-select"
-                />
-              }
-              inputProps={{ name: "degree", id: "degree" }}
-            >
-              <MenuItem key="0" value="">
-                Select None
-              </MenuItem>
-              {degrees.map(degree => (
-                <MenuItem key={degree.id} value={degree.id}>
-                  {degree.name}
-                </MenuItem>
-              ))}
-            </Field>
-          </FormControl>
-          <br />
-          <FormControl
-            fullWidth
-            variant="outlined"
-            className={classes.department}
+    <Form autoComplete="off">
+      <AppBar className={classes.appBar} elevation={0} color="default">
+        <Toolbar className={classes.toolBar}>
+          <IconButton
+            className={classes.backButton}
+            onClick={handleDialogClose}
+            aria-label="Close"
           >
-            <InputLabel ref={departmentsLabelRef} htmlFor="department-select">
-              Department
-            </InputLabel>
-            <Field
-              type="text"
-              name="department"
-              component={Select}
-              input={
-                <OutlinedInput
-                  labelWidth={departmentsLabelWidth}
-                  name="department"
-                  id="department-select"
-                />
-              }
-              inputProps={{ name: "department", id: "department" }}
-            >
-              <MenuItem key="0" value="">
-                Select None
-              </MenuItem>
-              {departments.map(department => (
-                <MenuItem key={department.id} value={department.id}>
-                  {department.name}
-                </MenuItem>
-              ))}
-            </Field>
-          </FormControl>
-          <br />
-          <FormControl
-            fullWidth
-            variant="outlined"
-            className={classes.prerequisite}
+            <CloseIcon />
+          </IconButton>
+          <Typography variant="h6" color="inherit" className={classes.title}>
+            Create Course
+          </Typography>
+          <Button
+            className={classes.submitButton}
+            variant="contained"
+            type="submit"
+            disabled={!isValid}
+            color="primary"
           >
-            <InputLabel
-              ref={prerequisitesLabelRef}
-              htmlFor="prerequisite-select"
-            >
-              Prerequisite
-            </InputLabel>
-            <Field
-              type="text"
-              name="prerequisite"
-              component={Select}
-              input={
-                <OutlinedInput
-                  labelWidth={prerequisitesLabelWidth}
-                  name="prerequisite"
-                  id="prerequisite-select"
-                />
-              }
-              inputProps={{ name: "prerequisite", id: "prerequisite" }}
-            >
-              <MenuItem key="0" value="">
-                Select None
+            Save
+          </Button>
+        </Toolbar>
+        {loading && <Loading className={classes.progressBar} />}
+      </AppBar>
+      <DialogContent className={classes.content}>
+        <Field
+          className={classes.name}
+          type="text"
+          name="name"
+          label="Name"
+          component={TextField}
+          variant="outlined"
+          fullWidth
+          required
+          autoFocus
+        />
+        <Field
+          className={classes.number}
+          type="text"
+          name="number"
+          label="Number"
+          component={TextField}
+          variant="outlined"
+          fullWidth
+          required
+        />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={levelLabel} htmlFor="level-select">
+            Credits
+          </InputLabel>
+          <Field
+            type="number"
+            name="level"
+            component={Select}
+            required
+            input={
+              <OutlinedInput
+                labelWidth={levelWidth}
+                name="level"
+                id="level-select"
+              />
+            }
+            inputProps={{ name: "level", id: "level-select" }}
+          >
+            <MenuItem key="1" value={100}>
+              100
+            </MenuItem>
+            <MenuItem key="2" value={200}>
+              200
+            </MenuItem>
+            <MenuItem key="3" value={300}>
+              300
+            </MenuItem>
+            <MenuItem key="4" value={400}>
+              400
+            </MenuItem>
+          </Field>
+        </FormControl>
+        <br />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={creditsLabel} htmlFor="credits-select">
+            Credits
+          </InputLabel>
+          <Field
+            type="number"
+            name="credits"
+            component={Select}
+            required
+            input={
+              <OutlinedInput
+                labelWidth={creditsWidth}
+                name="credits"
+                id="credits-select"
+              />
+            }
+            inputProps={{ name: "credits", id: "credits" }}
+          >
+            <MenuItem key="1" value={1}>
+              1
+            </MenuItem>
+            <MenuItem key="2" value={2}>
+              2
+            </MenuItem>
+            <MenuItem key="3" value={3}>
+              3
+            </MenuItem>
+            <MenuItem key="4" value={4}>
+              4
+            </MenuItem>
+            <MenuItem key="5" value={5}>
+              5
+            </MenuItem>
+          </Field>
+        </FormControl>
+        <br />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={subjectsLabel} htmlFor="subject-select">
+            Subject
+          </InputLabel>
+          <Field
+            type="text"
+            name="subject"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={subjectsWidth}
+                name="subject"
+                id="subject-select"
+              />
+            }
+            inputProps={{ name: "subject", id: "subject" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {subjects.map(subject => (
+              <MenuItem key={subject.id} value={subject.id}>
+                {subject.name}
               </MenuItem>
-              {courses.map(course => (
-                <MenuItem key={course.id} value={course.id}>
-                  {course.name}
-                </MenuItem>
-              ))}
-            </Field>
-          </FormControl>
-        </DialogContent>
-      </Form>
-    </Dialog>
+            ))}
+          </Field>
+        </FormControl>
+        <br />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={degreesLabel} htmlFor="degree-select">
+            Degree
+          </InputLabel>
+          <Field
+            type="text"
+            name="degree"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={degreesWidth}
+                name="degree"
+                id="degree-select"
+              />
+            }
+            inputProps={{ name: "degree", id: "degree" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {degrees.map(degree => (
+              <MenuItem key={degree.id} value={degree.id}>
+                {degree.name}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+        <br />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={departmentsLabel} htmlFor="department-select">
+            Department
+          </InputLabel>
+          <Field
+            type="text"
+            name="department"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={departmentsWidth}
+                name="department"
+                id="department-select"
+              />
+            }
+            inputProps={{ name: "department", id: "department" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {departments.map(department => (
+              <MenuItem key={department.id} value={department.id}>
+                {department.name}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+        <br />
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel ref={prerequisitesLabel} htmlFor="prerequisite-select">
+            Prerequisite
+          </InputLabel>
+          <Field
+            type="text"
+            name="prerequisite"
+            component={Select}
+            input={
+              <OutlinedInput
+                labelWidth={prerequisitesWidth}
+                name="prerequisite"
+                id="prerequisite-select"
+              />
+            }
+            inputProps={{ name: "prerequisite", id: "prerequisite" }}
+          >
+            <MenuItem key="0" value="">
+              Select None
+            </MenuItem>
+            {courses.map(course => (
+              <MenuItem key={course.id} value={course.id}>
+                {course.name}
+              </MenuItem>
+            ))}
+          </Field>
+        </FormControl>
+      </DialogContent>
+    </Form>
   );
 };
 

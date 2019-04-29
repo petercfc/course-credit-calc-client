@@ -5,7 +5,7 @@
   "dependencies": {
     "@loadable/component": "^5.7.0",
     "@material-ui/core": "next",
-    "@material-ui/icons": "^3.0.2",
+    "@material-ui/icons": "next",
     "@rehooks/window-scroll-position": "github:rehooks/window-scroll-position",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-cache-persist": "^0.1.1",
@@ -26,7 +26,7 @@
     "react-apollo-hooks": "^0.4.5",
     "react-beautiful-dnd": "^10.1.0",
     "react-dom": "latest",
-    "react-redux": "^7.0.2",
+    "react-redux": "^7.1.0-alpha.3",
     "react-router-dom": "^4.4.0",
     "react-scripts": "latest",
     "redux": "^4.0.1",

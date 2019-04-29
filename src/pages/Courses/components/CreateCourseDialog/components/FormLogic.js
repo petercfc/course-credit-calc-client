@@ -13,6 +13,7 @@ import {
 
 //components
 import FormFields from "./FormFields";
+import FormDialog from "./FormDialog";
 
 //main function
 const FormLogic = props => {
@@ -106,7 +107,6 @@ const FormLogic = props => {
             }
           }
         });
-        console.log("submiteed", values);
         actions.setSubmitting(false);
         handleDialogClose();
       }}
@@ -114,17 +114,19 @@ const FormLogic = props => {
       validationSchema={validationSchema}
     >
       {props => (
-        <FormFields
-          {...props}
-          handleDialogClose={handleDialogClose}
-          subjects={subjects}
-          degrees={degrees}
-          departments={departments}
-          courses={courses}
-          modal={modal}
-          loading={loading}
-          error={error}
-        />
+        <FormDialog handleDialogClose={handleDialogClose} modal={modal}>
+          <FormFields
+            {...props}
+            handleDialogClose={handleDialogClose}
+            modal={modal}
+            subjects={subjects}
+            degrees={degrees}
+            departments={departments}
+            courses={courses}
+            loading={loading}
+            error={error}
+          />
+        </FormDialog>
       )}
     </Formik>
   );

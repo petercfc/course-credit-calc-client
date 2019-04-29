@@ -28,14 +28,16 @@ import Divider from "@material-ui/core/Divider";
 const useStyles = makeStyles(
   theme => ({
     appBar: {
-      paddingTop: 8,
-      paddingBottom: 8,
       backgroundColor: theme.palette.background.paper,
       borderTopLeftRadius: theme.spacing(2),
       borderTopRightRadius: theme.spacing(2)
     },
+    toolBar: {
+      paddingTop: 8,
+      paddingBottom: 8
+    },
     progressBar: {
-      paddingTop: 4
+      marginTop: -4
     },
     content: {
       paddingTop: 64,
@@ -138,7 +140,7 @@ const FormFields = props => {
         elevation={isScrolled ? 2 : 0}
         color="default"
       >
-        <Toolbar>
+        <Toolbar className={classes.toolBar}>
           <IconButton
             className={classes.backButton}
             onClick={handleDialogClose}
@@ -160,7 +162,7 @@ const FormFields = props => {
         </Toolbar>
         {loading && <Loading className={classes.progressBar} />}
       </AppBar>
-      <Loading className={classes.progressBar} />
+
       <DialogContent className={classes.content}>
         <Field
           className={classes.name}

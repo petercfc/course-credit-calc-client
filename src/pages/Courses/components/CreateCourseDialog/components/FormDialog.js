@@ -14,8 +14,8 @@ const useStyles = makeStyles(
       maxHeight: "-webkit-fill-available"
     },
     paperFullScreen: {
-      borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2)
+      borderTopLeftRadius: theme.spacing(1),
+      borderTopRightRadius: theme.spacing(1)
     }
   }),
   { withTheme: true }

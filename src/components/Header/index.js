@@ -18,8 +18,8 @@ const useStyles = makeStyles(
     },
     appBar: {
       backgroundColor: theme.palette.background.paper,
-      borderBottomLeftRadius: theme.spacing(2),
-      borderBottomRightRadius: theme.spacing(2),
+      borderBottomLeftRadius: theme.spacing(1),
+      borderBottomRightRadius: theme.spacing(1),
       position: "fixed",
       top: 0
     },

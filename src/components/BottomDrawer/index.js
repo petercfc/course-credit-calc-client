@@ -25,8 +25,8 @@ const useStyles = makeStyles(
   theme => ({
     root: {},
     drawerPaper: {
-      borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2)
+      borderTopLeftRadius: theme.spacing(1),
+      borderTopRightRadius: theme.spacing(1)
     },
     list: {
       width: 250

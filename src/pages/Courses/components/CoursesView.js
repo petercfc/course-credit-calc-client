@@ -17,7 +17,7 @@ import CreateCourseButton from "./CreateCourseButton";
 const useStyles = makeStyles(
   theme => ({
     card: {
-      borderRadius: theme.spacing(2)
+      borderRadius: theme.spacing(1)
     },
     contentHeader: {
       paddingBottom: 0

@@ -26,8 +26,8 @@ const useStyles = makeStyles(
       top: "auto",
       bottom: 0,
       backgroundColor: theme.palette.background.paper,
-      borderTopLeftRadius: theme.spacing(2),
-      borderTopRightRadius: theme.spacing(2),
+      borderTopLeftRadius: theme.spacing(1),
+      borderTopRightRadius: theme.spacing(1),
       position: "fixed"
     },
     toolbar: {

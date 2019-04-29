@@ -51,7 +51,7 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         textTransform: "none",
-        borderRadius: 4
+        borderRadius: 8
       }
     },
     MuiDialogTitle: {

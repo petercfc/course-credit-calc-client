@@ -14,7 +14,7 @@ import withTheme from "../configs/withTheme";
 import Loading from "../components/Loading";
 
 // // code split pages
-const StudentsView = loadable(() => import("./StudentsView"));
+const Students = loadable(() => import("./Students"));
 const StudentDetail = loadable(() => import("./StudentDetail"));
 const Courses = loadable(() => import("./Courses"));
 const CourseDetail = loadable(() => import("./CourseDetail"));
@@ -51,7 +51,7 @@ function Index(props) {
               <Suspense fallback={<Loading isCircular />}>
                 <Switch>
                   <Route path="/students/:id" component={StudentDetail} />
-                  <Route path="/students" component={StudentsView} />
+                  <Route path="/students" component={Students} />
                   <Route path="/courses/:id" component={CourseDetail} />
                   <Route path="/courses" component={Courses} />
                   <Route path="/degrees" component={Degrees} />

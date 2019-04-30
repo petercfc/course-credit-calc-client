@@ -2,7 +2,6 @@
 import React, { useState, useRef } from "react";
 import { Field, Form } from "formik";
 import { TextField, Select } from "formik-material-ui";
-import t from "typy"; // ES6 style import
 
 //material-ui
 import { makeStyles } from "@material-ui/styles";
@@ -12,17 +11,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
-import Dialog from "@material-ui/core/Dialog";
-import Slide from "@material-ui/core/Slide";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Loading from "../../../../../components/Loading/index";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
-import Divider from "@material-ui/core/Divider";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -53,13 +47,13 @@ const useStyles = makeStyles(
       flexGrow: 1
     },
     number: {
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(3)
     },
     name: {
-      marginTop: theme.spacing(2)
+      marginTop: theme.spacing(3)
     },
     formControl: {
-      marginTop: theme.spacing(2),
+      marginTop: theme.spacing(3),
       minWidth: 120
     },
     divider: {

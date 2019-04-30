@@ -5,8 +5,8 @@ import { withRouter } from "react-router-dom";
 //apollo
 import ApolloCacheUpdater from "apollo-cache-updater";
 import { Mutation } from "react-apollo";
-import { GET_ALL_COURSES } from "../../../../apollo/queries";
-import { CREATE_COURSE } from "../../../../apollo/mutations";
+import { GET_ALL_STUDENTS } from "../../../../apollo/queries";
+import { CREATE_STUDENT } from "../../../../apollo/mutations";
 
 //redux
 import { compose } from "redux";
@@ -18,30 +18,29 @@ import { modalOperations } from "../../../../redux/ducks/modal";
 import FormLogic from "./components/FormLogic";
 
 //main function
-const CreateCourseDialog = props => {
+const CreateStudentDialog = props => {
   //destructure props
   const { history, modal, toggleModal } = props;
 
   //callback for when dialog closes
   const handleDialogClose = () => {
-    toggleModal("createCourse");
+    toggleModal("createStudent");
   };
 
   return (
     <Mutation
-      mutation={CREATE_COURSE}
-      update={(proxy, { data: { createCourse } }) => {
-        const mutationResult = createCourse;
+      mutation={CREATE_STUDENT}
+      update={(proxy, { data: { createStudent } }) => {
+        const mutationResult = createStudent;
         const updates = ApolloCacheUpdater({
           proxy,
-          queriesToUpdate: [GET_ALL_COURSES],
+          queriesToUpdate: [GET_ALL_STUDENTS],
           searchVariables: {},
           operation: { type: "ADD", row: { type: "SORT", field: "name" } },
           mutationResult
         });
         if (updates) {
-          console.log(`Course Created`);
-          history.push(`/courses/${createCourse.id}`);
+          history.push(`/students/${createStudent.id}`);
         }
       }}
     >
@@ -78,4 +77,4 @@ const enhance = compose(
   )
 );
 //main export
-export default enhance(CreateCourseDialog);
+export default enhance(CreateStudentDialog);

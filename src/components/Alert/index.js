@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     snackBarContent: {
       color: theme.palette.text.primary,
       backgroundColor: theme.palette.background.paper,
-      borderRadius: theme.spacing(2),
+      // borderRadius: theme.spacing(2),
       margin: theme.spacing(2),
       paddingTop: 0,
       paddingBottom: 0

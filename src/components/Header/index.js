@@ -35,7 +35,7 @@ const useStyles = makeStyles(
 function Header(props) {
   //material-ui styles custom hook
   const classes = useStyles();
-  const { children, backUrl, title, subTitle } = props;
+  const { children, backUrl, title, title2, subTitle } = props;
 
   //Header return
   return (
@@ -43,7 +43,7 @@ function Header(props) {
       <AppBar className={classes.appBar} color="default" position="static">
         <Toolbar className={classes.toolBar} disableGutters>
           <HeaderBack backUrl={backUrl} />
-          <HeaderTitle title={title} subTitle={subTitle} />
+          <HeaderTitle title={title} title2={title2} subTitle={subTitle} />
           {children}
         </Toolbar>
       </AppBar>

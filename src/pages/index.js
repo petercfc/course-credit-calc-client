@@ -57,7 +57,7 @@ function Index(props) {
                   <Route path="/degrees" component={Degrees} />
                   <Route path="/departments" component={Departments} />
                   <Route path="/subjects" component={Subjects} />
-                  <Route path="/" component={Courses} />
+                  <Route path="/" component={Students} />
                 </Switch>
               </Suspense>
             )}

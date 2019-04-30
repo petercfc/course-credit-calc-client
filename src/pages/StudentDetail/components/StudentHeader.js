@@ -12,7 +12,7 @@ function StudentHeader(props) {
   const { student } = props;
 
   //format title
-  const title = `${student.name} - ${student.id || "No enrolled degree"}`;
+  const title = `${student.name}`;
 
   //main return
   return (

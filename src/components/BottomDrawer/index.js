@@ -31,6 +31,10 @@ const useStyles = makeStyles(
     list: {
       width: 250
     },
+    contentHeader: {
+      paddingBottom: 0,
+      paddingLeft: theme.spacing(2)
+    },
     content: {
       paddingBottom: theme.spacing(1),
       paddingTop: theme.spacing(1)
@@ -39,8 +43,8 @@ const useStyles = makeStyles(
       width: "auto"
     },
     listItem: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3)
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2)
     },
     divider: {
       marginLeft: 64,
@@ -48,10 +52,6 @@ const useStyles = makeStyles(
       borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
       backgroundClip: "padding-box",
       backgroundColor: "transparent"
-    },
-    contentHeader: {
-      paddingBottom: 0,
-      paddingLeft: 24
     }
   }),
   { withTheme: true }

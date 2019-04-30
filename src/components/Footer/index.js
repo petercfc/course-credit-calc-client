@@ -32,8 +32,7 @@ const useStyles = makeStyles(
     },
     toolbar: {
       alignItems: "center",
-      justifyContent: "space-between",
-      minHeight: 64
+      justifyContent: "space-between"
     },
     bottomNavigation: {
       width: "100%",
@@ -112,7 +111,7 @@ function Footer(props) {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" color="default" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar className={classes.toolbar} disableGutters>
           <BottomDrawer />
           <div>
             <IconButton>

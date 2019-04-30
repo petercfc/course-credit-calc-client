@@ -1,6 +1,8 @@
 //other
 import React from "react";
+import { withRouter } from "react-router-dom";
 import t from "typy"; // ES6 style import
+import { compose } from "redux";
 
 //redux
 import { connect } from "react-redux";
@@ -19,6 +21,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import blue from "@material-ui/core/colors/blue";
 import EditIcon from "@material-ui/icons/Edit";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 
 //components
 
@@ -47,7 +51,7 @@ const useStyles = makeStyles(
 //main function
 function StudentBody(props) {
   //destructure props
-  const { student, toggleModal } = props;
+  const { history, student, toggleModal } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
@@ -85,12 +89,67 @@ function StudentBody(props) {
           <ListItem button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <AccountBalanceWalletIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Student ID" secondary={student.id} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <EditIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Enrolled Degree"
+              secondary={
+                t(student, "enrolledDegree.name").safeString ||
+                "No enrolled degree"
+              }
+            />
+          </ListItem>
+        </List>
+      </Card>
+      <Card>
+        <CardContent className={classes.contentHeader}>
+          <Typography variant="h6" gutterBottom>
+            Courses Completed
+          </Typography>
+        </CardContent>
+        <List>
+          {student.coursesPassed.map((course, i) => (
+            <ListItem
+              className={classes.listItem}
+              button
+              onClick={() => history.push(`/courses/${course.id}`)}
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.avatar}>
+                  <ListAltIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={course.name}
+                secondary={
+                  t(student, "enrolledDegree.name").safeString ||
+                  "No enrolled degree"
+                }
+              />
+            </ListItem>
+          ))}
+        </List>
+      </Card>
+      {/* {hasDivider && (
+             <Divider className={classes.divider} component="li" variant="inset" />
+           )} */}
+      <Card>
+        <CardContent className={classes.contentHeader}>
+          <Typography variant="h6" gutterBottom>
+            Required Courses Remaining
+          </Typography>
+        </CardContent>
+        <List>
           <ListItem button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
@@ -116,7 +175,10 @@ const mapDispatchToProps = {
 };
 
 //main export
-export default connect(
-  null,
-  mapDispatchToProps
+export default compose(
+  connect(
+    null,
+    mapDispatchToProps
+  ),
+  withRouter
 )(StudentBody);

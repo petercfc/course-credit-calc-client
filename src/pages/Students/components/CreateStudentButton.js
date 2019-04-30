@@ -2,7 +2,7 @@
 import React from "react";
 
 //redux
-import { connect } from "react-redux";
+import { useActions } from "react-redux";
 import { modalOperations } from "../../../redux/ducks/modal";
 
 //material-ui
@@ -33,10 +33,14 @@ const useStyles = makeStyles(
 
 //main function
 const CreateStudentButton = props => {
-  //destructure props
-  const { toggleModal } = props;
   //material-ui hook
   const classes = useStyles();
+
+  //redux hooks
+  const toggleModal = useActions(
+    () => modalOperations.toggleModal("createStudent"),
+    []
+  );
 
   return (
     <div className={classes.root}>
@@ -45,7 +49,7 @@ const CreateStudentButton = props => {
         size="large"
         variant="extended"
         aria-label="Create Student"
-        onClick={() => toggleModal("createStudent")}
+        onClick={toggleModal}
       >
         <AddIcon className={classes.extendedIcon} />
         Create Student
@@ -54,12 +58,5 @@ const CreateStudentButton = props => {
   );
 };
 
-const mapDispatchToProps = {
-  toggleModal: modalOperations.toggleModal
-};
-
 //main export
-export default connect(
-  null,
-  mapDispatchToProps
-)(CreateStudentButton);
+export default CreateStudentButton;

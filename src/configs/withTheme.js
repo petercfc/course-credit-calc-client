@@ -1,7 +1,7 @@
 import React from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
-import teal from "@material-ui/core/colors/teal";
+import blue from "@material-ui/core/colors/blue";
 import pink from "@material-ui/core/colors/pink";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -26,9 +26,9 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      light: teal[300],
-      main: teal[500],
-      dark: teal[700]
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700]
     },
     secondary: {
       light: pink[300],
@@ -88,7 +88,7 @@ const theme = createMuiTheme({
       root: {
         textTransform: "none",
         backgroundColor: "#fff",
-        color: teal[500]
+        color: blue[500]
       }
     },
     MuiCard: {

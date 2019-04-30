@@ -22,8 +22,14 @@ const CreateStudentDialog = props => {
   const { history } = props;
 
   //redux hooks
-  const modal = useSelector(state => makeGetModalState(state, props), []);
+  const modal = useSelector(
+    (state, props) => makeGetModalState(state, props),
+    []
+  );
   console.log("modal", modal);
+  const getModalState = makeGetModalState();
+  console.log("getModalState", getModalState);
+
   const toggleModal = useActions(
     () => modalOperations.toggleModal("createStudent"),
     []

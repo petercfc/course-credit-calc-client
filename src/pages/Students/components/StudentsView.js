@@ -40,7 +40,7 @@ function Courses(props) {
       <Card className={classes.card}>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
-            Student
+            Students
           </Typography>
         </CardContent>
         <List>

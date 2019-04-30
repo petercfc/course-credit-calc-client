@@ -31,12 +31,16 @@ const useStyles = makeStyles(
     list: {
       width: 250
     },
+    content: {
+      paddingBottom: theme.spacing(1),
+      paddingTop: theme.spacing(1)
+    },
     fullList: {
       width: "auto"
     },
     listItem: {
-      // paddingLeft: 0,
-      // paddingRight: 0
+      paddingLeft: theme.spacing(3),
+      paddingRight: theme.spacing(3)
     },
     divider: {
       marginLeft: 64,
@@ -46,7 +50,8 @@ const useStyles = makeStyles(
       backgroundColor: "transparent"
     },
     contentHeader: {
-      paddingBottom: 0
+      paddingBottom: 0,
+      paddingLeft: 24
     }
   }),
   { withTheme: true }
@@ -76,7 +81,7 @@ function BottomDrawer(props) {
           Navigation
         </Typography>
       </CardContent>
-      <List>
+      <List className={classes.content}>
         <ListItem
           className={classes.listItem}
           button

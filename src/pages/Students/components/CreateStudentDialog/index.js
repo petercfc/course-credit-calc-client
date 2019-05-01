@@ -1,5 +1,5 @@
 //other
-import React from "react";
+import React, { useCallback } from "react";
 import { withRouter } from "react-router-dom";
 
 //apollo
@@ -9,7 +9,7 @@ import { GET_ALL_STUDENTS } from "../../../../apollo/queries";
 import { CREATE_STUDENT } from "../../../../apollo/mutations";
 
 //redux
-import { useSelector, useActions } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { makeGetModalState } from "../../../../redux/ducks/modal/selectors";
 import { modalOperations } from "../../../../redux/ducks/modal";
 
@@ -21,17 +21,19 @@ const CreateStudentDialog = props => {
   //destructure props
   const { history } = props;
 
-  //redux hooks
-  const modal = useSelector(
-    (state, props) => makeGetModalState(state, props),
-    []
-  );
+  //redux hooks selectors
+  const modal = useSelector(state => {
+    return state.modal.modals.find(
+      modal => modal.modalType === "createStudent"
+    );
+  });
   console.log("modal", modal);
-  const getModalState = makeGetModalState();
-  console.log("getModalState", getModalState);
 
-  const toggleModal = useActions(
-    () => modalOperations.toggleModal("createStudent"),
+  //redux hook actions
+  const dispatch = useDispatch();
+
+  const toggleModal = useCallback(
+    () => dispatch(modalOperations.toggleModal("createStudent")),
     []
   );
 

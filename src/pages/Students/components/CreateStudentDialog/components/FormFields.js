@@ -74,6 +74,7 @@ const useStyles = makeStyles(
 const FormFields = props => {
   //destructure props
   const {
+    values,
     isValid,
     handleDialogClose,
     degrees,
@@ -157,6 +158,7 @@ const FormFields = props => {
             component={Select}
             required
             multiple
+            renderValue={selected => selected.map(e => e.name).join(",")}
             input={
               <OutlinedInput
                 labelWidth={coursesPassedWidth}
@@ -166,12 +168,15 @@ const FormFields = props => {
             }
             inputProps={{ name: "coursesPassed", id: "coursesPassed-select" }}
           >
-            <MenuItem key="0" value="">
-              Select None
-            </MenuItem>
             {courses.map(course => (
-              <MenuItem key={course.id} value={{ id: course.id }}>
-                {course.name}
+              <MenuItem key={course.id} value={course}>
+                <Checkbox
+                  checked={
+                    t(values.coursesPassed.find(e => e.id === course.id))
+                      .isDefined
+                  }
+                />
+                <ListItemText primary={course.name} />
               </MenuItem>
             ))}
           </Field>

@@ -54,7 +54,7 @@ function Courses(props) {
         </List>
       </Card>
       <CreateStudentButton />
-      <CreateStudentDialog />
+      <CreateStudentDialog modalType="createStudent" />
     </React.Fragment>
   );
 }

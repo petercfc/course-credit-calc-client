@@ -10,7 +10,7 @@ import { CREATE_STUDENT } from "../../../../apollo/mutations";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { makeGetModalState } from "../../../../redux/ducks/modal/selectors";
+import { getModal } from "../../../../redux/ducks/modal/selectors";
 import { modalOperations } from "../../../../redux/ducks/modal";
 
 //components
@@ -22,16 +22,10 @@ const CreateStudentDialog = props => {
   const { history } = props;
 
   //redux hooks selectors
-  const modal = useSelector(state => {
-    return state.modal.modals.find(
-      modal => modal.modalType === "createStudent"
-    );
-  });
-  console.log("modal", modal);
+  const modal = useSelector(state => getModal(state, "createStudent"));
 
   //redux hook actions
   const dispatch = useDispatch();
-
   const toggleModal = useCallback(
     () => dispatch(modalOperations.toggleModal("createStudent")),
     []
@@ -73,11 +67,6 @@ const CreateStudentDialog = props => {
     </Mutation>
   );
 };
-
-// const makeMapStateToProps = () => {
-//   const getModalState = makeGetModalState();
-//   return (state, props) => getModalState(state, props);
-// };
 
 //main export
 export default withRouter(CreateStudentDialog);

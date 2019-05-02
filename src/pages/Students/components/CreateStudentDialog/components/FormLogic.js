@@ -21,7 +21,7 @@ const FormLogic = props => {
   //initial values for form
   const initialValues = {
     name: "",
-    coursesPassed: "",
+    coursesPassed: [],
     enrolledDegree: ""
   };
 
@@ -58,7 +58,7 @@ const FormLogic = props => {
             data: {
               name: values.name,
               coursesPassed: values.coursesPassed
-                ? { connect: { id: values.coursesPassed } }
+                ? { connect: values.coursesPassed }
                 : undefined,
               enrolledDegree: values.enrolledDegree
                 ? { connect: { id: values.enrolledDegree } }

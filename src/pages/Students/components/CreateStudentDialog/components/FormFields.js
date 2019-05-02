@@ -18,6 +18,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import ListItemText from "@material-ui/core/ListItemText";
+import Checkbox from "@material-ui/core/Checkbox";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -154,6 +156,7 @@ const FormFields = props => {
             name="coursesPassed"
             component={Select}
             required
+            multiple
             input={
               <OutlinedInput
                 labelWidth={coursesPassedWidth}
@@ -167,7 +170,7 @@ const FormFields = props => {
               Select None
             </MenuItem>
             {courses.map(course => (
-              <MenuItem key={course.id} value={course.id}>
+              <MenuItem key={course.id} value={{ id: course.id }}>
                 {course.name}
               </MenuItem>
             ))}

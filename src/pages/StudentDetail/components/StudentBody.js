@@ -73,6 +73,7 @@ function StudentBody(props) {
         </CardContent>
         <List>
           <ListItem
+            key={0}
             button
             onClick={() =>
               toggleModal("editStudentName", { studentId: student.id })
@@ -86,7 +87,7 @@ function StudentBody(props) {
             <ListItemText primary="Name" secondary={student.name} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
+          <ListItem key={1} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <AccountBalanceWalletIcon />
@@ -95,7 +96,7 @@ function StudentBody(props) {
             <ListItemText primary="Student ID" secondary={student.id} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
+          <ListItem key={2} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <EditIcon />
@@ -120,6 +121,7 @@ function StudentBody(props) {
         <List>
           {student.coursesPassed.map((course, i) => (
             <ListItem
+              key={course.id}
               className={classes.listItem}
               button
               onClick={() => history.push(`/courses/${course.id}`)}

@@ -58,7 +58,11 @@ const FormLogic = props => {
             data: {
               name: values.name,
               coursesPassed: values.coursesPassed
-                ? { connect: values.coursesPassed }
+                ? {
+                    connect: values.coursesPassed.map(course => ({
+                      id: course.id
+                    }))
+                  }
                 : undefined,
               enrolledDegree: values.enrolledDegree
                 ? { connect: { id: values.enrolledDegree } }

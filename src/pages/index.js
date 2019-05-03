@@ -33,8 +33,8 @@ const styles = theme => ({
     height: "100vh"
   },
   appShell: {
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(8)
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(12)
   }
 });
 

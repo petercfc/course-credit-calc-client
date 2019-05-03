@@ -171,6 +171,7 @@ const FormFields = props => {
             {courses.map(course => (
               <MenuItem key={course.id} value={course}>
                 <Checkbox
+                  color="primary"
                   checked={
                     t(values.coursesPassed.find(e => e.id === course.id))
                       .isDefined

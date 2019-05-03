@@ -95,3 +95,33 @@ export const DELETE_COURSE = gql`
     }
   }
 `;
+
+export const CREATE_DEPARTMENT = gql`
+  mutation createDepartment($data: DepartmentCreateInput!) {
+    createDepartment(data: $data) {
+      id
+      name
+    }
+  }
+`;
+
+export const DEPARTMENT = gql`
+  mutation updateDepartment(
+    $data: DepartmentUpdateInput!
+    $where: DepartmentWhereUniqueInput!
+  ) {
+    updateDepartment(data: $data, where: $where) {
+      id
+      name
+    }
+  }
+`;
+
+export const DELETE_DEPARTMENT = gql`
+  mutation deleteDepartment($id: ID!) {
+    deleteDepartment(where: { id: $id }) {
+      id
+      name
+    }
+  }
+`;

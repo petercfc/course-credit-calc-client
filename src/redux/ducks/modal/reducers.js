@@ -23,6 +23,36 @@ const INITIAL_STATE = {
       modalType: "editCourseName",
       modalProps: { courseId: "" },
       isOpen: false
+    },
+    {
+      modalType: "createDepartment",
+      modalProps: {},
+      isOpen: false
+    },
+    {
+      modalType: "editDepartmentName",
+      modalProps: { departmentId: "" },
+      isOpen: false
+    },
+    {
+      modalType: "createSubject",
+      modalProps: {},
+      isOpen: false
+    },
+    {
+      modalType: "editSubjectName",
+      modalProps: { subjectId: "" },
+      isOpen: false
+    },
+    {
+      modalType: "createDegree",
+      modalProps: {},
+      isOpen: false
+    },
+    {
+      modalType: "editDegreeName",
+      modalProps: { degreeId: "" },
+      isOpen: false
     }
   ],
   error: null

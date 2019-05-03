@@ -84,6 +84,7 @@ const theme = createMuiTheme({
         }
       }
     },
+    //+
     MuiFab: {
       root: {
         textTransform: "none",
@@ -91,9 +92,10 @@ const theme = createMuiTheme({
         color: blue[500]
       }
     },
+    //+
     MuiCard: {
       root: {
-        marginBottom: 8,
+        borderRadius: 8,
         boxShadow: "none"
       }
     }

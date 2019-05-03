@@ -116,6 +116,15 @@ export const GET_ALL_DEPARTMENTS = gql`
   }
 `;
 
+export const GET_DEPARTMENT = gql`
+  query getDepartment($id: ID!) {
+    department(where: { id: $id }) {
+      id
+      name
+    }
+  }
+`;
+
 export const GET_ALL_DEGREES = gql`
   query getAllDegrees($orderBy: DegreeOrderByInput) {
     degrees(orderBy: $orderBy) {

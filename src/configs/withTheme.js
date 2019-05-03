@@ -96,6 +96,7 @@ const theme = createMuiTheme({
     MuiCard: {
       root: {
         borderRadius: 8,
+        marginBottom: 8,
         boxShadow: "none"
       }
     }

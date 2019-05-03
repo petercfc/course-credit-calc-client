@@ -20,6 +20,7 @@ const Courses = loadable(() => import("./Courses"));
 const CourseDetail = loadable(() => import("./CourseDetail"));
 const Degrees = loadable(() => import("./Degrees"));
 const Departments = loadable(() => import("./Departments"));
+const DepartmentDetail = loadable(() => import("./DepartmentDetail"));
 const Subjects = loadable(() => import("./Subjects"));
 
 // code split components
@@ -55,6 +56,7 @@ function Index(props) {
                   <Route path="/courses/:id" component={CourseDetail} />
                   <Route path="/courses" component={Courses} />
                   <Route path="/degrees" component={Degrees} />
+                  <Route path="/departments/:id" component={DepartmentDetail} />
                   <Route path="/departments" component={Departments} />
                   <Route path="/subjects" component={Subjects} />
                   <Route path="/" component={Students} />

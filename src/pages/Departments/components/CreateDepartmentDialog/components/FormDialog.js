@@ -15,7 +15,7 @@ import Slide from "@material-ui/core/Slide";
 const useStyles = makeStyles(
   theme => ({
     dialog: {
-      paddingTop: theme.spacing(3),
+      paddingTop: theme.spacing(2),
       maxHeight: "-webkit-fill-available"
     },
     paperFullScreen: {

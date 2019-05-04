@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 
 //apollo
 import { Mutation } from "react-apollo";
-import { UPDATE_STUDENT } from "../../../../apollo/mutations";
+import { UPDATE_DEPARTMENT } from "apollo/mutations";
 
 //material-ui
 import Dialog from "@material-ui/core/Dialog";
@@ -13,13 +13,13 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { getModal } from "../../../../redux/ducks/modal/selectors";
-import { modalOperations } from "../../../../redux/ducks/modal";
+import { getModal } from "redux/ducks/modal/selectors";
+import { modalOperations } from "redux/ducks/modal";
 
 //components
 import FormLogic from "./components/FormLogic";
-import Loading from "../../../../components/Loading/index";
-import Error from "../../../../components/Error/index";
+import Loading from "components/Loading/index";
+import Error from "components/Error/index";
 
 //main function
 const EditDepartmentName = props => {
@@ -41,8 +41,10 @@ const EditDepartmentName = props => {
     toggleModal();
   };
 
+  console.log(department);
+
   return (
-    <Mutation mutation={UPDATE_STUDENT}>
+    <Mutation mutation={UPDATE_DEPARTMENT}>
       {(updateDepartment, { loading, error }) => {
         return (
           <Dialog open={modal.isOpen} onClose={handleDialogClose}>

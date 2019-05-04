@@ -98,6 +98,43 @@ export const GET_COURSE = gql`
   }
 `;
 
+export const GET_COURSES_IN_DEPARTMENT = gql`
+  query getCoursesInDepartment($id: ID!) {
+    courses(where: { department: { id: $id } }) {
+      id
+      name
+      number
+      level
+      credits
+      subject {
+        id
+        name
+      }
+      degree {
+        id
+        name
+      }
+      department {
+        id
+        name
+      }
+      prerequisite {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const GET_DEGREES_IN_DEPARTMENT = gql`
+  query getDegreesInDepartment($id: ID!) {
+    degrees(where: { department: { id: $id } }) {
+      id
+      name
+    }
+  }
+`;
+
 export const GET_ALL_SUBJECTS = gql`
   query getAllSubjects($orderBy: SubjectOrderByInput) {
     subjects(orderBy: $orderBy) {

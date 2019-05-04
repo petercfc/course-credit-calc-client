@@ -30,7 +30,7 @@ const FormFields = props => {
       <DialogActions>
         <Button onClick={handleDialogClose}>Cancel</Button>
         <Button type="submit" disabled={!isValid} color="primary">
-          Change Student Name
+          Save
         </Button>
       </DialogActions>
     </Form>

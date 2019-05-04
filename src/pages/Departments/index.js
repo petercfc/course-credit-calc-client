@@ -3,11 +3,11 @@ import React from "react";
 
 //apollo
 import { useQuery } from "react-apollo-hooks";
-import { GET_ALL_DEPARTMENTS } from "../../apollo/queries";
+import { GET_ALL_DEPARTMENTS } from "apollo/queries";
 
 //components
 import DepartmentsView from "./components/DepartmentsView";
-import Error from "../../components/Error";
+import Error from "components/Error";
 
 //main function
 function Departments() {

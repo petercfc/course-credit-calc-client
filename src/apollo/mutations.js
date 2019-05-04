@@ -117,6 +117,18 @@ export const DEPARTMENT = gql`
   }
 `;
 
+export const UPDATE_DEPARTMENT = gql`
+  mutation updateDepartment(
+    $data: DepartmentUpdateInput!
+    $where: DepartmentWhereUniqueInput!
+  ) {
+    updateDepartment(data: $data, where: $where) {
+      id
+      name
+    }
+  }
+`;
+
 export const DELETE_DEPARTMENT = gql`
   mutation deleteDepartment($id: ID!) {
     deleteDepartment(where: { id: $id }) {

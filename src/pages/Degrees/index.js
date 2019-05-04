@@ -62,7 +62,7 @@ function Degrees(props) {
                 <SchoolIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={degree.name} secondary={degree.id} />
+            <ListItemText primary={degree.name} />
           </ListItem>
         ))}
       </List>

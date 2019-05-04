@@ -9,7 +9,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
-import DomainIcon from "@material-ui/icons/Domain";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import PersonIcon from "@material-ui/icons/Person";
 import blue from "@material-ui/core/colors/blue";
 
 //material-ui styles hook
@@ -31,26 +32,26 @@ const useStyles = makeStyles(
 );
 
 //main function
-function DepartmentListItem(props) {
+function DepartmentBodyCourseListItem(props) {
   //destructure props
-  const { history, department, hasDivider } = props;
+  const { history, course, hasDivider } = props;
   //material-ui styles hook
   const classes = useStyles();
-
+  console.log("course", course);
   //main return
   return (
     <React.Fragment>
       <ListItem
         className={classes.listItem}
         button
-        onClick={() => history.push(`/departments/${department.id}`)}
+        onClick={() => history.push(`/courses/${course.id}`)}
       >
         <ListItemAvatar>
           <Avatar className={classes.avatar}>
-            <DomainIcon />
+            <ListAltIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={department.name} />
+        <ListItemText primary={course.name} secondary={course.number} />
       </ListItem>
       {hasDivider && (
         <Divider className={classes.divider} component="li" variant="inset" />
@@ -60,4 +61,4 @@ function DepartmentListItem(props) {
 }
 
 //main export
-export default withRouter(DepartmentListItem);
+export default withRouter(DepartmentBodyCourseListItem);

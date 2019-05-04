@@ -20,9 +20,13 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import blue from "@material-ui/core/colors/blue";
 import EditIcon from "@material-ui/icons/Edit";
+import ShortTextIcon from "@material-ui/icons/ShortText";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
 
 //components
+import DepartmentBodyCourseListItem from "./DepartmentBodyCourseListItem";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -49,7 +53,7 @@ const useStyles = makeStyles(
 //main function
 function DepartmentBody(props) {
   //destructure props
-  const { history, department } = props;
+  const { history, department, coursesInDepartment } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
@@ -60,7 +64,7 @@ function DepartmentBody(props) {
   //redux hook actions
   const dispatch = useDispatch();
   const toggleModal = useCallback(
-    () => dispatch(modalOperations.toggleModal("createDepartment")),
+    () => dispatch(modalOperations.toggleModal("editDepartmentName")),
     []
   );
 
@@ -74,13 +78,18 @@ function DepartmentBody(props) {
           </Typography>
         </CardContent>
         <List>
-          <ListItem key={0} button onClick={toggleModal}>
+          <ListItem key={0} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <ShortTextIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Name" secondary={department.name} />
+            <ListItemSecondaryAction>
+              <IconButton onClick={toggleModal} edge="end" aria-label="Edit">
+                <EditIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem key={1} button>
@@ -96,17 +105,20 @@ function DepartmentBody(props) {
       <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
-            Courses In Department
+            Courses In This Department
           </Typography>
         </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className={classes.contentHeader}>
-          <Typography variant="h6" gutterBottom>
-            Degrees In Department
-          </Typography>
-        </CardContent>
+        {coursesInDepartment && (
+          <List>
+            {coursesInDepartment.map((course, i) => (
+              <DepartmentBodyCourseListItem
+                key={course.id}
+                course={course}
+                hasDivider={coursesInDepartment[i + 1] && true}
+              />
+            ))}
+          </List>
+        )}
       </Card>
     </div>
   );

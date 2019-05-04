@@ -9,10 +9,15 @@ import FormFields from "./FormFields";
 //main function
 const FormLogic = props => {
   //destructure props
-  const { student, studentId, updateStudent, handleDialogClose } = props;
+  const {
+    department,
+    departmentId,
+    updateDepartment,
+    handleDialogClose
+  } = props;
 
   //initial values for form
-  const initialValues = { name: student.name };
+  const initialValues = { name: department.name };
 
   //yup validation rules for form
   const validationSchema = Yup.object({
@@ -23,12 +28,12 @@ const FormLogic = props => {
   return (
     <Formik
       onSubmit={async (values, actions) => {
-        await updateStudent({
+        await updateDepartment({
           variables: {
             data: {
               name: values.name
             },
-            where: { id: student.id }
+            where: { id: department.id }
           }
         });
         actions.setSubmitting(false);

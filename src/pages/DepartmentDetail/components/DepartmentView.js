@@ -9,12 +9,15 @@ import EditDepartmentName from "./EditDepartmentName";
 //main function
 function StudentView(props) {
   //destructure props
-  const { department } = props;
+  const { department, coursesInDepartment } = props;
   //main return
   return (
     <React.Fragment>
       <DepartmentHeader department={department} />
-      <DepartmentBody department={department} />
+      <DepartmentBody
+        department={department}
+        coursesInDepartment={coursesInDepartment}
+      />
       <EditDepartmentName department={department} />
     </React.Fragment>
   );

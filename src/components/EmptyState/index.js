@@ -4,6 +4,7 @@ import React from "react";
 //material-ui
 import { makeStyles } from "@material-ui/styles";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
 
 //create material-ui styles custom hook
 const useStyles = makeStyles(
@@ -27,7 +28,7 @@ function EmptyState(props) {
       <Typography variant="body1" gutterBottom>
         {message}
       </Typography>
-      {icon}
+      <IconButton>{icon}</IconButton>
     </div>
   );
 }

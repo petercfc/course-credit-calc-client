@@ -20,7 +20,7 @@ const FormFields = props => {
         <Field
           type="text"
           name="name"
-          label="Student"
+          label="Name"
           variant="outlined"
           component={TextField}
           autoFocus

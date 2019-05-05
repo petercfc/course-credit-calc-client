@@ -27,6 +27,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 //components
 import DepartmentBodyCourseListItem from "./DepartmentBodyCourseListItem";
+import EmptyState from "components/EmptyState";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -54,7 +55,7 @@ const useStyles = makeStyles(
 function DepartmentBody(props) {
   //destructure props
   const { history, department, coursesInDepartment } = props;
-
+  console.log("coursesInDepartment", coursesInDepartment);
   //use material-ui styles - custom hook
   const classes = useStyles();
 
@@ -108,7 +109,7 @@ function DepartmentBody(props) {
             Courses In This Department
           </Typography>
         </CardContent>
-        {coursesInDepartment && (
+        {coursesInDepartment ? (
           <List>
             {coursesInDepartment.map((course, i) => (
               <DepartmentBodyCourseListItem
@@ -118,6 +119,11 @@ function DepartmentBody(props) {
               />
             ))}
           </List>
+        ) : (
+          <EmptyState
+            message="No courses in this department"
+            icon={<AccountBalanceWalletIcon />}
+          />
         )}
       </Card>
     </div>

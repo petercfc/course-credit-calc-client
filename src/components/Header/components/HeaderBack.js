@@ -23,12 +23,15 @@ function HeaderMenuBack(props) {
   const classes = useStyles();
   const { history, backUrl } = props;
 
+  const handleBack = () => {
+    if (backUrl) {
+      history.push(backUrl);
+    } else history.goBack();
+  };
+
   //main return
   return (
-    <IconButton
-      className={classes.backButton}
-      onClick={() => history.push(backUrl)}
-    >
+    <IconButton className={classes.backButton} onClick={handleBack}>
       <ArrowBackButton />
     </IconButton>
   );

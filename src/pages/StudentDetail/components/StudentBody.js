@@ -22,7 +22,12 @@ import Avatar from "@material-ui/core/Avatar";
 import blue from "@material-ui/core/colors/blue";
 import EditIcon from "@material-ui/icons/Edit";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import SchoolIcon from "@material-ui/icons/School";
+import ShortTextIcon from "@material-ui/icons/ShortText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
 
 //components
 
@@ -56,6 +61,16 @@ function StudentBody(props) {
   //use material-ui styles - custom hook
   const classes = useStyles();
 
+  const creditsRequired = t(student, "enrolledDegree.requiredCredits")
+    .safeNumber;
+
+  const coursesPassed = t(student.coursesPassed).safeObject;
+  const creditsRemaining = coursesPassed.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.credits
+  );
+
+  console.log("creditsRemaining", creditsRemaining);
+
   //check for null
   // const subjectName = t(student, "enrolled.name").safeString;
   // const degreeName = t(student, "degree.name").safeString;
@@ -72,19 +87,24 @@ function StudentBody(props) {
           </Typography>
         </CardContent>
         <List>
-          <ListItem
-            key={0}
-            button
-            onClick={() =>
-              toggleModal("editStudentName", { studentId: student.id })
-            }
-          >
+          <ListItem key={0} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <ShortTextIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Name" secondary={student.name} />
+            <ListItemSecondaryAction>
+              <IconButton
+                onClick={() =>
+                  toggleModal("editStudentName", { studentId: student.id })
+                }
+                edge="end"
+                aria-label="Edit"
+              >
+                <EditIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem key={1} button>
@@ -99,7 +119,7 @@ function StudentBody(props) {
           <ListItem key={2} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <SchoolIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -108,6 +128,47 @@ function StudentBody(props) {
                 t(student, "enrolledDegree.name").safeString ||
                 "No enrolled degree"
               }
+            />
+          </ListItem>
+        </List>
+      </Card>
+      <Card>
+        <CardContent className={classes.contentHeader}>
+          <Typography variant="h6" gutterBottom>
+            Credits Calculator
+          </Typography>
+        </CardContent>
+        <List>
+          <ListItem key={0} button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <ConfirmationNumberIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Credits Completed" secondary="13" />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem key={1} button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <ConfirmationNumberIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Credits Required For Degree"
+              secondary={creditsRequired}
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem key={2} button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <ConfirmationNumberIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Credits Remaining For Degree"
+              secondary="11"
             />
           </ListItem>
         </List>
@@ -142,9 +203,6 @@ function StudentBody(props) {
           ))}
         </List>
       </Card>
-      {/* {hasDivider && (
-             <Divider className={classes.divider} component="li" variant="inset" />
-           )} */}
       <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>

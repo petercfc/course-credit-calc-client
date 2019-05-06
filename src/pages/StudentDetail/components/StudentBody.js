@@ -65,9 +65,13 @@ function StudentBody(props) {
     .safeNumber;
 
   const coursesPassed = t(student.coursesPassed).safeObject;
-  const creditsRemaining = coursesPassed.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.credits
-  );
+  const creditsRemaining = () => {
+    if (coursesPassed) {
+      coursesPassed.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.credits
+      );
+    }
+  };
 
   console.log("creditsRemaining", creditsRemaining);
 

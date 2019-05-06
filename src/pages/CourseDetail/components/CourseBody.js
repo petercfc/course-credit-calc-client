@@ -111,7 +111,7 @@ function CourseBody(props) {
             <ListItemText primary="Course ID" secondary={course.id} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem key={3} button>
+          <ListItem key={2} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <FormatListNumberedIcon />
@@ -120,7 +120,7 @@ function CourseBody(props) {
             <ListItemText primary="Level" secondary={course.level} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem key={2} button>
+          <ListItem key={3} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <ConfirmationNumberIcon />
@@ -139,7 +139,7 @@ function CourseBody(props) {
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem
-            key={3}
+            key={4}
             button
             onClick={() => {
               if (course.department) {
@@ -163,7 +163,7 @@ function CourseBody(props) {
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem
-            key={4}
+            key={5}
             button
             onClick={() => {
               if (course.subject) {
@@ -185,7 +185,7 @@ function CourseBody(props) {
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem
-            key={4}
+            key={6}
             button
             onClick={() => {
               if (course.degree) {
@@ -207,7 +207,7 @@ function CourseBody(props) {
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem
-            key={4}
+            key={7}
             button
             onClick={() => {
               if (course.prerequisite) {

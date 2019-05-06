@@ -48,6 +48,13 @@ const useStyles = makeStyles(
       borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
       backgroundClip: "padding-box",
       backgroundColor: "transparent"
+    },
+    dividerFull: {
+      marginLeft: 16,
+      marginRight: 16,
+      borderBottom: `0.0625em solid rgba(0, 0, 0, 0.08);`,
+      backgroundClip: "padding-box",
+      backgroundColor: "transparent"
     }
   }),
   { withTheme: true }
@@ -141,35 +148,28 @@ function StudentBody(props) {
         </CardContent>
         <List>
           <ListItem key={0} button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <ConfirmationNumberIcon />
-              </Avatar>
-            </ListItemAvatar>
             <ListItemText
               primary="Credits Completed"
               secondary={creditsCompleted()}
             />
           </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
+          <Divider
+            className={classes.dividerFull}
+            component="li"
+            variant="inset"
+          />
           <ListItem key={1} button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <ConfirmationNumberIcon />
-              </Avatar>
-            </ListItemAvatar>
             <ListItemText
               primary="Credits Required For Degree"
               secondary={creditsRequired}
             />
           </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
+          <Divider
+            className={classes.dividerFull}
+            component="li"
+            variant="inset"
+          />
           <ListItem key={2} button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <ConfirmationNumberIcon />
-              </Avatar>
-            </ListItemAvatar>
             <ListItemText
               primary="Credits Remaining For Degree"
               secondary={creditsRemaining()}
@@ -217,7 +217,7 @@ function StudentBody(props) {
           <ListItem button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <ListAltIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText

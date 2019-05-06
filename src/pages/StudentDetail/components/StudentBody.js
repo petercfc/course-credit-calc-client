@@ -124,7 +124,13 @@ function StudentBody(props) {
             <ListItemText primary="Student ID" secondary={student.id} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem key={2} button>
+          <ListItem
+            key={2}
+            button
+            onClick={() =>
+              history.push(`/degrees/${student.enrolledDegree.id}`)
+            }
+          >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <SchoolIcon />
@@ -214,20 +220,27 @@ function StudentBody(props) {
           </Typography>
         </CardContent>
         <List>
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <ListAltIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Enrolled Degree"
-              secondary={
-                t(student, "enrolledDegree.name").safeString ||
-                "No enrolled degree"
-              }
-            />
-          </ListItem>
+          {student.coursesPassed.map((course, i) => (
+            <ListItem
+              key={course.id}
+              className={classes.listItem}
+              button
+              onClick={() => history.push(`/courses/${course.id}`)}
+            >
+              <ListItemAvatar>
+                <Avatar className={classes.avatar}>
+                  <ListAltIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={course.name}
+                secondary={
+                  t(student, "enrolledDegree.name").safeString ||
+                  "No enrolled degree"
+                }
+              />
+            </ListItem>
+          ))}
         </List>
       </Card>
     </div>

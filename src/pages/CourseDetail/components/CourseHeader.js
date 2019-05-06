@@ -10,12 +10,9 @@ function CourseHeader(props) {
   //destructure props
   const { course } = props;
 
-  //format title
-  const title = `${course.name} - ${course.number}`;
-
   //main return
   return (
-    <Header title={title} subTitle="Courses">
+    <Header title={course.name} subTitle="Courses">
       <CourseHeaderMenu course={course} />
     </Header>
   );

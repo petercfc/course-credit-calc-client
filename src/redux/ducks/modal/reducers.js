@@ -25,6 +25,11 @@ const INITIAL_STATE = {
       isOpen: false
     },
     {
+      modalType: "editCourseCredits",
+      modalProps: { courseId: "" },
+      isOpen: false
+    },
+    {
       modalType: "createDepartment",
       modalProps: {},
       isOpen: false

@@ -5,13 +5,13 @@ import { withRouter } from "react-router-dom";
 //redux
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { alertOperations } from "../../../redux/ducks/alert";
+import { alertOperations } from "redux/ducks/alert";
 
 // apollo
 import ApolloCacheUpdater from "apollo-cache-updater";
 import { Mutation } from "react-apollo";
-import { DELETE_COURSE } from "../../../apollo/mutations";
-import { GET_ALL_COURSES } from "../../../apollo/queries";
+import { DELETE_COURSE } from "apollo/mutations";
+import { GET_ALL_COURSES } from "apollo/queries";
 
 //material-ui
 import MenuItem from "@material-ui/core/MenuItem";
@@ -35,14 +35,13 @@ function CourseHeaderMenuDelete(props) {
           operation: "REMOVE",
           mutationResult: { id: course.id }
         });
-        if (updates) console.log(`Article removed`);
       }}
     >
-      {(deleteCourse, { data }) => (
+      {deleteSubject => (
         <MenuItem
           color="secondary"
           onClick={async () => {
-            await deleteCourse({
+            await deleteSubject({
               variables: { id: course.id }
             });
             handleClose();

@@ -1,9 +1,10 @@
 //other
-import React from "react";
-import t from "typy"; // ES6 style import
+import React, { useCallback } from "react";
+import { withRouter } from "react-router-dom";
 
 //redux
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getModal } from "../../../redux/ducks/modal/selectors";
 import { modalOperations } from "../../../redux/ducks/modal";
 
 //material-ui
@@ -19,8 +20,15 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import blue from "@material-ui/core/colors/blue";
 import EditIcon from "@material-ui/icons/Edit";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import ShortTextIcon from "@material-ui/icons/ShortText";
+import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import IconButton from "@material-ui/core/IconButton";
+import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 
 //components
+import EmptyState from "components/EmptyState";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -47,148 +55,74 @@ const useStyles = makeStyles(
 //main function
 function CourseBody(props) {
   //destructure props
-  const { course, toggleModal } = props;
+  const { history, course } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
 
-  //check for null
-  const subjectName = t(course, "subject.name").safeString;
-  const degreeName = t(course, "degree.name").safeString;
-  const departmentName = t(course, "department.name").safeString;
-  const prerequisiteName = t(course, "prerequisite.name").safeString;
+  //redux hooks selectors
+  const modal = useSelector(state => getModal(state, "createDegree"));
+
+  //redux hook actions
+  const dispatch = useDispatch();
+  const toggleModal = useCallback(
+    modalType => dispatch(modalOperations.toggleModal(modalType)),
+    []
+  );
 
   //main return
   return (
     <div className={classes.root}>
       <Card>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
-            Description
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque mi nulla, auctor id vestibulum vel, posuere a eros.
-            Vivamus viverra et risus sed luctus. Cras auctor ligula ut ipsum
-            condimentum, sit amet mattis felis fringilla. Suspendisse potenti.
-            Proin pellentesque dui vel lacus tincidunt aliquam. Donec aliquet
-            augue non tellus consectetur suscipit ac sed sapien. Curabitur
-            commodo dui eu sagittis sagittis. Ut ac orci quis ipsum ornare
-            dignissim vitae vitae tortor.
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
-            Students Who Have Completed
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque mi nulla, auctor id vestibulum vel, posuere a eros.
-            Vivamus viverra et risus sed luctus. Cras auctor ligula ut ipsum
-            condimentum, sit amet mattis felis fringilla. Suspendisse potenti.
-            Proin pellentesque dui vel lacus tincidunt aliquam. Donec aliquet
-            augue non tellus consectetur suscipit ac sed sapien. Curabitur
-            commodo dui eu sagittis sagittis. Ut ac orci quis ipsum ornare
-            dignissim vitae vitae tortor.
-          </Typography>
-        </CardContent>
-      </Card>
-      <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
-            Details
+            Course Details
           </Typography>
         </CardContent>
         <List>
-          <ListItem
-            button
-            onClick={() =>
-              toggleModal("editCourseName", { courseId: course.courseId })
-            }
-          >
+          <ListItem key={0} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <ShortTextIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Name" secondary={course.name} />
+            <ListItemSecondaryAction>
+              <IconButton
+                onClick={() => toggleModal("editCourseName")}
+                edge="end"
+                aria-label="Edit"
+              >
+                <EditIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
+          <ListItem key={1} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
-                <EditIcon />
+                <AccountBalanceWalletIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Course ID" secondary={course.id} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem key={2} button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <ConfirmationNumberIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText primary="Credits" secondary={course.credits} />
-          </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
+            <ListItemSecondaryAction>
+              <IconButton
+                onClick={() => toggleModal("editCourseCredits")}
+                edge="end"
+                aria-label="Edit"
+              >
                 <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Number" secondary={course.number} />
-          </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Level" secondary={course.level} />
-          </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Subject"
-              secondary={subjectName || "None selected"}
-            />
-          </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Degree"
-              secondary={degreeName || "None selected"}
-            />
-          </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Department"
-              secondary={departmentName || "None selected"}
-            />
-          </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <EditIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Prerequisite"
-              secondary={prerequisiteName || "None selected"}
-            />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
         </List>
       </Card>
@@ -196,12 +130,5 @@ function CourseBody(props) {
   );
 }
 
-const mapDispatchToProps = {
-  toggleModal: modalOperations.toggleModal
-};
-
 //main export
-export default connect(
-  null,
-  mapDispatchToProps
-)(CourseBody);
+export default withRouter(CourseBody);

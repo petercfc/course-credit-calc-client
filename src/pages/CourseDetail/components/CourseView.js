@@ -5,6 +5,7 @@ import React from "react";
 import CourseHeader from "./CourseHeader";
 import CourseBody from "./CourseBody";
 import EditCourseName from "./EditCourseName";
+import EditCourseCredits from "./EditCourseCredits";
 
 //main function
 function CourseView(props) {
@@ -15,7 +16,8 @@ function CourseView(props) {
     <React.Fragment>
       <CourseHeader course={course} />
       <CourseBody course={course} />
-      <EditCourseName course={course} modalType="editCourseName" />
+      <EditCourseName course={course} />
+      <EditCourseCredits course={course} />
     </React.Fragment>
   );
 }

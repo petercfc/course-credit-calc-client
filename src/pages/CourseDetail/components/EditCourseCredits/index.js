@@ -22,17 +22,17 @@ import Loading from "components/Loading/index";
 import Error from "components/Error/index";
 
 //main function
-const EditCourseName = props => {
+const EditCourseCredits = props => {
   //destructure props
   const { course } = props;
 
   //redux hooks selectors
-  const modal = useSelector(state => getModal(state, "editCourseName"));
+  const modal = useSelector(state => getModal(state, "editCourseCredits"));
 
   //redux hook actions
   const dispatch = useDispatch();
   const toggleModal = useCallback(
-    () => dispatch(modalOperations.toggleModal("editCourseName")),
+    () => dispatch(modalOperations.toggleModal("editCourseCredits")),
     []
   );
 
@@ -48,7 +48,7 @@ const EditCourseName = props => {
           <Dialog open={modal.isOpen} onClose={handleDialogClose}>
             {loading && <Loading />}
 
-            <DialogTitle>Edit Course Name</DialogTitle>
+            <DialogTitle>Edit Course Credits</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
@@ -71,4 +71,4 @@ const EditCourseName = props => {
 };
 
 //main export
-export default EditCourseName;
+export default EditCourseCredits;

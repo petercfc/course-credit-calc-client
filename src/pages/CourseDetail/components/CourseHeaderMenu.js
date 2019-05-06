@@ -5,12 +5,13 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 //components
 import CourseHeaderMenuDelete from "./CourseHeaderMenuDelete";
 
 //main function
-function CourseHeaderMenu(props) {
+function DegreeHeaderMenu(props) {
   //destructure props
   const { course } = props;
 
@@ -43,6 +44,8 @@ function CourseHeaderMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem color="secondary">Foo</MenuItem>
+        <MenuItem color="secondary">Bar</MenuItem>
         <CourseHeaderMenuDelete course={course} handleClose={handleClose} />
       </Menu>
     </div>
@@ -50,4 +53,4 @@ function CourseHeaderMenu(props) {
 }
 
 //main export
-export default CourseHeaderMenu;
+export default DegreeHeaderMenu;

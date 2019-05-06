@@ -18,9 +18,9 @@ const FormFields = props => {
     <Form autoComplete="off">
       <DialogContent>
         <Field
-          type="text"
-          name="name"
-          label="Name"
+          type="number"
+          name="credits"
+          label="Credits"
           variant="outlined"
           component={TextField}
           autoFocus

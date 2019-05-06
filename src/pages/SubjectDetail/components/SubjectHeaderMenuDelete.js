@@ -49,7 +49,7 @@ function StudentHeaderMenuDelete(props) {
             history.push("/subjects");
           }}
         >
-          Delete Student
+          Delete Subject
         </MenuItem>
       )}
     </Mutation>

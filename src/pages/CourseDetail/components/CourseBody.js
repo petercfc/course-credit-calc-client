@@ -20,12 +20,16 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import blue from "@material-ui/core/colors/blue";
 import EditIcon from "@material-ui/icons/Edit";
-import ListAltIcon from "@material-ui/icons/ListAlt";
+import FormatListNumberedIcon from "@material-ui/icons/FormatListNumbered";
 import ShortTextIcon from "@material-ui/icons/ShortText";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
+import DomainIcon from "@material-ui/icons/Domain";
+import StorageIcon from "@material-ui/icons/Storage";
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import SchoolIcon from "@material-ui/icons/School";
 
 //components
 import EmptyState from "components/EmptyState";
@@ -107,6 +111,15 @@ function CourseBody(props) {
             <ListItemText primary="Course ID" secondary={course.id} />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem key={3} button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <FormatListNumberedIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Level" secondary={course.level} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem key={2} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
@@ -123,6 +136,98 @@ function CourseBody(props) {
                 <EditIcon />
               </IconButton>
             </ListItemSecondaryAction>
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem
+            key={3}
+            button
+            onClick={() => {
+              if (course.department) {
+                history.push(`/departments/${course.department.id}`);
+              }
+            }}
+          >
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <DomainIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Department"
+              secondary={
+                course.department
+                  ? course.department.name
+                  : "No department selected"
+              }
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem
+            key={4}
+            button
+            onClick={() => {
+              if (course.subject) {
+                history.push(`/subjects/${course.subject.id}`);
+              }
+            }}
+          >
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <StorageIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Subject"
+              secondary={
+                course.subject ? course.subject.name : "No subject selected"
+              }
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem
+            key={4}
+            button
+            onClick={() => {
+              if (course.degree) {
+                history.push(`/degrees/${course.degree.id}`);
+              }
+            }}
+          >
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <SchoolIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Degree"
+              secondary={
+                course.degree ? course.degree.name : "No degree selected"
+              }
+            />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem
+            key={4}
+            button
+            onClick={() => {
+              if (course.prerequisite) {
+                history.push(`/courses/${course.prerequisite.id}`);
+              }
+            }}
+          >
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
+                <ListAltIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Prerequisite"
+              secondary={
+                course.prerequisite
+                  ? course.prerequisite.name
+                  : "No prerequisite selected"
+              }
+            />
           </ListItem>
         </List>
       </Card>

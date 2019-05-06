@@ -12,11 +12,7 @@ function DepartmentHeader(props) {
 
   //main return
   return (
-    <Header
-      backUrl="/departments"
-      title={department.name}
-      subTitle="Departments"
-    >
+    <Header title={department.name} subTitle="Departments">
       <DepartmentHeaderMenu department={department} />
     </Header>
   );

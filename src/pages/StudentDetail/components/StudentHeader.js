@@ -16,7 +16,7 @@ function StudentHeader(props) {
 
   //main return
   return (
-    <Header backUrl="/students" title={title} subTitle="Students">
+    <Header title={title} subTitle="Students">
       <StudentHeaderMenu student={student} />
     </Header>
   );

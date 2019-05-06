@@ -137,3 +137,33 @@ export const DELETE_DEPARTMENT = gql`
     }
   }
 `;
+
+export const CREATE_SUBJECT = gql`
+  mutation createSubject($data: SubjectCreateInput!) {
+    createSubject(data: $data) {
+      id
+      name
+    }
+  }
+`;
+
+export const UPDATE_SUBJECT = gql`
+  mutation updateSubject(
+    $data: SubjectUpdateInput!
+    $where: SubjectWhereUniqueInput!
+  ) {
+    updateSubject(data: $data, where: $where) {
+      id
+      name
+    }
+  }
+`;
+
+export const DELETE_SUBJECT = gql`
+  mutation deleteSubject($id: ID!) {
+    deleteSubject(where: { id: $id }) {
+      id
+      name
+    }
+  }
+`;

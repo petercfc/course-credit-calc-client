@@ -144,6 +144,24 @@ export const GET_ALL_SUBJECTS = gql`
   }
 `;
 
+export const GET_SUBJECT = gql`
+  query getSubject($id: ID!) {
+    subject(where: { id: $id }) {
+      id
+      name
+    }
+  }
+`;
+
+export const GET_COURSES_IN_SUBJECT = gql`
+  query getCoursesInSubject($id: ID!) {
+    courses(where: { subject: { id: $id } }) {
+      id
+      name
+    }
+  }
+`;
+
 export const GET_ALL_DEPARTMENTS = gql`
   query getAllDepartments($orderBy: DepartmentOrderByInput) {
     departments(orderBy: $orderBy) {

@@ -15,7 +15,7 @@ function CourseHeader(props) {
 
   //main return
   return (
-    <Header backUrl="/courses" title={title} subTitle="Courses">
+    <Header title={title} subTitle="Courses">
       <CourseHeaderMenu course={course} />
     </Header>
   );

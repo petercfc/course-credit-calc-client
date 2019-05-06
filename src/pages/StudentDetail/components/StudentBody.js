@@ -63,17 +63,22 @@ function StudentBody(props) {
 
   const creditsRequired = t(student, "enrolledDegree.requiredCredits")
     .safeNumber;
+  const coursesPassed = t(student, "coursesPassed").safeObject;
 
-  const coursesPassed = t(student.coursesPassed).safeObject;
-  const creditsRemaining = () => {
-    if (coursesPassed) {
-      coursesPassed.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.credits
+  const creditsCompleted = () => {
+    if (coursesPassed.length) {
+      return coursesPassed.reduce(
+        (total, course) => total.credits + course.credits
       );
     }
+    return 0;
   };
 
-  console.log("creditsRemaining", creditsRemaining);
+  const creditsRemaining = () => {
+    return creditsRequired - creditsCompleted();
+  };
+  console.log("creditsCompleted", creditsCompleted());
+  console.log("creditsRemaining", creditsRemaining());
 
   //check for null
   // const subjectName = t(student, "enrolled.name").safeString;
@@ -149,7 +154,10 @@ function StudentBody(props) {
                 <ConfirmationNumberIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary="Credits Completed" secondary="13" />
+            <ListItemText
+              primary="Credits Completed"
+              secondary={creditsCompleted()}
+            />
           </ListItem>
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem key={1} button>
@@ -172,7 +180,7 @@ function StudentBody(props) {
             </ListItemAvatar>
             <ListItemText
               primary="Credits Remaining For Degree"
-              secondary="11"
+              secondary={creditsRemaining()}
             />
           </ListItem>
         </List>

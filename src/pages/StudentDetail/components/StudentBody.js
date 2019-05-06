@@ -67,9 +67,9 @@ function StudentBody(props) {
 
   const creditsCompleted = () => {
     if (coursesPassed.length) {
-      return coursesPassed.reduce(
-        (total, course) => total.credits + course.credits
-      );
+      return coursesPassed.reduce((total, course) => {
+        return total + course.credits;
+      }, 0);
     }
     return 0;
   };
@@ -77,14 +77,6 @@ function StudentBody(props) {
   const creditsRemaining = () => {
     return creditsRequired - creditsCompleted();
   };
-  console.log("creditsCompleted", creditsCompleted());
-  console.log("creditsRemaining", creditsRemaining());
-
-  //check for null
-  // const subjectName = t(student, "enrolled.name").safeString;
-  // const degreeName = t(student, "degree.name").safeString;
-  // const departmentName = t(student, "department.name").safeString;
-  // const prerequisiteName = t(student, "prerequisite.name").safeString;
 
   //main return
   return (

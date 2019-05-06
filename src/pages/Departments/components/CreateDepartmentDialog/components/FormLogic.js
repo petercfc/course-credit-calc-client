@@ -44,9 +44,9 @@ const FormLogic = props => {
         }
       }
     });
-    actions.setSubmitting(false);
-    actions.resetForm();
-    toggleModal();
+    await actions.setSubmitting(false);
+    await actions.resetForm();
+    await toggleModal();
   };
 
   //main return

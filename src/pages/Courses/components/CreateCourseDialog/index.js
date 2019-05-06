@@ -5,14 +5,19 @@ import { withRouter } from "react-router-dom";
 //apollo
 import ApolloCacheUpdater from "apollo-cache-updater";
 import { Mutation } from "react-apollo";
-import { GET_ALL_COURSES } from "../../../../apollo/queries";
-import { CREATE_COURSE } from "../../../../apollo/mutations";
+import {
+  GET_ALL_COURSES,
+  GET_COURSES_IN_SUBJECT,
+  GET_COURSES_IN_DEPARTMENT,
+  GET_SUBJECT
+} from "apollo/queries";
+import { CREATE_COURSE } from "apollo/mutations";
 
 //redux
 import { compose } from "redux";
 import { connect } from "react-redux";
-import { makeGetModalState } from "../../../../redux/ducks/modal/selectors";
-import { modalOperations } from "../../../../redux/ducks/modal";
+import { makeGetModalState } from "redux/ducks/modal/selectors";
+import { modalOperations } from "redux/ducks/modal";
 
 //components
 import FormLogic from "./components/FormLogic";
@@ -34,13 +39,13 @@ const CreateCourseDialog = props => {
         const mutationResult = createCourse;
         const updates = ApolloCacheUpdater({
           proxy,
+          operator: "ANY",
           queriesToUpdate: [GET_ALL_COURSES],
           searchVariables: {},
           operation: { type: "ADD", row: { type: "SORT", field: "name" } },
           mutationResult
         });
         if (updates) {
-          console.log(`Course Created`);
           history.push(`/courses/${createCourse.id}`);
         }
       }}

@@ -107,7 +107,7 @@ const FormLogic = props => {
             }
           }
         });
-        actions.setSubmitting(false);
+        await actions.setSubmitting(false);
         handleDialogClose();
       }}
       initialValues={initialValues}

@@ -20,6 +20,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import blue from "@material-ui/core/colors/blue";
 import EditIcon from "@material-ui/icons/Edit";
+import ListAltIcon from "@material-ui/icons/ListAlt";
 import ShortTextIcon from "@material-ui/icons/ShortText";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
@@ -75,7 +76,7 @@ function SubjectBody(props) {
       <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
-            Details
+            Subject Details
           </Typography>
         </CardContent>
         <List>
@@ -106,10 +107,10 @@ function SubjectBody(props) {
       <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
-            Courses In This Subject
+            Courses In {subject.name}
           </Typography>
         </CardContent>
-        {coursesInSubject ? (
+        {coursesInSubject.length ? (
           <List>
             {coursesInSubject.map((course, i) => (
               <SubjectBodyCourseListItem
@@ -122,7 +123,7 @@ function SubjectBody(props) {
         ) : (
           <EmptyState
             message="No courses in this subject"
-            icon={<AccountBalanceWalletIcon />}
+            icon={<ListAltIcon />}
           />
         )}
       </Card>

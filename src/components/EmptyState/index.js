@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 const useStyles = makeStyles(
   theme => ({
     root: {
-      padding: theme.spacing(8),
+      padding: theme.spacing(4),
       textAlign: "center"
     }
   }),
@@ -25,10 +25,10 @@ function EmptyState(props) {
   //main return
   return (
     <div className={classes.root}>
-      <Typography variant="body1" gutterBottom>
+      <IconButton>{icon}</IconButton>
+      <Typography variant="body2" color="textSecondary" gutterBottom>
         {message}
       </Typography>
-      <IconButton>{icon}</IconButton>
     </div>
   );
 }

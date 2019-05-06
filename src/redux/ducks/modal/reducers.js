@@ -53,6 +53,11 @@ const INITIAL_STATE = {
       modalType: "editDegreeName",
       modalProps: { degreeId: "" },
       isOpen: false
+    },
+    {
+      modalType: "editDegreeRequiredCredits",
+      modalProps: { degreeId: "" },
+      isOpen: false
     }
   ],
   error: null

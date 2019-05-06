@@ -16,11 +16,12 @@ import Loading from "../components/Loading";
 // // code split pages
 const Students = loadable(() => import("./Students"));
 const StudentDetail = loadable(() => import("./StudentDetail"));
-const Courses = loadable(() => import("./Courses"));
 const CourseDetail = loadable(() => import("./CourseDetail"));
+const Courses = loadable(() => import("./Courses"));
+const DegreeDetail = loadable(() => import("./DegreeDetail"));
 const Degrees = loadable(() => import("./Degrees"));
-const Departments = loadable(() => import("./Departments"));
 const DepartmentDetail = loadable(() => import("./DepartmentDetail"));
+const Departments = loadable(() => import("./Departments"));
 const SubjectDetail = loadable(() => import("./SubjectDetail"));
 const Subjects = loadable(() => import("./Subjects"));
 
@@ -56,6 +57,7 @@ function Index(props) {
                   <Route path="/students" component={Students} />
                   <Route path="/courses/:id" component={CourseDetail} />
                   <Route path="/courses" component={Courses} />
+                  <Route path="/degrees/:id" component={DegreeDetail} />
                   <Route path="/degrees" component={Degrees} />
                   <Route path="/departments/:id" component={DepartmentDetail} />
                   <Route path="/departments" component={Departments} />

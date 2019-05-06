@@ -185,6 +185,26 @@ export const GET_ALL_DEGREES = gql`
     degrees(orderBy: $orderBy) {
       id
       name
+      requiredCredits
+    }
+  }
+`;
+
+export const GET_DEGREE = gql`
+  query getDegree($id: ID!) {
+    degree(where: { id: $id }) {
+      id
+      name
+      requiredCredits
+    }
+  }
+`;
+
+export const GET_COURSES_IN_DEGREE = gql`
+  query getCoursesInDegree($id: ID!) {
+    courses(where: { degree: { id: $id } }) {
+      id
+      name
     }
   }
 `;

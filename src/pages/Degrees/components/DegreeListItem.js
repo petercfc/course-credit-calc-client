@@ -11,7 +11,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import DomainIcon from "@material-ui/icons/Domain";
 import blue from "@material-ui/core/colors/blue";
-import StorageIcon from "@material-ui/icons/Storage";
+import SchoolIcon from "@material-ui/icons/School";
 
 //material-ui styles hook
 const useStyles = makeStyles(
@@ -32,9 +32,9 @@ const useStyles = makeStyles(
 );
 
 //main function
-function SubjectListItem(props) {
+function DegreeListItem(props) {
   //destructure props
-  const { history, subject, hasDivider } = props;
+  const { history, degree, hasDivider } = props;
   //material-ui styles hook
   const classes = useStyles();
 
@@ -44,14 +44,14 @@ function SubjectListItem(props) {
       <ListItem
         className={classes.listItem}
         button
-        onClick={() => history.push(`/subjects/${subject.id}`)}
+        onClick={() => history.push(`/degrees/${degree.id}`)}
       >
         <ListItemAvatar>
           <Avatar className={classes.avatar}>
-            <StorageIcon />
+            <SchoolIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary={subject.name} />
+        <ListItemText primary={degree.name} />
       </ListItem>
       {hasDivider && (
         <Divider className={classes.divider} component="li" variant="inset" />
@@ -61,4 +61,4 @@ function SubjectListItem(props) {
 }
 
 //main export
-export default withRouter(SubjectListItem);
+export default withRouter(DegreeListItem);

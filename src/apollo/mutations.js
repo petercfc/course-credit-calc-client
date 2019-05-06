@@ -167,3 +167,36 @@ export const DELETE_SUBJECT = gql`
     }
   }
 `;
+
+export const CREATE_DEGREE = gql`
+  mutation createDegree($data: DegreeCreateInput!) {
+    createDegree(data: $data) {
+      id
+      name
+      requiredCredits
+    }
+  }
+`;
+
+export const UPDATE_DEGREE = gql`
+  mutation updateDegree(
+    $data: DegreeUpdateInput!
+    $where: DegreeWhereUniqueInput!
+  ) {
+    updateDegree(data: $data, where: $where) {
+      id
+      name
+      requiredCredits
+    }
+  }
+`;
+
+export const DELETE_DEGREE = gql`
+  mutation deleteDegree($id: ID!) {
+    deleteDegree(where: { id: $id }) {
+      id
+      name
+      requiredCredits
+    }
+  }
+`;

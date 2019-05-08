@@ -4,10 +4,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 import { useQuery } from "react-apollo-hooks";
-import {
-  GET_ALL_DEGREES,
-  GET_ALL_COURSES
-} from "../../../../../apollo/queries";
+import { GET_ALL_DEGREES, GET_ALL_COURSES } from "apollo/queries";
 
 //components
 import FormFields from "./FormFields";
@@ -40,7 +37,7 @@ const FormLogic = props => {
     variables: { orderBy: "name_ASC" }
   });
 
-  //apollo query hook for degrees
+  //apollo query hook for courses
   const {
     data: { courses }
   } = useQuery(GET_ALL_COURSES, {

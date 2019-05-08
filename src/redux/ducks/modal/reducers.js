@@ -15,6 +15,11 @@ const INITIAL_STATE = {
       isOpen: false
     },
     {
+      modalType: "editStudentCoursesCompleted",
+      modalProps: { studentId: "" },
+      isOpen: false
+    },
+    {
       modalType: "createCourse",
       modalProps: {},
       isOpen: false
@@ -22,6 +27,11 @@ const INITIAL_STATE = {
     {
       modalType: "editCourseName",
       modalProps: { courseId: "" },
+      isOpen: false
+    },
+    {
+      modalType: "editCoursesCompleted",
+      modalProps: { studentId: "" },
       isOpen: false
     },
     {

@@ -70,6 +70,9 @@ function StudentBody(props) {
 
   const creditsRequired = t(student, "enrolledDegree.requiredCredits")
     .safeNumber;
+  const coursesRequired = t(student, "enrolledDegree.requiredCourses")
+    .safeObject;
+
   const coursesPassed = t(student, "coursesPassed").safeObject;
 
   const creditsCompleted = () => {
@@ -84,6 +87,21 @@ function StudentBody(props) {
   const creditsRemaining = () => {
     return creditsRequired - creditsCompleted();
   };
+
+  const courseRemaining = () => {
+    if (coursesPassed.length && coursesRequired.length) {
+      return coursesRequired.filter(
+        requiredCourse =>
+          !coursesPassed.some(
+            passedCourse => passedCourse.id === requiredCourse.id
+          )
+      );
+    }
+    return null;
+  };
+  console.log("coursesPassed", coursesPassed);
+  console.log("coursesRequired", coursesRequired);
+  console.log("courseRemaining", courseRemaining());
 
   //main return
   return (
@@ -220,7 +238,7 @@ function StudentBody(props) {
           </Typography>
         </CardContent>
         <List>
-          {student.coursesPassed.map((course, i) => (
+          {courseRemaining().map((course, i) => (
             <ListItem
               key={course.id}
               className={classes.listItem}

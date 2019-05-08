@@ -37,7 +37,34 @@ export const GET_ALL_STUDENTS = gql`
       enrolledDegree {
         id
         name
+        department {
+          id
+          name
+        }
         requiredCredits
+        requiredCourses {
+          id
+          name
+          number
+          level
+          credits
+          subject {
+            id
+            name
+          }
+          degree {
+            id
+            name
+          }
+          department {
+            id
+            name
+          }
+          prerequisite {
+            id
+            name
+          }
+        }
       }
       coursesPassed {
         id
@@ -55,7 +82,34 @@ export const GET_STUDENT = gql`
       enrolledDegree {
         id
         name
+        department {
+          id
+          name
+        }
         requiredCredits
+        requiredCourses {
+          id
+          name
+          number
+          level
+          credits
+          subject {
+            id
+            name
+          }
+          degree {
+            id
+            name
+          }
+          department {
+            id
+            name
+          }
+          prerequisite {
+            id
+            name
+          }
+        }
       }
       coursesPassed {
         id
@@ -131,6 +185,34 @@ export const GET_DEGREES_IN_DEPARTMENT = gql`
     degrees(where: { department: { id: $id } }) {
       id
       name
+      department {
+        id
+        name
+      }
+      requiredCredits
+      requiredCourses {
+        id
+        name
+        number
+        level
+        credits
+        subject {
+          id
+          name
+        }
+        degree {
+          id
+          name
+        }
+        department {
+          id
+          name
+        }
+        prerequisite {
+          id
+          name
+        }
+      }
     }
   }
 `;
@@ -185,7 +267,34 @@ export const GET_ALL_DEGREES = gql`
     degrees(orderBy: $orderBy) {
       id
       name
+      department {
+        id
+        name
+      }
       requiredCredits
+      requiredCourses {
+        id
+        name
+        number
+        level
+        credits
+        subject {
+          id
+          name
+        }
+        degree {
+          id
+          name
+        }
+        department {
+          id
+          name
+        }
+        prerequisite {
+          id
+          name
+        }
+      }
     }
   }
 `;
@@ -195,7 +304,34 @@ export const GET_DEGREE = gql`
     degree(where: { id: $id }) {
       id
       name
+      department {
+        id
+        name
+      }
       requiredCredits
+      requiredCourses {
+        id
+        name
+        number
+        level
+        credits
+        subject {
+          id
+          name
+        }
+        degree {
+          id
+          name
+        }
+        department {
+          id
+          name
+        }
+        prerequisite {
+          id
+          name
+        }
+      }
     }
   }
 `;

@@ -140,7 +140,6 @@ const FormFields = props => {
             type="text"
             name="coursesPassed"
             component={Select}
-            required
             multiple
             renderValue={selected => selected.map(e => e.name).join(",")}
             input={

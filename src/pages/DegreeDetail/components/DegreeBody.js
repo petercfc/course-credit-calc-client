@@ -133,12 +133,12 @@ function DegreeBody(props) {
       <Card>
         <CardContent className={classes.contentHeader}>
           <Typography variant="h6" gutterBottom>
-            Courses In {degree.name}
+            Courses Required
           </Typography>
         </CardContent>
-        {coursesInDegree.length ? (
+        {degree.requiredCourses.length ? (
           <List>
-            {coursesInDegree.map((course, i) => (
+            {degree.requiredCourses.map((course, i) => (
               <DegreeBodyCourseListItem
                 key={course.id}
                 course={course}
@@ -148,7 +148,7 @@ function DegreeBody(props) {
           </List>
         ) : (
           <EmptyState
-            message="No courses in this degree"
+            message="No required courses for this degree"
             icon={<ListAltIcon />}
           />
         )}

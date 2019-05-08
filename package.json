@@ -21,6 +21,7 @@
     "graphql-tag": "^2.10.1",
     "immer": "^2.1.5",
     "jss": "next",
+    "logrocket": "^0.6.21",
     "react": "latest",
     "react-apollo": "^2.5.2",
     "react-apollo-hooks": "^0.4.5",

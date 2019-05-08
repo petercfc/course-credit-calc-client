@@ -2,6 +2,7 @@
 import React from "react";
 import { render } from "react-dom";
 import * as serviceWorker from "./configs/serviceWorker";
+import LogRocket from "logrocket";
 
 //redux
 import { Provider } from "react-redux";
@@ -21,6 +22,9 @@ import { HttpLink } from "apollo-link-http";
 
 //pages
 import Index from "./pages/index";
+
+//log rocket init
+LogRocket.init("deep-six-design/course-credit-calc");
 
 //create link from retry object and http endpoint
 const retry = new RetryLink({ attempts: { max: Infinity } });

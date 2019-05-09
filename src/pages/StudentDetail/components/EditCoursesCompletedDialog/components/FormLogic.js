@@ -13,7 +13,6 @@ import { GET_ALL_COURSES } from "apollo/queries";
 //components
 import FormFields from "./FormFields";
 import FormDialog from "./FormDialog";
-import StudentBody from "../../StudentBody";
 
 //main function
 const FormLogic = props => {
@@ -27,14 +26,6 @@ const FormLogic = props => {
     []
   );
 
-  //initial values for form
-  const initialValues = {
-    coursesPassed: []
-  };
-
-  //yup validation rules for form
-  const validationSchema = Yup.object({});
-
   //apollo query hook for courses
   const {
     data: { courses }
@@ -42,6 +33,16 @@ const FormLogic = props => {
     suspend: true,
     variables: { orderBy: "name_ASC" }
   });
+
+  //initial values for form
+  const initialValues = {
+    coursesPassed: courses.filter(course =>
+      student.coursesPassed.some(passedCourse => passedCourse.id === course.id)
+    )
+  };
+
+  //yup validation rules for form
+  const validationSchema = Yup.object({});
 
   //formik onSubmit handler
   const onSubmit = async (values, actions) => {

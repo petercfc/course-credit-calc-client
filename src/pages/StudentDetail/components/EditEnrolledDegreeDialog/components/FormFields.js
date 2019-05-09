@@ -51,7 +51,7 @@ const useStyles = makeStyles(
       flexWrap: "wrap"
     },
     chip: {
-      margin: theme.spacing(0.25)
+      margin: theme.spacing(1)
     },
     backButton: {
       marginLeft: -12,
@@ -84,7 +84,7 @@ const useStyles = makeStyles(
 //main function
 const FormFields = props => {
   //destructure props
-  const { values, courses, isValid, loading, isScrolled } = props;
+  const { values, degrees, isValid, loading, isScrolled } = props;
 
   //use material-ui styles - custom hook
   const classes = useStyles();
@@ -92,15 +92,15 @@ const FormFields = props => {
   //redux hook actions
   const dispatch = useDispatch();
   const toggleModal = useCallback(
-    () => dispatch(modalOperations.toggleModal("editStudentCoursesCompleted")),
+    () => dispatch(modalOperations.toggleModal("editStudentEnrolledDegree")),
     []
   );
 
   //input level setup
-  const coursesPassedLabel = React.useRef(null);
-  const [coursesPassedWidth, setCoursesPassedWidth] = React.useState(0);
+  const enrolledDegreeLabel = React.useRef(null);
+  const [enrolledDegreeWidth, setEnrolledDegreeWidth] = React.useState(0);
   React.useEffect(() => {
-    setCoursesPassedWidth(coursesPassedLabel.current.offsetWidth);
+    setEnrolledDegreeWidth(enrolledDegreeLabel.current.offsetWidth);
   }, []);
 
   //main
@@ -120,7 +120,7 @@ const FormFields = props => {
             <CloseIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.title}>
-            Edit Courses Completed
+            Edit Enrolled Degree
           </Typography>
           <Button
             variant="contained"
@@ -140,40 +140,30 @@ const FormFields = props => {
           variant="outlined"
           className={classes.formControl}
         >
-          <InputLabel ref={coursesPassedLabel} htmlFor="coursesPassed-select">
-            Courses Passed
+          <InputLabel ref={enrolledDegreeLabel} htmlFor="enrolledDegree-select">
+            Degrees
           </InputLabel>
           <Field
             type="text"
-            name="coursesPassed"
+            name="enrolledDegree"
             component={Select}
-            multiple
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {selected.map(e => (
-                  <Chip key={e.id} label={e.name} className={classes.chip} />
-                ))}
-              </div>
-            )}
+            renderValue={selected => selected.name}
             input={
               <OutlinedInput
-                labelWidth={coursesPassedWidth}
-                name="coursesPassed"
-                id="coursesPassed-select"
+                labelWidth={enrolledDegreeWidth}
+                name="enrolledDegree"
+                id="enrolledDegree-select"
               />
             }
-            inputProps={{ name: "coursesPassed", id: "coursesPassed-select" }}
+            inputProps={{ name: "enrolledDegree", id: "enrolledDegree-select" }}
           >
-            {courses.map(course => (
-              <MenuItem key={course.id} value={course}>
+            {degrees.map(degree => (
+              <MenuItem key={degree.id} value={degree}>
                 <Checkbox
                   color="primary"
-                  checked={
-                    t(values.coursesPassed.find(e => e.id === course.id))
-                      .isDefined
-                  }
+                  checked={values.enrolledDegree.id === degree.id}
                 />
-                <ListItemText primary={course.name} />
+                <ListItemText primary={degree.name} />
               </MenuItem>
             ))}
           </Field>

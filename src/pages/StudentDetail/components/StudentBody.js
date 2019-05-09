@@ -97,7 +97,7 @@ function StudentBody(props) {
           )
       );
     }
-    return null;
+    return [];
   };
   console.log("coursesPassed", coursesPassed);
   console.log("coursesRequired", coursesRequired);
@@ -116,6 +116,15 @@ function StudentBody(props) {
           <ListItem key={0} button>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
+                <AccountBalanceWalletIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Student ID" secondary={student.id} />
+          </ListItem>
+          <Divider className={classes.divider} component="li" variant="inset" />
+          <ListItem key={1} button>
+            <ListItemAvatar>
+              <Avatar className={classes.avatar}>
                 <ShortTextIcon />
               </Avatar>
             </ListItemAvatar>
@@ -132,15 +141,7 @@ function StudentBody(props) {
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
-          <Divider className={classes.divider} component="li" variant="inset" />
-          <ListItem key={1} button>
-            <ListItemAvatar>
-              <Avatar className={classes.avatar}>
-                <AccountBalanceWalletIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Student ID" secondary={student.id} />
-          </ListItem>
+
           <Divider className={classes.divider} component="li" variant="inset" />
           <ListItem
             key={2}
@@ -161,6 +162,19 @@ function StudentBody(props) {
                 "No enrolled degree"
               }
             />
+            <ListItemSecondaryAction>
+              <IconButton
+                onClick={() =>
+                  toggleModal("editStudentEnrolledDegree", {
+                    studentId: student.id
+                  })
+                }
+                edge="end"
+                aria-label="Edit"
+              >
+                <EditIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
           </ListItem>
         </List>
       </Card>
@@ -171,7 +185,7 @@ function StudentBody(props) {
           </Typography>
         </CardContent>
         <List>
-          <ListItem key={0} button>
+          <ListItem key={0}>
             <ListItemText
               primary="Credits Completed"
               secondary={creditsCompleted()}
@@ -182,7 +196,7 @@ function StudentBody(props) {
             component="li"
             variant="inset"
           />
-          <ListItem key={1} button>
+          <ListItem key={1}>
             <ListItemText
               primary="Credits Required For Degree"
               secondary={creditsRequired}
@@ -193,7 +207,7 @@ function StudentBody(props) {
             component="li"
             variant="inset"
           />
-          <ListItem key={2} button>
+          <ListItem key={2}>
             <ListItemText
               primary="Credits Remaining For Degree"
               secondary={creditsRemaining()}

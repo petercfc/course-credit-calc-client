@@ -7,6 +7,7 @@ import StudentBody from "./StudentBody";
 import EditStudentName from "./EditStudentName";
 import EditCoursesCompletedButton from "./EditCoursesCompletedButton";
 import EditCoursesCompletedDialog from "./EditCoursesCompletedDialog";
+import EditEnrolledDegreeDialog from "./EditEnrolledDegreeDialog";
 
 //main function
 function StudentView(props) {
@@ -20,6 +21,7 @@ function StudentView(props) {
       <EditStudentName student={student} modalType="editStudentName" />
       <EditCoursesCompletedButton student={student} />
       <EditCoursesCompletedDialog student={student} />
+      <EditEnrolledDegreeDialog student={student} />
     </React.Fragment>
   );
 }

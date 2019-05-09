@@ -20,6 +20,11 @@ const INITIAL_STATE = {
       isOpen: false
     },
     {
+      modalType: "editStudentEnrolledDegree",
+      modalProps: { studentId: "" },
+      isOpen: false
+    },
+    {
       modalType: "createCourse",
       modalProps: {},
       isOpen: false

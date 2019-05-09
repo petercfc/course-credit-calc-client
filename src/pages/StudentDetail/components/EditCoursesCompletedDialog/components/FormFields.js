@@ -24,6 +24,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormControl from "@material-ui/core/FormControl";
 import ListItemText from "@material-ui/core/ListItemText";
 import Checkbox from "@material-ui/core/Checkbox";
+import Chip from "@material-ui/core/Chip";
 
 //material-ui styles - custom hook
 const useStyles = makeStyles(
@@ -45,7 +46,13 @@ const useStyles = makeStyles(
       paddingLeft: 16,
       paddingRight: 16
     },
-
+    chips: {
+      display: "flex",
+      flexWrap: "wrap"
+    },
+    chip: {
+      margin: theme.spacing.unit / 4
+    },
     backButton: {
       marginLeft: -12,
       marginRight: 20
@@ -141,7 +148,13 @@ const FormFields = props => {
             name="coursesPassed"
             component={Select}
             multiple
-            renderValue={selected => selected.map(e => e.name).join(",")}
+            renderValue={selected => (
+              <div className={classes.chips}>
+                {selected.map(e => (
+                  <Chip key={e.id} label={e.name} className={classes.chip} />
+                ))}
+              </div>
+            )}
             input={
               <OutlinedInput
                 labelWidth={coursesPassedWidth}

@@ -24,6 +24,9 @@ import { HttpLink } from "apollo-link-http";
 //pages
 import Index from "./pages/index";
 
+//components
+import Loading from "components/Loading";
+
 //log rocket init
 LogRocket.init("deep-six-design/course-credit-calc");
 
@@ -63,7 +66,7 @@ waitOnCache.then(() => {
   const AppBundle = (
     <CacheBuster>
       {({ loading, isLatestVersion, refreshCacheAndReload }) => {
-        if (loading) return null;
+        if (loading) return <Loading isCircular />;
         if (!loading && !isLatestVersion) {
           refreshCacheAndReload();
         }

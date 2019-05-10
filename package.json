@@ -1,6 +1,6 @@
 {
   "name": "course-credit-calc-client",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.7.0",

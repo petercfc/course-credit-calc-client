@@ -28,6 +28,9 @@ const useStyles = makeStyles(
       borderTopLeftRadius: theme.spacing(1),
       borderTopRightRadius: theme.spacing(1)
     },
+    version: {
+      paddingLeft: theme.spacing(2)
+    },
     list: {
       width: 250
     },
@@ -76,24 +79,15 @@ function BottomDrawer(props) {
 
   const fullList = (
     <div className={classes.fullList}>
+      <Typography className={classes.version} variant="caption" gutterBottom>
+        Course Credit Calculator v{global.appVersion}
+      </Typography>
       <CardContent className={classes.contentHeader}>
         <Typography variant="h6" gutterBottom>
           Navigation
         </Typography>
       </CardContent>
       <List className={classes.content}>
-        <ListItem
-          className={classes.listItem}
-          button
-          onClick={() => {
-            history.push(`/students`);
-          }}
-        >
-          <ListItemText
-            primary={`Course Credit Calculator  v${global.appVersion}`}
-          />
-        </ListItem>
-        <Divider className={classes.divider} component="li" variant="inset" />
         <ListItem
           className={classes.listItem}
           button

@@ -18,6 +18,7 @@ import SchoolIcon from "@material-ui/icons/School";
 import DomainIcon from "@material-ui/icons/Domain";
 import StorageIcon from "@material-ui/icons/Storage";
 import ListAltIcon from "@material-ui/icons/ListAlt";
+import TagFacesIcon from "@material-ui/icons/TagFaces";
 import Divider from "@material-ui/core/Divider";
 
 //create a custom material-ui hook to access class styles
@@ -79,9 +80,6 @@ function BottomDrawer(props) {
 
   const fullList = (
     <div className={classes.fullList}>
-      <Typography className={classes.version} variant="caption" gutterBottom>
-        Course Credit Calculator v{global.appVersion}
-      </Typography>
       <CardContent className={classes.contentHeader}>
         <Typography variant="h6" gutterBottom>
           Navigation
@@ -151,6 +149,15 @@ function BottomDrawer(props) {
             <StorageIcon />
           </ListItemIcon>
           <ListItemText primary="Subjects" />
+        </ListItem>
+        <Divider className={classes.divider} component="li" variant="inset" />
+        <ListItem className={classes.listItem}>
+          <ListItemIcon>
+            <TagFacesIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={`Course Credit Calculator v${global.appVersion}`}
+          />
         </ListItem>
       </List>
     </div>

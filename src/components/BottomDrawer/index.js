@@ -89,6 +89,18 @@ function BottomDrawer(props) {
             history.push(`/students`);
           }}
         >
+          <ListItemText
+            primary={`Course Credit Calculator  v${global.appVersion}`}
+          />
+        </ListItem>
+        <Divider className={classes.divider} component="li" variant="inset" />
+        <ListItem
+          className={classes.listItem}
+          button
+          onClick={() => {
+            history.push(`/students`);
+          }}
+        >
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>

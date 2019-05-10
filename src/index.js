@@ -3,6 +3,7 @@ import React from "react";
 import { render } from "react-dom";
 import * as serviceWorker from "./configs/serviceWorker";
 import LogRocket from "logrocket";
+import CacheBuster from "./configs/CacheBuster";
 
 //redux
 import { Provider } from "react-redux";
@@ -60,13 +61,24 @@ const client = new ApolloClient({
 waitOnCache.then(() => {
   const rootElement = document.querySelector("#root");
   const AppBundle = (
-    <Provider store={store}>
-      <ApolloProvider client={client}>
-        <ApolloProviderHooks client={client}>
-          <Index />
-        </ApolloProviderHooks>
-      </ApolloProvider>
-    </Provider>
+    <CacheBuster>
+      {({ loading, isLatestVersion, refreshCacheAndReload }) => {
+        if (loading) return null;
+        if (!loading && !isLatestVersion) {
+          refreshCacheAndReload();
+        }
+
+        return (
+          <Provider store={store}>
+            <ApolloProvider client={client}>
+              <ApolloProviderHooks client={client}>
+                <Index />
+              </ApolloProviderHooks>
+            </ApolloProvider>
+          </Provider>
+        );
+      }}
+    </CacheBuster>
   );
   render(AppBundle, rootElement);
 });

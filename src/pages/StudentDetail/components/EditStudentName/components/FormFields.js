@@ -20,7 +20,7 @@ const FormFields = props => {
         <Field
           type="text"
           name="name"
-          label="Student"
+          label="Student Name"
           variant="outlined"
           component={TextField}
           autoFocus
@@ -30,7 +30,7 @@ const FormFields = props => {
       <DialogActions>
         <Button onClick={handleDialogClose}>Cancel</Button>
         <Button type="submit" disabled={!isValid} color="primary">
-          Change Student Name
+          Save
         </Button>
       </DialogActions>
     </Form>

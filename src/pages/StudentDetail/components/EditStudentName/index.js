@@ -35,16 +35,11 @@ const EditStudentName = props => {
     <Mutation mutation={UPDATE_STUDENT}>
       {(updateStudent, { loading, error }) => {
         return (
-          <Dialog open={modal.isOpen} onClose={handleDialogClose}>
+          <Dialog fullWidth open={modal.isOpen} onClose={handleDialogClose}>
             {loading && <Loading />}
 
             <DialogTitle>Edit Student Name</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et
-                mauris dapibus, fermentum mi nec, laoreet magna. Mauris turpis
-                sapien, gravida quis est vel, mattis posuere dui.
-              </DialogContentText>
               {error && <Error message={error.message} />}
             </DialogContent>
             <FormLogic
